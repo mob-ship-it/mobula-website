@@ -1,0 +1,25 @@
+---
+interface Props {
+  platform?: 'instagram' | 'medium';
+  color?: string;
+  class?: string;
+  platformInstagram?: string;
+  platformMedium?: string;
+}
+
+const { 
+  platform = 'medium',
+  color,
+  class: className = '',
+  platformInstagram = "https://c.animaapp.com/ZTuOwSBY/img/platform-instagram--color-negative.svg",
+  platformMedium = "https://c.animaapp.com/ZTuOwSBY/img/platform-medium--color-negative.svg"
+} = Astro.props;
+
+const src = platform === 'instagram' ? platformInstagram : platformMedium;
+---
+
+<img
+  class={`w-12 left-0 top-0 h-12 absolute ${className}`}
+  alt={`Platform ${platform}`}
+  src={src}
+/>

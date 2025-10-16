@@ -1,0 +1,31 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HeroSection from '../sections/HeroSection.astro';
+import { ServicesSection } from '../sections/ServicesSection';
+import { PlansSection } from '../sections/PlansSection';
+---
+
+<MainLayout title="Mobula Studio - Marketing Digital">
+  <!-- Hero Section - Astro estático -->
+  <section id="inicio" class="relative">
+    <HeroSection />
+  </section>
+
+  <!-- Services Section - React interactivo (carousel) -->
+  <section id="servicios" class="relative py-12 lg:py-20">
+    <ServicesSection client:load />
+  </section>
+
+  <!-- Plans Section - React interactivo (carousel + subscription) -->
+  <section id="planes" class="relative py-12 lg:py-20 bg-[#f6f2f2]">
+    <PlansSection client:load />
+  </section>
+</MainLayout>
+
+
+<script>
+
+  document.addEventListener('astro:page-load', () => {
+    console.log('Página cargada correctamente');
+  });
+</script>

@@ -1,0 +1,47 @@
+---
+import Header from '../components/Header.jsx';
+import '../styles/global.css';
+
+const { title = "Mobula Studio" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet">
+  <style is:global>
+    * {
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0px;
+      height: 100%;
+    }
+    button:focus-visible {
+      outline: 2px solid #4a90e2 !important;
+      outline: -webkit-focus-ring-color auto 5px !important;
+    }
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body class="bg-[#faf1ea]">
+  <div class="min-h-screen flex flex-col">
+
+    <Header client:load />
+    <main class="flex-1">
+      <slot />
+    </main>
+  </div>
+</body>
+</html>
