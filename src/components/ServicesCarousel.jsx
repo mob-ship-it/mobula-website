@@ -137,11 +137,11 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
                                         loading="eager"
                                         decoding="sync"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10" />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/30 to-black/10" />
                                 </>
                             )}
 
-                            <article className="absolute bottom-6 left-6 right-6">
+                            <article className="absolute top-6 left-6 right-6">
                                 <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-lg sm:text-xl leading-tight">
                                     {slide.title}
                                 </h3>
@@ -176,6 +176,8 @@ export function ServicesCarousel({ slides }) {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [currentX, setCurrentX] = useState(0);
+    const [dragOffset, setDragOffset] = useState(0);
+    const containerRef = useRef(null);
 
     const getSlideWidth = () => {
         if (typeof window !== 'undefined') {
@@ -214,14 +216,19 @@ export function ServicesCarousel({ slides }) {
         setIsDragging(false);
         setStartX(clientX);
         setCurrentX(clientX);
+        setDragOffset(0);
     };
 
     const handleMove = (clientX) => {
         if (startX === 0) return;
 
-        const diffX = Math.abs(startX - clientX);
-        if (diffX > 15) {
+        const diffX = startX - clientX;
+        const absDiffX = Math.abs(diffX);
+        
+        if (absDiffX > 5) {
             setIsDragging(true);
+            const resistance = 0.8;
+            setDragOffset(diffX * resistance);
         }
 
         setCurrentX(clientX);
@@ -231,7 +238,7 @@ export function ServicesCarousel({ slides }) {
         if (startX === 0) return;
 
         const diffX = startX - currentX;
-        const threshold = 60;
+        const threshold = 50;
 
         if (isDragging && Math.abs(diffX) > threshold) {
             if (diffX > 0) {
@@ -241,27 +248,44 @@ export function ServicesCarousel({ slides }) {
             }
         }
 
-        setTimeout(() => setIsDragging(false), 150);
+        setDragOffset(0);
+        setTimeout(() => setIsDragging(false), 100);
         setStartX(0);
         setCurrentX(0);
     };
 
-    const onMouseDown = (e) => handleStart(e.clientX);
+    const onMouseDown = (e) => {
+        e.preventDefault();
+        handleStart(e.clientX);
+    };
+    
     const onMouseMove = (e) => handleMove(e.clientX);
     const onMouseUp = () => handleEnd();
-    const onMouseLeave = () => handleEnd();
+    const onMouseLeave = () => {
+        if (isDragging) handleEnd();
+    };
 
     const onTouchStart = (e) => handleStart(e.touches[0].clientX);
-    const onTouchMove = (e) => handleMove(e.touches[0].clientX);
+    const onTouchMove = (e) => {
+        e.preventDefault();
+        handleMove(e.touches[0].clientX);
+    };
     const onTouchEnd = () => handleEnd();
 
     const id = useId();
 
+    const getTransformOffset = () => {
+        if (typeof window === 'undefined') return 0;
+        const containerWidth = containerRef.current?.offsetWidth || 0;
+        const centerOffset = (containerWidth / 2) - (slideWidth / 2);
+        return centerOffset - (current * slideWidth) - dragOffset;
+    };
     return (
         <div className="w-full flex flex-col items-center">
             {/* Main carousel container */}
             <div
-                className="relative w-full max-w-[320px] sm:max-w-[480px] md:max-w-[600px] lg:max-w-[800px] h-[360px] sm:h-[420px] md:h-[480px] mx-auto overflow-visible cursor-grab active:cursor-grabbing select-none"
+                ref={containerRef}
+                className="relative w-full max-w-[320px] sm:max-w-[480px] md:max-w-[600px] lg:max-w-[900px] h-[360px] sm:h-[420px] md:h-[480px] mx-auto overflow-visible cursor-grab active:cursor-grabbing select-none touch-pan-y"
                 aria-labelledby={`carousel-heading-${id}`}
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
@@ -272,9 +296,10 @@ export function ServicesCarousel({ slides }) {
                 onTouchEnd={onTouchEnd}
             >
                 <ul
-                    className="flex transition-transform duration-700 ease-out h-full items-center"
+                    className="flex h-full items-center will-change-transform"
                     style={{
-                        transform: `translateX(-${current * slideWidth}px)`,
+                        transform: `translateX(${getTransformOffset()}px)`,
+                        transition: isDragging ? 'none' : 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         width: 'max-content',
                     }}
                 >

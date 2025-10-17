@@ -40,30 +40,64 @@ export default function Header() {
 
           {/* Desktop Header */}
           <div className="hidden lg:flex justify-between items-center h-20 max-w-7xl mx-auto">
-            {/* Logo */}
+            {/* Logo - Larger size */}
             <div className="flex-shrink-0">
               <img
-                className="h-12 w-12"
+                className="h-20 w-auto"
                 alt="Mobula Studio Logo"
                 src="https://c.animaapp.com/ZTuOwSBY/img/group-2@2x.png"
               />
             </div>
 
-            {/* Desktop navigation */}
-            <nav className="flex space-x-8">
-              <a href="#inicio" className="text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium">
-                Inicio
-              </a>
-              <a href="#servicios" className="text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium">
-                Servicios
-              </a>
-              <a href="#planes" className="text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium">
-                Planes
-              </a>
-              <a href="#contacto" className="text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium">
-                Contacto
-              </a>
-            </nav>
+            {/* Desktop navigation - Rounded bordered container (centered) */}
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <nav 
+                className="flex items-center gap-1 px-6 py-3 rounded-full"
+                style={{ border: '2px solid #13243c' }}
+              >
+                <a 
+                  href="#servicios" 
+                  className="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+                >
+                  Servicios
+                </a>
+                <div className="w-px h-6 bg-[#13243c]" />
+                
+                <a 
+                  href="#trabajo" 
+                  className="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+                >
+                  Nuestro Trabajo
+                </a>
+                <div className="w-px h-6 bg-[#13243c]" />
+                
+                <a 
+                  href="#planes" 
+                  className="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+                >
+                  Planes
+                </a>
+                <div className="w-px h-6 bg-[#13243c]" />
+                
+                <a 
+                  href="#blog" 
+                  className="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+                >
+                  Blog
+                </a>
+                <div className="w-px h-6 bg-[#13243c]" />
+                
+                <a 
+                  href="#contacto" 
+                  className="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+                >
+                  Contacto
+                </a>
+              </nav>
+            </div>
+
+            {/* Spacer for balance */}
+            <div className="flex-shrink-0 w-20"></div>
           </div>
         </div>
       </header>

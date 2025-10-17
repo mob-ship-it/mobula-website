@@ -6,10 +6,9 @@ export const PlansCarousel = ({ children, className = "" }) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [startScrollLeft, setStartScrollLeft] = useState(0);
-  const [scrollOffset, setScrollOffset] = useState(0);
+  const [currentX, setCurrentX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
   const containerRef = useRef(null);
-  const animationRef = useRef(null);
   const itemWidth = 258; 
 
   const totalItems = React.Children.count(children);
@@ -23,47 +22,11 @@ export const PlansCarousel = ({ children, className = "" }) => {
     setCanScrollRight(currentIndex < totalItems - 1);
   };
 
-
-  const smoothScrollTo = useCallback((targetScroll) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const startScroll = container.scrollLeft;
-    const distance = targetScroll - startScroll;
-    const duration = 300; // 300ms for smooth animation
-    let startTime = null;
-
-    const animate = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      
-      container.scrollLeft = startScroll + distance * easeOut;
-      
-      if (progress < 1) {
-        animationRef.current = requestAnimationFrame(animate);
-      } else {
-        animationRef.current = null;
-      }
-    };
-
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-    }
-    animationRef.current = requestAnimationFrame(animate);
-  }, []);
-
   const scrollToIndex = useCallback((index) => {
-    if (containerRef.current) {
-      const newIndex = Math.max(0, Math.min(index, totalItems - 1));
-      const targetScroll = newIndex * itemWidth;
-      
-      smoothScrollTo(targetScroll);
-      setCurrentIndex(newIndex);
-    }
-  }, [itemWidth, totalItems, smoothScrollTo]);
+    const newIndex = Math.max(0, Math.min(index, totalItems - 1));
+    setCurrentIndex(newIndex);
+    setDragOffset(0);
+  }, [totalItems]);
 
   const scrollToLeft = () => {
     scrollToIndex(currentIndex - 1);
@@ -73,173 +36,164 @@ export const PlansCarousel = ({ children, className = "" }) => {
     scrollToIndex(currentIndex + 1);
   };
 
+  const handleStart = (clientX) => {
+    setIsDragging(false);
+    setStartX(clientX);
+    setCurrentX(clientX);
+    setDragOffset(0);
+  };
 
-  const updateVisualFeedback = useCallback(() => {
-    if (!containerRef.current) return;
-    
-    const container = containerRef.current;
-    const scrollPosition = container.scrollLeft;
-    const progress = scrollPosition / itemWidth;
-    const nearestIndex = Math.round(progress);
-    
+  const handleMove = (clientX) => {
+    if (startX === 0) return;
 
-    setScrollOffset(scrollPosition % itemWidth);
+    const diffX = startX - clientX;
+    const absDiffX = Math.abs(diffX);
     
-
-    if (Math.abs(progress - currentIndex) > 0.3 && nearestIndex !== currentIndex) {
-      setCurrentIndex(Math.max(0, Math.min(nearestIndex, totalItems - 1)));
+    if (absDiffX > 3) {
+      setIsDragging(true);
+      const resistance = 1;
+      setDragOffset(diffX * resistance);
     }
-  }, [currentIndex, itemWidth, totalItems]);
+
+    setCurrentX(clientX);
+  };
+
+  const handleEnd = () => {
+    if (startX === 0) return;
+
+    const diffX = startX - currentX;
+    const threshold = 40;
+
+    if (isDragging && Math.abs(diffX) > threshold) {
+      if (diffX > 0) {
+        if (currentIndex < totalItems - 1) {
+          scrollToRight();
+        } else {
+          setDragOffset(0);
+        }
+      } else {
+        if (currentIndex > 0) {
+          scrollToLeft();
+        } else {
+          setDragOffset(0);
+        }
+      }
+    } else {
+      setDragOffset(0);
+    }
+    setTimeout(() => setIsDragging(false), 50);
+    setStartX(0);
+    setCurrentX(0);
+  };
 
   const handleMouseDown = (e) => {
     e.preventDefault();
-    setIsDragging(true);
-    setStartX(e.clientX);
-    setStartScrollLeft(containerRef.current.scrollLeft);
-    containerRef.current.style.cursor = 'grabbing';
-    containerRef.current.style.scrollBehavior = 'auto';
+    handleStart(e.clientX);
   };
 
   const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    
-    const x = e.clientX;
-    const walk = (startX - x) * 1.2; 
-    const newScrollLeft = startScrollLeft + walk;
-    
-    containerRef.current.scrollLeft = Math.max(0, Math.min(newScrollLeft, (totalItems - 1) * itemWidth));
-    updateVisualFeedback();
+    if (isDragging) e.preventDefault();
+    handleMove(e.clientX);
   };
 
-  const handleMouseUp = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    containerRef.current.style.cursor = 'grab';
-    containerRef.current.style.scrollBehavior = 'smooth';
-    const scrollPosition = containerRef.current.scrollLeft;
-    const newIndex = Math.round(scrollPosition / itemWidth);
-    scrollToIndex(newIndex);
-  };
+  const handleMouseUp = () => handleEnd();
 
   const handleMouseLeave = () => {
-    if (isDragging) {
-      handleMouseUp();
-    }
+    if (isDragging) handleEnd();
   };
 
-
   const handleTouchStart = (e) => {
-    const touch = e.touches[0];
-    setStartX(touch.clientX);
-    setStartScrollLeft(containerRef.current.scrollLeft);
-    setIsDragging(true);
-    containerRef.current.style.scrollBehavior = 'auto';
+    handleStart(e.touches[0].clientX);
   };
 
   const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    
-    const touch = e.touches[0];
-    const walk = (startX - touch.clientX) * 1.0;
-    const newScrollLeft = startScrollLeft + walk;
-    
-    containerRef.current.scrollLeft = Math.max(0, Math.min(newScrollLeft, (totalItems - 1) * itemWidth));
-    updateVisualFeedback();
+    if (isDragging) {
+      e.preventDefault();
+    }
+    handleMove(e.touches[0].clientX);
   };
 
-  const handleTouchEnd = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    containerRef.current.style.scrollBehavior = 'smooth';
+  const handleTouchEnd = () => handleEnd();
+
+  const getTransformOffset = () => {
+    if (typeof window === 'undefined') return 0;
     
-
-    const scrollPosition = containerRef.current.scrollLeft;
-    const newIndex = Math.round(scrollPosition / itemWidth);
-    scrollToIndex(newIndex);
+    const slideWidthWithGap = itemWidth + 14;
+    const baseOffset = currentIndex * slideWidthWithGap;
+    
+    const containerWidth = containerRef.current?.offsetWidth || 0;
+    const totalWidth = totalItems * slideWidthWithGap - 14;
+    
+    if (totalWidth < containerWidth) {
+      const centerOffset = (containerWidth - totalWidth) / 2;
+      return centerOffset - dragOffset;
+    }
+    
+    const maxOffset = totalWidth - containerWidth;
+    
+    const calculatedOffset = baseOffset + dragOffset;
+    const finalOffset = Math.min(calculatedOffset, maxOffset);
+    
+    return -finalOffset;
   };
-
- 
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className={`relative ${className}`}>
       {/* Carousel container */}
-      <div
-        ref={containerRef}
-        className="flex overflow-x-hidden scrollbar-hide gap-[14px] cursor-grab select-none"
-        style={{
-          scrollSnapType: isDragging ? 'none' : 'x mandatory',
-          scrollBehavior: 'smooth',
-        }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {React.Children.map(children, (child, index) => {
-          const distanceFromCenter = Math.abs(index - (currentIndex + scrollOffset / itemWidth));
-          const scale = isDragging 
-            ? Math.max(0.95, 1 - distanceFromCenter * 0.05)
-            : 1;
-          const opacity = isDragging
-            ? Math.max(0.7, 1 - distanceFromCenter * 0.1)
-            : 1;
-
-          return (
-            <div 
-              key={index} 
-              className="flex-shrink-0 transition-all duration-75 ease-out"
-              style={{ 
-                scrollSnapAlign: 'start',
-                transform: `scale(${scale})`,
-                opacity: opacity,
-                willChange: 'transform, opacity'
-              }}
-            >
-              {child}
-            </div>
-          );
-        })}
+      <div className="overflow-hidden">
+        <div
+          ref={containerRef}
+          className="flex gap-[14px] cursor-grab active:cursor-grabbing select-none"
+          style={{
+            transform: `translateX(${getTransformOffset()}px)`,
+            transition: isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            willChange: 'transform',
+            touchAction: 'pan-y pinch-zoom',
+          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {React.Children.map(children, (child, index) => {
+            return (
+              <div 
+                key={index} 
+                className="flex-shrink-0"
+                style={{ 
+                  willChange: 'transform',
+                  pointerEvents: isDragging ? 'none' : 'auto'
+                }}
+              >
+                {child}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Enhanced dots indicator with real-time progress */}
+      {/* Dots indicator */}
       <div className="flex justify-center mt-6 space-x-2.5">
         {Array.from({ length: totalItems }, (_, index) => {
-          const progress = isDragging 
-            ? Math.max(0, 1 - Math.abs(index - (containerRef.current?.scrollLeft || 0) / itemWidth))
-            : index === currentIndex ? 1 : 0;
-
           return (
             <button
               key={index}
               onClick={() => scrollToIndex(index)}
               className={`
-                transition-all duration-200 ease-out
+                transition-all duration-300 ease-out
                 border-0 outline-none focus:outline-none active:outline-none
+                rounded-full
                 ${index === currentIndex 
-                  ? 'bg-[#3b82f6]' 
-                  : 'bg-[#d1d5db] hover:bg-[#9ca3af]'
+                  ? 'bg-[#3b82f6] w-[10px] h-[10px]' 
+                  : 'bg-[#d1d5db] hover:bg-[#9ca3af] w-[8px] h-[8px]'
                 }
               `}
               style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
-                display: 'block',
-                transform: `scale(${0.8 + progress * 0.4})`,
-                opacity: 0.6 + progress * 0.4,
-                willChange: 'transform, opacity'
+                transform: index === currentIndex ? 'scale(1.2)' : 'scale(1)',
+                opacity: index === currentIndex ? 1 : 0.6,
               }}
               aria-label={`Ir al plan ${index + 1}`}
             />

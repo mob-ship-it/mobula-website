@@ -2,6 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import HeroSection from '../sections/HeroSection.astro';
 import { ServicesSection } from '../sections/ServicesSection';
+import SeriousSection from '../sections/SeriousSection';
 import { PlansSection } from '../sections/PlansSection';
 import CreditsSection from '../sections/CreditsSection';
 ---
@@ -17,6 +18,10 @@ import CreditsSection from '../sections/CreditsSection';
     <ServicesSection client:load />
   </section>
 
+  <!-- Serious Section - "Lo decimos en serio" con proyectos -->
+  <section id="proyectos" class="relative">
+    <SeriousSection client:load />
+  </section>
   <!-- Plans Section - React interactivo (carousel + subscription) -->
   <section id="planes" class="relative py-12 lg:py-20 bg-[#f6f2f2]">
     <PlansSection client:load />

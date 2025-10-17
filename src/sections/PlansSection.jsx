@@ -24,7 +24,7 @@ export const PlansSection = () => {
 
   const PlanCard = ({ plan }) => (
     <div className="w-[244px] h-[325.9px] flex-shrink-0">
-      <div className="h-[326px] rounded-2xl border-2 border-solid border-[#13243c] bg-white hover:shadow-lg transition-all duration-300 hover:scale-105">
+      <div className="h-[326px] rounded-2xl border-2 border-solid border-[#13243c] bg-white hover:shadow-xl hover:border-[#3b82f6] transition-all duration-300 ease-out">
         <div className="flex flex-col w-[203px] items-start gap-6 relative top-5 left-[22px]">
           <div className="flex flex-col items-start gap-3 relative self-stretch w-full flex-[0_0_auto]">
             <div className="h-[17.08px] text-base leading-[19.5px] relative self-stretch mt-[-1.00px] [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] tracking-[0] whitespace-nowrap">

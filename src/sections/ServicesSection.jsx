@@ -5,7 +5,7 @@ export const ServicesSection = () => {
   const services = [
     {
       title: "Marketing & Estrategia",
-      image: "https://c.animaapp.com/ZTuOwSBY/img/rectangle-70@2x.png",
+      image: "/images/services/marketin-y-estrategia.jpg",
       color: "#13243c"
     },
     {
@@ -23,17 +23,17 @@ export const ServicesSection = () => {
     },
     {
       title: "Concepto & Contenido", 
-      image: "https://c.animaapp.com/ZTuOwSBY/img/rectangle-70@2x.png",
+      image: "/images/services/concepto-contenido.jpg",
       color: "#13243c"
     },
     {
       title: "Diseño & Branding",
-      image: "https://c.animaapp.com/ZTuOwSBY/img/rectangle-55@2x.png", 
+      image: "/images/services/disenio-branding.png", 
       color: "#13243c"
     },
     {
       title: "Web & Experiencia",
-      image: "https://c.animaapp.com/ZTuOwSBY/img/rectangle-57@2x.png",
+      image: "/images/services/web-y-experiencia.jpg",
       color: "#13243c"
     }
   ];
