@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.jsx';
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 const { title = "Mobula Studio" } = Astro.props;
 ---
@@ -42,6 +43,8 @@ const { title = "Mobula Studio" } = Astro.props;
     <main class="flex-1">
       <slot />
     </main>
+        <!-- Footer estático -->
+    <Footer />
   </div>
 </body>
 </html>

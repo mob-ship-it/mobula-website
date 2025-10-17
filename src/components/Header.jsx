@@ -13,14 +13,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-20 pb-4">
+        <div className="w-full mx-auto px-6 sm:px-8 lg:px-8">
           {/* Mobile Header */}
-          <div className="flex lg:hidden justify-between items-center h-16">
+          <div className="flex lg:hidden justify-between items-center h-16 max-w-[90%] mx-auto">
             {/* Logo on the left */}
             <div className="flex-shrink-0">
               <img
-                className="h-10 w-10"
+                className="h-16 w-auto"
                 alt="Mobula Studio Logo"
                 src="https://c.animaapp.com/ZTuOwSBY/img/group-2@2x.png"
               />
@@ -29,17 +29,17 @@ export default function Header() {
             {/* Mobile menu button */}
             <button
               onClick={handleMenuToggle}
-              className="flex flex-col w-8 items-center justify-center gap-1.5 cursor-pointer hover:opacity-80 transition-opacity p-2"
+              className="flex flex-col w-10 items-center justify-center gap-2 cursor-pointer hover:opacity-80 transition-opacity p-2"
               aria-label="Toggle menu"
             >
-              <div className="w-6 h-1.5 bg-[#13243c] rounded-full" />
-              <div className="w-6 h-1.5 bg-[#13243c] rounded-full" />
-              <div className="w-6 h-1.5 bg-[#13243c] rounded-full" />
+              <div className="w-8 h-1.5 bg-[#13243c] rounded-full" />
+              <div className="w-8 h-1.5 bg-[#13243c] rounded-full" />
+              <div className="w-8 h-1.5 bg-[#13243c] rounded-full" />
             </button>
           </div>
 
           {/* Desktop Header */}
-          <div className="hidden lg:flex justify-between items-center h-20">
+          <div className="hidden lg:flex justify-between items-center h-20 max-w-7xl mx-auto">
             {/* Logo */}
             <div className="flex-shrink-0">
               <img
