@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import SocialIcons from './SocialIcons.astro';
+import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
 ---
 
 <footer class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16">
@@ -10,10 +12,14 @@ import SocialIcons from './SocialIcons.astro';
       
       {/* Logo */}
       <div class="flex flex-col items-center gap-2">
-        <img
-          class="h-20 w-auto"
+        <Image
+          src={mobulaLogo}
           alt="Mobula Studio Logo"
-          src="/images/logo/mobula-logo.png"
+          width={120}
+          height={80}
+          format="webp"
+          quality={85}
+          class="h-20 w-auto"
         />
       </div>
 

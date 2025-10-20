@@ -31,6 +31,9 @@ export function EmblaCarousel({
     skipSnaps: false,
     duration: 25,
     inViewThreshold: 0.7,
+    axis: 'x',
+    dragThreshold: 20,
+    startIndex: 0,
     ...options
   };
 
@@ -38,6 +41,8 @@ export function EmblaCarousel({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const touchStartY = React.useRef(0);
 
   const slides = React.Children.toArray(children);
   const totalSlides = slides.length;
@@ -67,6 +72,22 @@ export function EmblaCarousel({
       emblaApi.off('reInit', onSelect);
     };
   }, [emblaApi, onSelect]);
+
+  const handleTouchStart = useCallback((e) => {
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (!emblaApi) return;
+    
+    const touchY = e.touches[0].clientY;
+    const deltaY = Math.abs(touchY - touchStartY.current);
+    const deltaX = Math.abs(e.touches[0].clientX - e.touches[0].clientX);
+    
+    if (deltaY > 5 && deltaY > deltaX) {
+      return;
+    }
+  }, [emblaApi]);
 
   // Funciones de navegación
   const scrollPrev = useCallback(() => {
@@ -115,8 +136,13 @@ export function EmblaCarousel({
       )}
 
       {/* Carousel Container */}
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex touch-pan-y">
+      <div 
+        className="overflow-hidden" 
+        ref={emblaRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+      >
+        <div className="flex flex-row">
           {slides.map((slide, index) => (
             <div
               key={index}

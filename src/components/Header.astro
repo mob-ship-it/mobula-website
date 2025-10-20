@@ -1,0 +1,163 @@
+---
+import { Image } from 'astro:assets';
+import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
+---
+
+<header class="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-4 pb-4">
+  <div class="w-full mx-auto px-6 sm:px-8 lg:px-8">
+    <!-- Mobile Header -->
+    <div class="flex lg:hidden justify-between items-center h-16 max-w-[90%] mx-auto">
+      <!-- Logo on the left -->
+      <div class="flex-shrink-0">
+        <Image
+          src={mobulaLogo}
+          alt="Mobula Studio Logo"
+          width={120}
+          height={64}
+          format="webp"
+          quality={85}
+          class="h-16 w-auto"
+        />
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-button"
+        class="flex flex-col w-10 items-center justify-center gap-2 cursor-pointer hover:opacity-80 transition-opacity p-2"
+        aria-label="Toggle menu"
+      >
+        <div class="w-8 h-1.5 bg-[#13243c] rounded-full"></div>
+        <div class="w-8 h-1.5 bg-[#13243c] rounded-full"></div>
+        <div class="w-8 h-1.5 bg-[#13243c] rounded-full"></div>
+      </button>
+    </div>
+
+    <!-- Desktop Header -->
+    <div class="hidden lg:flex justify-between items-center h-20 max-w-7xl mx-auto">
+      <!-- Logo - Larger size -->
+      <div class="flex-shrink-0">
+        <Image
+          src={mobulaLogo}
+          alt="Mobula Studio Logo"
+          width={150}
+          height={80}
+          format="webp"
+          quality={85}
+          class="h-20 w-auto"
+        />
+      </div>
+
+      <div class="absolute left-1/2 transform -translate-x-1/2">
+        <nav 
+          class="flex items-center gap-1 px-6 py-3 rounded-full"
+          style="border: 2px solid #13243c"
+        >
+          <a 
+            href="#servicios" 
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+          >
+            Servicios
+          </a>
+          <a 
+            href="#planes" 
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+          >
+            Planes
+          </a>
+          <a 
+            href="#equipo" 
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
+          >
+            Equipo
+          </a>
+        </nav>
+      </div>
+
+      <!-- CTA Button (right side) -->
+      <a 
+        href="#contacto"
+        class="[font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] bg-[#13243c] hover:bg-[#13243c]/90 transition-colors font-semibold text-base px-8 py-3 rounded-full whitespace-nowrap"
+      >
+        Contactanos
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-[#13243c] z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+>
+  <div class="flex flex-col h-full">
+    <!-- Header del menú con botón de cerrar -->
+    <div class="flex justify-end p-6">
+      <button
+        id="mobile-menu-close"
+        class="text-[#faf1ea] hover:text-[#faf1ea]/70 transition-colors p-2"
+        aria-label="Close menu"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="flex flex-col items-center justify-center flex-1 gap-8 px-6 pb-20">
+      <a 
+        href="#servicios"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] hover:text-[#bb8bfe] transition-colors font-semibold text-2xl"
+      >
+        Servicios
+      </a>
+      <a 
+        href="#planes"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] hover:text-[#bb8bfe] transition-colors font-semibold text-2xl"
+      >
+        Planes
+      </a>
+      <a 
+        href="#equipo"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] hover:text-[#bb8bfe] transition-colors font-semibold text-2xl"
+      >
+        Equipo
+      </a>
+      <a 
+        href="#contacto"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#13243c] bg-[#faf1ea] hover:bg-[#faf1ea]/90 transition-colors font-bold text-xl px-12 py-4 rounded-full mt-8"
+      >
+        Contactanos
+      </a>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeButton = document.getElementById('mobile-menu-close');
+  const menuLinks = document.querySelectorAll('.mobile-menu-link');
+
+  function openMenu() {
+    mobileMenu?.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  menuButton?.addEventListener('click', openMenu);
+  closeButton?.addEventListener('click', closeMenu);
+  
+  menuLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  mobileMenu?.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      closeMenu();
+    }
+  });
+</script>
