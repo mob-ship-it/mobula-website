@@ -1,0 +1,69 @@
+/* Carousel Animations - Global Styles */
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.4s ease-out;
+}
+
+.animate-slide-in {
+    animation: slide-in 0.5s ease-out;
+}
+
+/* Smooth GPU acceleration for Embla Carousel */
+.embla__slide {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* Horizontal Scrolling Animations for SeriousSection */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-33.333%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-right {
+    animation: scroll-right 30s linear infinite;
+}
+
+.animate-scroll-left:hover,
+.animate-scroll-right:hover {
+    animation-play-state: paused;
+}

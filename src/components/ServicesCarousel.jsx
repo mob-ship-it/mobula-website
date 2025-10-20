@@ -227,44 +227,6 @@ export function ServicesCarousel({ slides }) {
                     ))}
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes fade-in {
-                    from {
-                        opacity: 0;
-                    }
-                    to {
-                        opacity: 1;
-                    }
-                }
-
-                @keyframes slide-in {
-                    from {
-                        opacity: 0;
-                        transform: translateX(-10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-
-                .animate-fade-in {
-                    animation: fade-in 0.4s ease-out;
-                }
-
-                .animate-slide-in {
-                    animation: slide-in 0.5s ease-out;
-                }
-
-                /* Smooth GPU acceleration */
-                .embla__slide {
-                    -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-                    -webkit-transform: translateZ(0);
-                    transform: translateZ(0);
-                }
-            `}</style>
         </div>
     );
 }

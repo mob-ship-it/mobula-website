@@ -68,39 +68,6 @@ export default function SeriousSection() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-33.333%);
-          }
-        }
-
-        @keyframes scroll-right {
-          0% {
-            transform: translateX(-33.333%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-
-        .animate-scroll-left {
-          animation: scroll-left 30s linear infinite;
-        }
-
-        .animate-scroll-right {
-          animation: scroll-right 30s linear infinite;
-        }
-
-        .animate-scroll-left:hover,
-        .animate-scroll-right:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 }
