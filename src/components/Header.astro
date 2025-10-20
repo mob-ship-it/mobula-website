@@ -87,46 +87,68 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
 <!-- Mobile Menu Overlay -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 bg-[#13243c] z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+  class="fixed inset-0 bg-black bg-opacity-50 transition-opacity opacity-0 pointer-events-none lg:hidden"
+  style="z-index: 9999;"
 >
-  <div class="flex flex-col h-full">
-    <!-- Header del menú con botón de cerrar -->
-    <div class="flex justify-end p-6">
-      <button
-        id="mobile-menu-close"
-        class="text-[#faf1ea] hover:text-[#faf1ea]/70 transition-colors p-2"
-        aria-label="Close menu"
+  <div 
+    class="flex flex-col items-center justify-center relative bg-[#13243c] w-full h-full px-6 py-8"
+    id="mobile-menu-panel"
+  >
+    <button
+      id="mobile-menu-close"
+      class="absolute top-8 right-8 w-12 h-12 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-all z-20 rounded-full"
+      aria-label="Close menu"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="#ffffff"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
       >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
 
-    <nav class="flex flex-col items-center justify-center flex-1 gap-8 px-6 pb-20">
-      <a 
+    <!-- Navegación centrada con separadores -->
+    <nav class="flex flex-col items-center justify-center gap-8 w-full max-w-sm">
+      <a
         href="#servicios"
-        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] hover:text-[#bb8bfe] transition-colors font-semibold text-2xl"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
       >
         Servicios
       </a>
-      <a 
+      <div class="w-full max-w-[305px] h-px bg-white/30"></div>
+
+      <a
+        href="#trabajo"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
+      >
+        Nuestro Trabajo
+      </a>
+      <div class="w-full max-w-[305px] h-px bg-white/30"></div>
+
+      <a
         href="#planes"
-        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] hover:text-[#bb8bfe] transition-colors font-semibold text-2xl"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
       >
         Planes
       </a>
-      <a 
-        href="#equipo"
-        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] hover:text-[#bb8bfe] transition-colors font-semibold text-2xl"
+      <div class="w-full max-w-[305px] h-px bg-white/30"></div>
+
+      <a
+        href="#blog"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
       >
-        Equipo
+        Blog
       </a>
-      <a 
+      <div class="w-full max-w-[305px] h-px bg-white/30"></div>
+
+      <a
         href="#contacto"
-        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-[#13243c] bg-[#faf1ea] hover:bg-[#faf1ea]/90 transition-colors font-bold text-xl px-12 py-4 rounded-full mt-8"
+        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
       >
-        Contactanos
+        Contacto
       </a>
     </nav>
   </div>
@@ -135,17 +157,24 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
 <script>
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuPanel = document.getElementById('mobile-menu-panel');
   const closeButton = document.getElementById('mobile-menu-close');
   const menuLinks = document.querySelectorAll('.mobile-menu-link');
 
   function openMenu() {
-    mobileMenu?.classList.remove('translate-x-full');
-    document.body.style.overflow = 'hidden';
+    if (mobileMenu) {
+      mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+      mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   function closeMenu() {
-    mobileMenu?.classList.add('translate-x-full');
-    document.body.style.overflow = '';
+    if (mobileMenu) {
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = '';
+    }
   }
 
   menuButton?.addEventListener('click', openMenu);
@@ -159,5 +188,8 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
     if (e.target === mobileMenu) {
       closeMenu();
     }
+  });
+  menuPanel?.addEventListener('click', (e) => {
+    e.stopPropagation();
   });
 </script>
