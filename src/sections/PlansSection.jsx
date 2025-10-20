@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../components/Button";
-import { PlansCarousel } from "../components/PlansCarousel";
+import EmblaCarousel from "../components/EmblaCarousel";
 import { SubscriptionModal } from "../components/SubscriptionModal";
 import { useModal } from "../hooks/useModal";
 import { planService } from "../services/api";
@@ -85,23 +85,23 @@ export const PlansSection = () => {
 
         {/* Plans Container */}
         <div className="relative">
-          {/* Mobile: Carousel */}
-          <div className="block lg:hidden">
-            <PlansCarousel>
-              {plans.map((plan) => (
-                <PlanCard key={plan.id} plan={plan} />
-              ))}
-            </PlansCarousel>
-          </div>
-
-          {/* Desktop: Also use Carousel with dots */}
-          <div className="hidden lg:block">
-            <PlansCarousel>
-              {plans.map((plan) => (
-                <PlanCard key={plan.id} plan={plan} />
-              ))}
-            </PlansCarousel>
-          </div>
+          <EmblaCarousel
+            options={{
+              align: 'start',
+              containScroll: 'trimSnaps',
+              slidesToScroll: 1
+            }}
+            showDots={true}
+            showArrows={false}
+            slideClassName="pl-2 pr-2"
+            slideStyle={{
+              flex: '0 0 auto'
+            }}
+          >
+            {plans.map((plan) => (
+              <PlanCard key={plan.id} plan={plan} />
+            ))}
+          </EmblaCarousel>
         </div>
       </div>
 

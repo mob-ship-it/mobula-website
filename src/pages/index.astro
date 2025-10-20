@@ -5,6 +5,7 @@ import { ServicesSection } from '../sections/ServicesSection';
 import SeriousSection from '../sections/SeriousSection';
 import { PlansSection } from '../sections/PlansSection';
 import CreditsSection from '../sections/CreditsSection';
+import FeaturedArticlesSection from '../sections/FeaturedArticlesSection';
 ---
 
 <MainLayout title="Mobula Studio - Marketing Digital">
@@ -29,6 +30,10 @@ import CreditsSection from '../sections/CreditsSection';
   <!-- Credits Section - React para mostrar cómo funcionan los créditos -->
   <section id="creditos" class="relative">
     <CreditsSection client:load />
+  </section>
+  <!-- Featured Articles Section - Carousel de artículos destacados -->
+  <section id="articulos" class="relative">
+    <FeaturedArticlesSection client:load />
   </section>
 </MainLayout>
 
