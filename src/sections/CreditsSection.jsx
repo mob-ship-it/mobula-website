@@ -31,7 +31,7 @@ export default function CreditsSection() {
   ];
 
   return (
-    <section className="bg-[#faf1ea] py-16 md:py-24">
+    <section className="bg-[#faf1ea] pb-4 pt-6 md:pb-4 md:pt-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
         <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] text-center mb-12">

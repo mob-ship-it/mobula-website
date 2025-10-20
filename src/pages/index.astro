@@ -4,6 +4,7 @@ import HeroSection from '../sections/HeroSection.astro';
 import { ServicesSection } from '../sections/ServicesSection';
 import SeriousSection from '../sections/SeriousSection';
 import { PlansSection } from '../sections/PlansSection';
+import TeamSection from '../sections/TeamSection';
 import CreditsSection from '../sections/CreditsSection';
 import FeaturedArticlesSection from '../sections/FeaturedArticlesSection';
 ---
@@ -26,6 +27,10 @@ import FeaturedArticlesSection from '../sections/FeaturedArticlesSection';
   <!-- Plans Section - React interactivo (carousel + subscription) -->
   <section id="planes" class="relative py-12 lg:py-20 bg-[#f6f2f2]">
     <PlansSection client:load />
+  </section>
+  <!-- Team Section - Equipo de expertos -->
+  <section id="equipo" class="relative">
+    <TeamSection client:load />
   </section>
   <!-- Credits Section - React para mostrar cómo funcionan los créditos -->
   <section id="creditos" class="relative">

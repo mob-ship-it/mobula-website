@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-20 pb-4">
+      <header className="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-4 pb-4">
         <div className="w-full mx-auto px-6 sm:px-8 lg:px-8">
           {/* Mobile Header */}
           <div className="flex lg:hidden justify-between items-center h-16 max-w-[90%] mx-auto">
@@ -109,77 +109,72 @@ export default function Header() {
           style={{ zIndex: 9999 }}
           onClick={handleMenuClose}
         >
-          {/* Menu Panel */}
+          {/* Menu Panel - CENTRADO */}
           <div 
-            className="flex h-[510px] items-start justify-center gap-2.5 px-[39px] py-[46px] relative bg-[#13243c] w-full min-w-[393px]"
+            className="flex flex-col items-center justify-center relative bg-[#13243c] w-full h-full px-6 py-8"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
               onClick={handleMenuClose}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity z-10 bg-transparent border-0 p-0 rounded-sm focus:outline-none focus:ring-0"
+              className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-all z-20 rounded-full"
               aria-label="Close menu"
             >
               <svg
-                className="w-5 h-5"
+                className="w-8 h-8"
                 fill="none"
                 stroke="#ffffff"
                 viewBox="0 0 24 24"
-                strokeWidth={3}
+                strokeWidth={2.5}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            <div className="flex flex-col items-center justify-center w-full">
-              <div className="relative w-[305px] h-[321px] mt-8">
-                <div className="flex w-[305px] items-start justify-center gap-[22px] flex-col relative">
-                  <a
-                    href="#servicios"
-                    className="relative w-fit mt-[-1.00px] [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] whitespace-nowrap hover:text-gray-300 transition-colors cursor-pointer"
-                    onClick={handleMenuClose}
-                  >
-                    Servicios
-                  </a>
-                  <div className="relative w-[305px] h-px bg-white/30"></div>
+            <nav className="flex flex-col items-center justify-center gap-8 w-full max-w-sm">
+              <a
+                href="#servicios"
+                className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
+                onClick={handleMenuClose}
+              >
+                Servicios
+              </a>
+              <div className="w-full max-w-[305px] h-px bg-white/30"></div>
 
-                  <a
-                    href="#trabajo"
-                    className="relative w-fit [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] whitespace-nowrap hover:text-gray-300 transition-colors cursor-pointer"
-                    onClick={handleMenuClose}
-                  >
-                    Nuestro Trabajo
-                  </a>
-                  <div className="relative w-[305px] h-px bg-white/30"></div>
+              <a
+                href="#trabajo"
+                className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
+                onClick={handleMenuClose}
+              >
+                Nuestro Trabajo
+              </a>
+              <div className="w-full max-w-[305px] h-px bg-white/30"></div>
 
-                  <a
-                    href="#planes"
-                    className="relative w-fit [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] whitespace-nowrap hover:text-gray-300 transition-colors cursor-pointer"
-                    onClick={handleMenuClose}
-                  >
-                    Planes
-                  </a>
-                  <div className="relative w-[305px] h-px bg-white/30"></div>
+              <a
+                href="#planes"
+                className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
+                onClick={handleMenuClose}
+              >
+                Planes
+              </a>
+              <div className="w-full max-w-[305px] h-px bg-white/30"></div>
 
-                  <a
-                    href="#blog"
-                    className="relative w-fit [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] whitespace-nowrap hover:text-gray-300 transition-colors cursor-pointer"
-                    onClick={handleMenuClose}
-                  >
-                    Blog
-                  </a>
-                  <div className="relative w-[305px] h-px bg-white/30"></div>
+              <a
+                href="#blog"
+                className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
+                onClick={handleMenuClose}
+              >
+                Blog
+              </a>
+              <div className="w-full max-w-[305px] h-px bg-white/30"></div>
 
-                  <a
-                    href="#contacto"
-                    className="relative w-fit [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] whitespace-nowrap hover:text-gray-300 transition-colors cursor-pointer"
-                    onClick={handleMenuClose}
-                  >
-                    Contacto
-                  </a>
-                </div>
-              </div>
-            </div>
+              <a
+                href="#contacto"
+                className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer text-center"
+                onClick={handleMenuClose}
+              >
+                Contacto
+              </a>
+            </nav>
           </div>
         </div>
       )}

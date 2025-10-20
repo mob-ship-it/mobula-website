@@ -53,7 +53,7 @@ export const ServicesSection = () => {
           </div>
 
           {/* Advanced Carousel - Centered and aligned with title */}
-          <div className="w-full overflow-visible flex justify-center" style={{ transform: 'translateX(30px)' }}>
+          <div className="w-full overflow-visible flex justify-center">
             <ServicesCarousel slides={services} />
           </div>
         </div>

@@ -1,319 +1,272 @@
 "use client";
-import React, { useState, useRef, useId, useEffect } from "react";
-import { cn } from "../lib/utils";
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 
-const Slide = ({ slide, index, current, handleSlideClick }) => {
+const ServiceSlide = ({ slide, isActive, index }) => {
     const slideRef = useRef(null);
-    const xRef = useRef(0);
-    const yRef = useRef(0);
-    const frameRef = useRef();
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const animationFrameRef = useRef(null);
+
+    const handleMouseMove = useCallback((event) => {
+        if (!isActive || !slideRef.current) return;
+
+        const rect = slideRef.current.getBoundingClientRect();
+        const x = event.clientX - (rect.left + rect.width / 2);
+        const y = event.clientY - (rect.top + rect.height / 2);
+
+        if (animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+        }
+
+        animationFrameRef.current = requestAnimationFrame(() => {
+            setMousePosition({ x, y });
+        });
+    }, [isActive]);
+
+    const handleMouseLeave = useCallback(() => {
+        setMousePosition({ x: 0, y: 0 });
+    }, []);
 
     useEffect(() => {
-        const animate = () => {
-            if (!slideRef.current) return;
-
-            const x = xRef.current;
-            const y = yRef.current;
-
-            slideRef.current.style.setProperty("--x", `${x}px`);
-            slideRef.current.style.setProperty("--y", `${y}px`);
-
-            frameRef.current = requestAnimationFrame(animate);
-        };
-
-        frameRef.current = requestAnimationFrame(animate);
-
         return () => {
-            if (frameRef.current) {
-                cancelAnimationFrame(frameRef.current);
+            if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current);
             }
         };
     }, []);
 
-    const handleMouseMove = (event) => {
-        const el = slideRef.current;
-        if (!el) return;
-
-        const r = el.getBoundingClientRect();
-        xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-        yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
-    };
-
-    const handleMouseLeave = () => {
-        xRef.current = 0;
-        yRef.current = 0;
-    };
-
-    const imageLoaded = (event) => {
-        event.currentTarget.style.opacity = "1";
-    };
-
     return (
-        <div className="[perspective:1600px] [transform-style:preserve-3d]">
-            <li
+        <div
+            className="embla__slide"
+            style={{
+                flex: '0 0 80%',
+                minWidth: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                perspective: '1600px',
+                perspectiveOrigin: 'center center'
+            }}
+        >
+            <div
                 ref={slideRef}
-                className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-500 ease-in-out w-[260px] sm:w-[300px] md:w-[340px] h-[360px] sm:h-[420px] md:h-[480px] mx-0 sm:mx-0.5 md:mx-1 z-10 flex-shrink-0"
-                onClick={() => handleSlideClick(index)}
+                className="relative transition-all duration-700 ease-out"
+                style={{
+                    width: 'clamp(260px, 85vw, 360px)',
+                    height: 'clamp(360px, 70vh, 520px)',
+                    transform: isActive
+                        ? 'scale(1) rotateX(0deg) rotateY(0deg)'
+                        : 'scale(0.8) rotateX(8deg)',
+                    opacity: isActive ? 1 : 0.4,
+                    transformStyle: 'preserve-3d',
+                    willChange: isActive ? 'transform' : 'auto',
+                    pointerEvents: isActive ? 'auto' : 'none',
+                }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                style={{
-                    transform:
-                        current !== index
-                            ? "scale(0.75) rotateX(15deg)"
-                            : "scale(1.1) rotateX(0deg)",
-                    transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transformOrigin: "center",
-                    opacity: current !== index ? 0.6 : 1,
-                }}
             >
+                {/* Card Container with parallax effect */}
                 <div
-                    className="absolute top-0 left-0 w-full h-full rounded-[16px] overflow-hidden transition-all duration-200 ease-out shadow-2xl"
+                    className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
                     style={{
                         backgroundColor: slide.color || '#13243c',
-                        transform:
-                            current === index
-                                ? "translate3d(calc(var(--x) / 25), calc(var(--y) / 25), 0)"
-                                : "none",
+                        transform: isActive
+                            ? `translate3d(${mousePosition.x / 25}px, ${mousePosition.y / 25}px, 0)`
+                            : 'none',
+                        transition: isActive ? 'transform 0.15s ease-out' : 'transform 0.6s ease-out',
+                        backfaceVisibility: 'hidden',
                     }}
                 >
-                    {/* Content for featured slide (purple card) */}
+                    {/* Featured Card (Expanded with full content) - Shows when active */}
                     {slide.featured && (
-                        <div className="absolute inset-0 pt-2 px-3 pb-3 sm:pt-3 sm:px-4 sm:pb-4 flex flex-col">
+                        <div className="absolute inset-0 p-4 sm:p-5 flex flex-col">
+                            {/* Image */}
                             {slide.image && (
-                                <div className="mb-2 sm:mb-3 rounded-xl overflow-hidden">
+                                <div className="mb-3 rounded-xl overflow-hidden shadow-lg">
                                     <img
-                                        className="w-full h-[170px] sm:h-[200px] md:h-[230px] object-cover"
-                                        alt={slide.title}
                                         src={slide.image}
-                                        onLoad={imageLoaded}
+                                        alt={slide.title}
+                                        className="w-full h-[180px] sm:h-[220px] object-cover"
                                         loading="eager"
-                                        decoding="sync"
                                     />
                                 </div>
                             )}
 
-                            <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-base sm:text-lg md:text-[22px] leading-tight mb-2 sm:mb-3">
+                            {/* Title */}
+                            <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-lg sm:text-xl md:text-2xl leading-tight mb-3">
                                 {slide.title}
                             </h3>
 
-                            {slide.services && (
-                                <div className="flex-1 mb-3 sm:mb-4">
-                                    <ul className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/95 text-xs sm:text-sm leading-relaxed space-y-1 sm:space-y-1.5 text-left">
-                                        {slide.services.map((item, index) => (
-                                            <li key={index} className="flex items-start">
-                                                <span className="w-1 h-1 bg-white rounded-full mt-2 sm:mt-2.5 mr-2 sm:mr-3 flex-shrink-0"></span>
-                                                <span>{item}</span>
+                            {/* Services List with staggered animation - Only visible when active */}
+                            {slide.services && isActive && (
+                                <div className="flex-1 mb-4 animate-fade-in">
+                                    <ul className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/95 text-sm sm:text-base space-y-2 text-left">
+                                        {slide.services.map((service, idx) => (
+                                            <li
+                                                key={idx}
+                                                className="flex items-start animate-slide-in"
+                                                style={{
+                                                    animationDelay: `${idx * 0.1}s`,
+                                                    animationFillMode: 'backwards'
+                                                }}
+                                            >
+                                                <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-3 flex-shrink-0" />
+                                                <span>{service}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
                             )}
 
-                            {slide.button && (
-                                <button className="w-full bg-white text-[#bb8bfe] hover:bg-gray-50 font-medium rounded-full py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] shadow-md">
+                            {/* CTA Button - Only visible when active */}
+                            {slide.button && isActive && (
+                                <button className="w-full bg-white text-[#bb8bfe] hover:bg-gray-50 font-semibold rounded-full py-3 px-6 text-base transition-all duration-200 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] shadow-lg animate-fade-in">
                                     {slide.button}
                                 </button>
                             )}
 
-                            {/* Logo MOB ULA in corner */}
-                            <div className="absolute bottom-4 sm:bottom-5 right-4 sm:right-5 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
-                                <div className="text-[#bb8bfe] font-bold text-[7px] sm:text-[8px] leading-[0.9] text-center">
-                                    MOB<br />ULA
+                            {/* Logo Badge - Only visible when active */}
+                            {isActive && (
+                                <div className="absolute bottom-5 right-5 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl animate-fade-in">
+                                    <div className="text-[#bb8bfe] font-bold text-[8px] leading-tight text-center">
+                                        MOB<br />ULA
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     )}
 
-                    {/* Content for regular slides (dark cards) */}
+                    {/* Regular Card (Always visible - image and title) */}
                     {!slide.featured && (
                         <div className="absolute inset-0">
                             {slide.image && (
                                 <>
                                     <img
-                                        className="absolute inset-0 w-full h-full object-cover"
-                                        alt={slide.title}
                                         src={slide.image}
-                                        onLoad={imageLoaded}
-                                        loading="eager"
-                                        decoding="sync"
+                                        alt={slide.title}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                        loading="lazy"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/30 to-black/10" />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/30 to-black/20" />
                                 </>
                             )}
 
-                            <article className="absolute top-6 left-6 right-6">
-                                <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-lg sm:text-xl leading-tight">
+                            <div className="absolute top-6 left-6 right-6">
+                                <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-xl sm:text-2xl leading-tight">
                                     {slide.title}
                                 </h3>
-                            </article>
+                            </div>
                         </div>
                     )}
                 </div>
-            </li>
-        </div>
-    );
-};
-
-const CarouselControl = ({ type, title, handleClick }) => {
-    return (
-        <button
-            className={cn(
-                "w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white hover:bg-gray-50 rounded-full focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition-all duration-200 shadow-lg mx-2",
-                type === "previous" ? "rotate-180" : ""
-            )}
-            title={title}
-            onClick={handleClick}
-        >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#13243c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-        </button>
-    );
-};
-
-export function ServicesCarousel({ slides }) {
-    const [current, setCurrent] = useState(1);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [currentX, setCurrentX] = useState(0);
-    const [dragOffset, setDragOffset] = useState(0);
-    const containerRef = useRef(null);
-
-    const getSlideWidth = () => {
-        if (typeof window !== 'undefined') {
-            if (window.innerWidth < 640) return 260;
-            if (window.innerWidth < 768) return 304;
-            return 348;
-        }
-        return 260;
-    };
-
-    const [slideWidth, setSlideWidth] = useState(getSlideWidth);
-
-    React.useEffect(() => {
-        const handleResize = () => setSlideWidth(getSlideWidth());
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const handlePreviousClick = () => {
-        const previous = current - 1;
-        setCurrent(previous < 0 ? slides.length - 1 : previous);
-    };
-
-    const handleNextClick = () => {
-        const next = current + 1;
-        setCurrent(next === slides.length ? 0 : next);
-    };
-
-    const handleSlideClick = (index) => {
-        if (!isDragging && current !== index) {
-            setCurrent(index);
-        }
-    };
-
-    const handleStart = (clientX) => {
-        setIsDragging(false);
-        setStartX(clientX);
-        setCurrentX(clientX);
-        setDragOffset(0);
-    };
-
-    const handleMove = (clientX) => {
-        if (startX === 0) return;
-
-        const diffX = startX - clientX;
-        const absDiffX = Math.abs(diffX);
-        
-        if (absDiffX > 5) {
-            setIsDragging(true);
-            const resistance = 0.8;
-            setDragOffset(diffX * resistance);
-        }
-
-        setCurrentX(clientX);
-    };
-
-    const handleEnd = () => {
-        if (startX === 0) return;
-
-        const diffX = startX - currentX;
-        const threshold = 50;
-
-        if (isDragging && Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                handleNextClick();
-            } else {
-                handlePreviousClick();
-            }
-        }
-
-        setDragOffset(0);
-        setTimeout(() => setIsDragging(false), 100);
-        setStartX(0);
-        setCurrentX(0);
-    };
-
-    const onMouseDown = (e) => {
-        e.preventDefault();
-        handleStart(e.clientX);
-    };
-    
-    const onMouseMove = (e) => handleMove(e.clientX);
-    const onMouseUp = () => handleEnd();
-    const onMouseLeave = () => {
-        if (isDragging) handleEnd();
-    };
-
-    const onTouchStart = (e) => handleStart(e.touches[0].clientX);
-    const onTouchMove = (e) => {
-        e.preventDefault();
-        handleMove(e.touches[0].clientX);
-    };
-    const onTouchEnd = () => handleEnd();
-
-    const id = useId();
-
-    const getTransformOffset = () => {
-        if (typeof window === 'undefined') return 0;
-        const containerWidth = containerRef.current?.offsetWidth || 0;
-        const centerOffset = (containerWidth / 2) - (slideWidth / 2);
-        return centerOffset - (current * slideWidth) - dragOffset;
-    };
-    return (
-        <div className="w-full flex flex-col items-center">
-            {/* Main carousel container */}
-            <div
-                ref={containerRef}
-                className="relative w-full max-w-[320px] sm:max-w-[480px] md:max-w-[600px] lg:max-w-[900px] h-[360px] sm:h-[420px] md:h-[480px] mx-auto overflow-visible cursor-grab active:cursor-grabbing select-none touch-pan-y"
-                aria-labelledby={`carousel-heading-${id}`}
-                onMouseDown={onMouseDown}
-                onMouseMove={onMouseMove}
-                onMouseUp={onMouseUp}
-                onMouseLeave={onMouseLeave}
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-            >
-                <ul
-                    className="flex h-full items-center will-change-transform"
-                    style={{
-                        transform: `translateX(${getTransformOffset()}px)`,
-                        transition: isDragging ? 'none' : 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        width: 'max-content',
-                    }}
-                >
-                    {slides.map((slide, index) => (
-                        <Slide
-                            key={index}
-                            slide={slide}
-                            index={index}
-                            current={current}
-                            handleSlideClick={handleSlideClick}
-                        />
-                    ))}
-                </ul>
             </div>
         </div>
     );
+};
+
+/**
+ * ServicesCarousel - Professional carousel with Embla
+ * Combines Embla's native touch handling with custom 3D animations
+ */
+export function ServicesCarousel({ slides }) {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        align: 'center',
+        containScroll: 'trimSnaps',
+        loop: false,
+        skipSnaps: false,
+        dragFree: false,
+        duration: 30,
+    });
+
+    const [selectedIndex, setSelectedIndex] = useState(1); // Start with featured slide
+    const [canScrollPrev, setCanScrollPrev] = useState(false);
+    const [canScrollNext, setCanScrollNext] = useState(false);
+
+    const onSelect = useCallback(() => {
+        if (!emblaApi) return;
+
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+        setCanScrollPrev(emblaApi.canScrollPrev());
+        setCanScrollNext(emblaApi.canScrollNext());
+    }, [emblaApi]);
+
+    useEffect(() => {
+        if (!emblaApi) return;
+
+        onSelect();
+        emblaApi.on('select', onSelect);
+        emblaApi.on('reInit', onSelect);
+
+        emblaApi.scrollTo(1, true);
+
+        return () => {
+            emblaApi.off('select', onSelect);
+            emblaApi.off('reInit', onSelect);
+        };
+    }, [emblaApi, onSelect]);
+
+    const scrollPrev = useCallback(() => {
+        if (emblaApi) emblaApi.scrollPrev();
+    }, [emblaApi]);
+
+    const scrollNext = useCallback(() => {
+        if (emblaApi) emblaApi.scrollNext();
+    }, [emblaApi]);
+
+    return (
+        <div className="w-full relative flex justify-center items-center">
+            <div className="w-full max-w-7xl mx-auto py-8" ref={emblaRef}>
+                <div className="flex touch-pan-y" style={{ backfaceVisibility: 'hidden' }}>
+                    {slides.map((slide, index) => (
+                        <ServiceSlide
+                            key={index}
+                            slide={slide}
+                            index={index}
+                            isActive={selectedIndex === index}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <style jsx>{`
+                @keyframes fade-in {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes slide-in {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                .animate-fade-in {
+                    animation: fade-in 0.4s ease-out;
+                }
+
+                .animate-slide-in {
+                    animation: slide-in 0.5s ease-out;
+                }
+
+                /* Smooth GPU acceleration */
+                .embla__slide {
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+                    -webkit-transform: translateZ(0);
+                    transform: translateZ(0);
+                }
+            `}</style>
+        </div>
+    );
 }
+
+export default ServicesCarousel;

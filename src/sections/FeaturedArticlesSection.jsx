@@ -27,7 +27,7 @@ export default function FeaturedArticlesSection() {
   ];
 
   return (
-    <section className="bg-[#faf1ea] py-16 md:py-20">
+    <section className="bg-[#faf1ea] pt-0 pb-10 md:pt-0 md:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
         <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-12">
