@@ -1,0 +1,97 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+
+import project1 from '../assets/images/projects/project-1.png';
+
+import legalImage1 from '../assets/images/projects/legal-law-office/image-1.png';
+import legalImage2 from '../assets/images/projects/legal-law-office/image-2.png';
+---
+
+<MainLayout title="Engagement y conversiones muy por encima del promedio de la industria - Mobula Studio">
+  <section class="bg-[#faf1ea] min-h-screen">
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      
+      <div class="mb-8">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={project1}
+            alt="Legal Law Office - Proyecto Mobile"
+            width={1200}
+            height={900}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+
+      <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl text-center leading-tight mb-6">
+        Engagement y conversiones muy por encima del promedio de la industria
+      </h1>
+
+      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-8 max-w-2xl mx-auto">
+        Lineo Low necesitaba aumentar su presencia online, automatizar leads e incrementar conversiones.
+      </p>
+
+      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-12 max-w-2xl mx-auto">
+        Mobula diseñó una estrategia continua en Meta que generó los mejores benchmarks del sector legal y generando leads con métricas por encima del promedio mes a mes.
+      </p>
+
+      <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-xl mx-auto mb-12">
+        
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+            Año
+          </p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">
+            2025
+          </p>
+        </div>
+
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+            Industria
+          </p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">
+            Legal | Law Office
+          </p>
+        </div>
+
+      </div>
+
+      <div class="space-y-8 mb-12">
+        
+        <div class="rounded-3xl overflow-hidden shadow-lg">
+          <Image
+            src={legalImage1}
+            alt="Legal Law Office - Detalle 1"
+            width={1200}
+            height={800}
+            format="webp"
+            quality={85}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="rounded-3xl overflow-hidden shadow-lg">
+          <Image
+            src={legalImage2}
+            alt="Legal Law Office - Detalle 2"
+            width={1200}
+            height={800}
+            format="webp"
+            quality={85}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+
+    </div>
+    
+  </section>
+</MainLayout>
