@@ -7,6 +7,8 @@ import { PlansSection } from '../sections/PlansSection';
 import TeamSection from '../sections/TeamSection.astro';
 import CreditsSection from '../sections/CreditsSection';
 import FeaturedArticlesSection from '../sections/FeaturedArticlesSection.astro';
+import SubscriptionSection from '../sections/SubscriptionSection';
+import FAQSection from '../sections/FAQSection';
 ---
 
 <MainLayout title="Mobula Studio - Marketing Digital">
@@ -39,6 +41,15 @@ import FeaturedArticlesSection from '../sections/FeaturedArticlesSection.astro';
   <!-- Featured Articles Section - Carousel de artículos destacados -->
   <section id="articulos" class="relative">
     <FeaturedArticlesSection />
+  </section>
+  <!-- Subscription Section - Formulario de suscripción -->
+  <section id="suscribirse" class="relative">
+    <SubscriptionSection client:load />
+  </section>
+
+  <!-- FAQ Section - Preguntas frecuentes -->
+  <section id="faq" class="relative">
+    <FAQSection client:load />
   </section>
 </MainLayout>
 
