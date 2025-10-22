@@ -1,0 +1,69 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+
+import ecpMainImage from '../assets/images/projects/ECP-consulting-group/image-1.png';
+---
+
+<MainLayout title="Construimos la base de una marca premium y cercana - Mobula Studio">
+  <section class="bg-[#faf1ea] min-h-screen">
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      
+      <div class="mb-8">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={ecpMainImage}
+            alt="ECP Consulting Group - Proyecto"
+            width={1200}
+            height={900}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+
+      <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl text-center leading-tight mb-6">
+        Construimos la base de una marca premium y cercana
+      </h1>
+
+      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-8 max-w-2xl mx-auto">
+        ECP Consulting Group se acercó con el objetivo de posicionarse como una firma transnacional de alto nivel.
+      </p>
+
+      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-8 max-w-2xl mx-auto">
+        El reto era crear una identidad que transmitiera carácter corporativo y profesional, sin perder la esencia humana de un equipo internacional.
+      </p>
+
+      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-12 max-w-2xl mx-auto">
+        Mobula acompañó este proceso con la ideación del nombre, diseño de identidad, sistema de comunicación e ilustraciones físicas, sentando las bases para un posicionamiento sólido en sus comunicaciones.
+      </p>
+
+      <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-xl mx-auto mb-12">
+        
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+            Año
+          </p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">
+            2025
+          </p>
+        </div>
+
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+            Industria
+          </p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">
+            Contabilidad | Consultoría
+          </p>
+        </div>
+
+      </div>
+
+
+    </div>
+    
+  </section>
+</MainLayout>

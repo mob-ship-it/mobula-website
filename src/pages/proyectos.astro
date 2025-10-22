@@ -3,281 +3,100 @@ import MainLayout from '../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
 
 import project1 from '../assets/images/projects/project-1.png';
-
-import legalImage1 from '../assets/images/projects/legal-law-office/image-1.png';
-import legalImage2 from '../assets/images/projects/legal-law-office/image-2.png';
-import legalImage3 from '../assets/images/projects/legal-law-office/image-3.png';
-import legalImage4 from '../assets/images/projects/legal-law-office/image-4.png';
-import legalImage5 from '../assets/images/projects/legal-law-office/image-5.png';
-import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
-import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
-import kaseCabImage from '../assets/images/projects/legal-law-office/KaseCab.png';
-import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
+import project2 from '../assets/images/projects/ECP-consulting-group/image-1.png';
 ---
 
-<MainLayout title="Engagement y conversiones muy por encima del promedio de la industria - Mobula Studio">
-  <section class="bg-[#faf1ea] min-h-screen">
+<MainLayout title="Proyectos - Mobula Studio">
+  <section class="bg-[#faf1ea] min-h-screen py-16">
     
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="mb-8">
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-          <Image
-            src={project1}
-            alt="Legal Law Office - Proyecto Mobile"
-            width={1200}
-            height={900}
-            format="webp"
-            quality={90}
-            class="w-full h-auto object-cover"
-          />
-        </div>
+      <div class="text-center mb-16">
+        <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+          Nuestros Proyectos
+        </h1>
+        <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+          Descubre cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos con estrategias innovadoras y resultados medibles.
+        </p>
       </div>
 
-      <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl text-center leading-tight mb-6">
-        Engagement y conversiones muy por encima del promedio de la industria
-      </h1>
-
-      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-8 max-w-2xl mx-auto">
-        Lineo Low necesitaba aumentar su presencia online, automatizar leads e incrementar conversiones.
-      </p>
-
-      <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg text-center leading-relaxed mb-12 max-w-2xl mx-auto">
-        Mobula diseñó una estrategia continua en Meta que generó los mejores benchmarks del sector legal y generando leads con métricas por encima del promedio mes a mes.
-      </p>
-
-      <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-xl mx-auto mb-12">
+      {/* Grid de Proyectos */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
         
-        <div class="text-center">
-          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
-            Año
-          </p>
-          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">
-            2025
-          </p>
-        </div>
-
-        <div class="text-center">
-          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
-            Industria
-          </p>
-          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">
-            Legal | Law Office
-          </p>
-        </div>
-
-      </div>
-
-      <div class="space-y-8 mb-12">
-        
-        <div class="rounded-3xl overflow-hidden shadow-lg">
-          <Image
-            src={legalImage1}
-            alt="Legal Law Office - Detalle 1"
-            width={1200}
-            height={800}
-            format="webp"
-            quality={85}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="rounded-3xl overflow-hidden shadow-lg">
-          <Image
-            src={legalImage2}
-            alt="Legal Law Office - Detalle 2"
-            width={1200}
-            height={800}
-            format="webp"
-            quality={85}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-        </div>
-
-      </div>
-
-      <div class="mb-12">
-        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">
-          LinkedIn
-        </h2>
-        
-        <ul class="space-y-4 mb-8">
-          <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Engagement orgánico 10+ superior al promedio de la industria.
-          </li>
-          <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Más de 120K impresiones en campañas con audiencias premium.
-          </li>
-          <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • CTR casi 3× por encima del estándar en LinkedIn.
-          </li>
-        </ul>
-
-        <div class="rounded-3xl overflow-hidden shadow-lg">
-          <Image
-            src={legalImage3}
-            alt="Legal Law Office - LinkedIn Results"
-            width={1200}
-            height={800}
-            format="webp"
-            quality={85}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <div class="mb-12">
-        <div class="rounded-3xl overflow-hidden shadow-lg">
-          <Image
-            src={legalImage4}
-            alt="Legal Law Office - Additional Content"
-            width={1200}
-            height={800}
-            format="webp"
-            quality={85}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      {/* Sección Google */}
-      <div class="mb-12">
-        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">
-          Google
-        </h2>
-        
-        <ul class="space-y-4 mb-8">
-          <li class="[font-family:'Be_Vietnam',Hepatica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • +10k de clicks y eficiencia hasta 100+ mayor que el promedio legal.
-          </li>
-          <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • CTR de hasta 9.62% en algunas campañas (vs. 2-4 % de la industria).
-          </li>
-          <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Alcance internacional con campañas multipaís (EE. UU., Francia, Canadá, Alemania, entre otros).
-          </li>
-        </ul>
-
-        <div class="rounded-3xl overflow-hidden shadow-lg">
-          <Image
-            src={legalImage5}
-            alt="Legal Law Office - Google Results"
-            width={1200}
-            height={800}
-            format="webp"
-            quality={85}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      <div class="mb-12">
-        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-8">
-          Meta
-        </h2>
-      </div>
-
-      <div class="mb-8">
-        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-8">
-          Ver más proyectos destacados
-        </h3>
-      </div>
-
-      <div class="space-y-8 mb-12">
-        
-        <div>
-          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+        <a 
+          href="/proyecto-1" 
+          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+        >
+          <div class="relative overflow-hidden">
             <Image
-              src={ecpImage}
-              alt="ECP Project"
-              width={1200}
-              height={800}
+              src={project1}
+              alt="Legal Law Office Project"
+              width={800}
+              height={600}
               format="webp"
               quality={85}
-              class="w-full h-auto object-cover"
-              loading="lazy"
+              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            ECP
-          </p>
-          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
-            Branding
-          </p>
-        </div>
-
-        <div>
-          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
-            <Image
-              src={lineaLawImage}
-              alt="Linea Law Project"
-              width={1200}
-              height={800}
-              format="webp"
-              quality={85}
-              class="w-full h-auto object-cover"
-              loading="lazy"
-            />
-          </div>
-          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            LINEA LAW
-          </p>
-          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
-            Website
-          </p>
-        </div>
-
-        <div>
-          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
-            <Image
-              src={kaseCabImage}
-              alt="KaseCab Project"
-              width={1200}
-              height={800}
-              format="webp"
-              quality={85}
-              class="w-full h-auto object-cover"
-              loading="lazy"
-            />
-          </div>
-          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            KaseCab.
-          </p>
-          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
-            Branding
-          </p>
-        </div>
-
-      </div>
-
-      <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden p-8 md:p-12 mb-12">
-        
-        <div class="relative z-10 text-center mb-32 md:mb-40">
-          <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-8">
-            Suscríbite y accedé a todos nuestros servicios
-          </h2>
           
-          <a 
-            href="/#planes" 
-            class="inline-block bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-lg md:text-xl px-12 py-4 rounded-full hover:bg-[#faf1ea] transition-colors duration-300"
-          >
-            Ver Planes
-          </a>
-        </div>
+          <div class="p-6 md:p-8">
+            <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
+              Legal Law Office
+            </h2>
+            <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
+              Engagement y conversiones muy por encima del promedio de la industria legal.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Meta
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Google
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                LinkedIn
+              </span>
+            </div>
+          </div>
+        </a>
 
-        <div class="absolute bottom-0 left-0 right-0">
-          <Image
-            src={vector22}
-            alt="Decorative waves"
-            width={1200}
-            height={200}
-            class="w-full h-auto"
-            loading="lazy"
-          />
-        </div>
+        {/* Proyecto 2 - ECP Consulting Group */}
+        <a 
+          href="/proyecto-2" 
+          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+        >
+          <div class="relative overflow-hidden">
+            <Image
+              src={project2}
+              alt="ECP Consulting Group Project"
+              width={800}
+              height={600}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          
+          <div class="p-6 md:p-8">
+            <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
+              ECP Consulting Group
+            </h2>
+            <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
+              Construimos la base de una marca premium y cercana.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Branding
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Identidad
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Diseño
+              </span>
+            </div>
+          </div>
+        </a>
 
       </div>
     </div>
