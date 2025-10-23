@@ -3,8 +3,8 @@ import { Image } from 'astro:assets';
 import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
 ---
 
-<header class="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-4 pb-4">
-  <div class="w-full mx-auto px-6 sm:px-8 lg:px-8">
+<header class="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-3 pb-2">
+  <div class="w-full mx-auto px-4 sm:px-6 lg:px-4 xl:px-6">
     <!-- Mobile Header -->
     <div class="flex lg:hidden justify-between items-center h-16 max-w-[90%] mx-auto">
       <!-- Logo on the left -->
@@ -32,54 +32,55 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
       </button>
     </div>
 
-    <!-- Desktop Header -->
-    <div class="hidden lg:flex justify-between items-center h-20 max-w-7xl mx-auto">
-      <!-- Logo - Larger size -->
-      <a href="/" class="flex-shrink-0">
-        <Image
-          src={mobulaLogo}
-          alt="Mobula Studio Logo"
-          width={150}
-          height={80}
-          format="webp"
-          quality={85}
-          class="h-20 w-auto"
-        />
-      </a>
-
-      <div class="absolute left-1/2 transform -translate-x-1/2">
-        <nav 
-          class="flex items-center gap-1 px-6 py-3 rounded-full"
-          style="border: 2px solid #13243c"
-        >
-          <a 
-            href="#servicios" 
-            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
-          >
-            Servicios
-          </a>
-          <a 
-            href="#planes" 
-            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
-          >
-            Planes
-          </a>
-          <a 
-            href="#equipo" 
-            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-medium px-4 py-1"
-          >
-            Equipo
-          </a>
-        </nav>
-      </div>
-
-      <!-- CTA Button (right side) -->
-      <a 
-        href="#contacto"
-        class="[font-family:'Be_Vietnam',Helvetica] text-[#faf1ea] bg-[#13243c] hover:bg-[#13243c]/90 transition-colors font-semibold text-base px-8 py-3 rounded-full whitespace-nowrap"
+  <div class="hidden lg:flex justify-between items-center h-14">
+      <!-- Left side - Navigation with separators and rounded border -->
+      <nav 
+        class="flex items-center gap-0 rounded-full px-4 py-1"
+        style="border: 2px solid #13243c;"
       >
-        Contactanos
-      </a>
+        <a 
+          href="#servicios" 
+          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
+        >
+          Servicios
+        </a>
+        <div class="w-px h-4 bg-[#13243c]/30"></div>
+        <a 
+          href="/proyectos" 
+          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
+        >
+          Nuestro Trabajo
+        </a>
+        <div class="w-px h-4 bg-[#13243c]/30"></div>
+        <a 
+          href="#blog" 
+          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
+        >
+          Blog
+        </a>
+        <div class="w-px h-4 bg-[#13243c]/30"></div>
+        <a 
+          href="#contacto" 
+          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
+        >
+          Contacto
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a 
+          href="#signin"
+          class="[font-family:'Be_Vietnam',Helvetica] text-white bg-[#211ee1] hover:bg-[#1915c7] transition-colors font-semibold text-sm px-6 py-2 rounded-full whitespace-nowrap"
+        >
+          Sign In
+        </a>
+        <a 
+          href="#planes"
+          class="[font-family:'Be_Vietnam',Helvetica] text-white bg-[#211ee1] hover:bg-[#1915c7] transition-colors font-semibold text-sm px-6 py-2 rounded-full whitespace-nowrap"
+        >
+          Planes
+        </a>
+      </div>
     </div>
   </div>
 </header>
