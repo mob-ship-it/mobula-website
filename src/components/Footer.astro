@@ -5,7 +5,7 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
 ---
 
 <footer class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     {/* Layout Mobile: Centrado vertical */}
     <div class="flex flex-col items-center text-center gap-8 md:hidden">
@@ -101,101 +101,66 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
       </div>
     </div>
 
-    {/* Layout Desktop: Grid de 3 columnas */}
-    <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-      
-      <!-- Columna 1: Brand y Descripción -->
-      <div class="flex flex-col gap-4">
-        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-2xl">
-          Mobula Studio
-        </h3>
-        <p class="[font-family:'Be_Vietnam',Helvetica] text-base text-[#faf1ea]/80 leading-relaxed">
-          Agencia de marketing digital especializada en crear experiencias visuales impactantes.
-        </p>
-      </div>
-
-      <!-- Columna 2: Enlaces Rápidos -->
-      <div class="flex flex-col gap-4">
-        <h4 class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-lg">
-          Enlaces
-        </h4>
-        <nav class="flex flex-col gap-2">
-          <a 
-            href="#inicio" 
-            class="[font-family:'Be_Vietnam',Helvetica] text-base text-[#faf1ea]/80 hover:text-[#bb8bfe] transition-colors"
-          >
-            Inicio
-          </a>
-          <a 
-            href="#servicios" 
-            class="[font-family:'Be_Vietnam',Helvetica] text-base text-[#faf1ea]/80 hover:text-[#bb8bfe] transition-colors"
-          >
-            Servicios
-          </a>
-          <a 
-            href="#planes" 
-            class="[font-family:'Be_Vietnam',Helvetica] text-base text-[#faf1ea]/80 hover:text-[#bb8bfe] transition-colors"
-          >
-            Planes
-          </a>
-        </nav>
-      </div>
-
-      <!-- Columna 3: Redes Sociales -->
-      <div class="flex flex-col gap-4">
-        <h4 class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-lg">
-          Síguenos
-        </h4>
-        <div class="flex gap-4 items-center">
-          <!-- Instagram -->
-          <a 
-            href="https://instagram.com/mobulastudio" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative w-12 h-12 hover:scale-110 transition-transform"
-            aria-label="Síguenos en Instagram"
-          >
-            <SocialIcons 
-              platform="instagram" 
-              platformInstagram="https://c.animaapp.com/ZTuOwSBY/img/platform-instagram--color-negative.svg"
-            />
-          </a>
-          
-          <!-- Medium -->
-          <a 
-            href="https://medium.com/@mobulastudio" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative w-12 h-12 hover:scale-110 transition-transform"
-            aria-label="Síguenos en Medium"
-          >
-            <SocialIcons 
-              platform="medium"
-              platformMedium="https://c.animaapp.com/ZTuOwSBY/img/platform-medium--color-negative.svg"
-            />
-          </a>
+    <div class="hidden md:block">
+      <div class="relative grid grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div class="col-span-12 lg:col-span-4 xl:col-span-3 flex lg:block justify-center relative z-10">
+          <Image
+            src={mobulaLogo}
+            alt="Mobula Studio Logo"
+            width={260}
+            height={140}
+            format="webp"
+            quality={90}
+            class="h-28 lg:h-36 xl:h-40 w-auto"
+          />
         </div>
-        
-        <!-- Información de Contacto -->
-        <div class="mt-4 flex flex-col gap-2">
-          <a 
-            href="mailto:info@mobulastudio.com"
-            class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/80 hover:text-[#bb8bfe] transition-colors"
-          >
-            info@mobulastudio.com
-          </a>
-          <a 
-            href="tel:+50688888888"
-            class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/80 hover:text-[#bb8bfe] transition-colors"
-          >
-            +506 8888-8888
-          </a>
+
+        <div class="col-span-12 lg:col-span-8 xl:col-span-9 relative z-10">
+          <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl lg:text-4xl xl:text-5xl leading-snug">
+            Precisión en movimiento,
+            <br class="hidden md:block" />
+            adaptabilidad con resultados.
+          </h2>
+          <p class="mt-4 [font-family:'Be_Vietnam',Helvetica] text-sm lg:text-base text-[#faf1ea]/80 max-w-3xl leading-relaxed">
+            Nos movemos con precisión en las profundidades de un mercado en constante evolución. Al igual que las mobulas en el océano, nos adaptamos a nuestro entorno, siempre enfocados en la eficiencia y los resultados.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-4 items-center">
+            <a
+              href="mailto:mob@mobulaestudio.com"
+              class="[font-family:'Be_Vietnam',Helvetica] font-medium text-base bg-[#211ee1] hover:bg-[#1a18c4] text-white py-3.5 px-6 rounded-full transition-colors shadow-lg"
+            >
+              mob@mobulaestudio.com
+            </a>
+            <button
+              class="[font-family:'Be_Vietnam',Helvetica] font-medium text-base bg-[#211ee1] hover:bg-[#1a18c4] text-white py-3.5 px-6 rounded-full transition-colors shadow-lg"
+              onclick="window.open('https://calendly.com/mobula-studio/consultation', '_blank')"
+            >
+              Agendá una llamada
+            </button>
+          </div>
+
+          {/* Social links as pills */}
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="https://instagram.com/mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+              Instagram
+            </a>
+            <a href="https://facebook.com/mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+              Facebook
+            </a>
+            <a href="https://linkedin.com/company/mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+              LinkedIn
+            </a>
+            <a href="https://medium.com/@mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+              Medium
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Separador -->
-    <div class="border-t border-[#faf1ea]/20 mt-8 pt-8">
+  <div class="border-t border-[#faf1ea]/20 mt-12 pt-8">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/60">
           © {new Date().getFullYear()} Mobula Studio. Todos los derechos reservados.
