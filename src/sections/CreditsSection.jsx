@@ -32,14 +32,14 @@ export default function CreditsSection() {
 
   return (
     <section className="bg-[#faf1ea] pb-4 pt-6 md:pb-4 md:pt-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         {/* Título */}
         <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] text-center mb-12">
           ¿Cómo funcionan los créditos?
         </h2>
 
         {/* Cajas de información */}
-        <div className="flex flex-col gap-6 md:gap-8 mt-16">
+        <div className="flex flex-col gap-6 md:gap-8 mt-16 max-w-4xl mx-auto">
           {creditSteps.map((step, index) => (
             <div
               key={index}
@@ -52,32 +52,37 @@ export default function CreditsSection() {
             </div>
           ))}
         </div>
-        {/* Tarjetas de Créditos */}
-        <div className="flex flex-col gap-0 mb-12 max-w-md mx-auto">
-          {creditTiers.map((tier, index) => (
-            <div key={index} className="flex flex-col items-center">
-              {/* Tarjeta */}
-              <div className="w-full bg-[#faf1ea] py-8 px-6 text-center">
-                {/* Título */}
-                <h3 className="[font-family:'Be_Vietnam',Helvetica] font-bold text-lg md:text-xl text-[#13243c] mb-4 leading-tight">
-                  {tier.title}
-                </h3>
-                {/* Monto del crédito */}
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-6xl md:text-7xl text-[#211EE1] leading-none">
-                    {tier.amount}
-                  </span>
-                  <span className="[font-family:'Be_Vietnam',Helvetica] font-medium text-xl md:text-2xl text-[#211EE1]">
-                    {tier.label}
-                  </span>
+        <div className="w-full mb-12">
+          <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+            <div className="w-full space-y-8">
+              {creditTiers.map((tier, index) => (
+                <div key={index} className="w-full">
+                  <div className="w-full bg-[#faf1ea] py-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-4">
+                      <div className="col-span-1 lg:col-span-7">
+                        <h3 className="[font-family:'Be_Vietnam',Helvetica] font-bold text-base md:text-lg lg:text-xl xl:text-2xl text-[#13243c] leading-tight">
+                          {tier.title}
+                        </h3>
+                      </div>
+
+                      <div className="col-span-1 lg:col-span-5 flex justify-start lg:justify-end">
+                        <div className="flex items-baseline gap-3">
+                          <span className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#211EE1] leading-none" style={{fontSize: 'clamp(2.25rem, 3.5vw, 4.5rem)'}}>
+                            {tier.amount}
+                          </span>
+                          <span className="[font-family:'Be_Vietnam',Helvetica] font-medium text-[#211EE1]" style={{fontSize: 'clamp(0.95rem, 1.2vw, 1.5rem)'}}>
+                            {tier.label}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-full h-px bg-[#13243c] opacity-40" />
                 </div>
-              </div>
-              {/* Línea separadora (no mostrar después del último) */}
-              {index < creditTiers.length - 1 && (
-                <div className="w-4/5 h-px bg-[#13243c]" />
-              )}
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
