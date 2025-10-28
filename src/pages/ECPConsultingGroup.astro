@@ -1,0 +1,298 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+
+import ecpWallpaper from '../assets/images/projects/ECP-consulting-group/ECP-wallpaper.png';
+import ecpFirstSection from '../assets/images/projects/ECP-consulting-group/first-section-image.png';
+import personasQueSuman from '../assets/images/projects/ECP-consulting-group/personas-que-suman.png';
+import grid1 from '../assets/images/projects/ECP-consulting-group/grid-1.png';
+import grid2 from '../assets/images/projects/ECP-consulting-group/grid-2.png';
+import graphics from '../assets/images/projects/ECP-consulting-group/graphics.png';
+import ellipse25Url from '../assets/images/projects/ECP-consulting-group/Ellipse 25.svg?url';
+import andFinancial from '../assets/images/projects/ECP-consulting-group/and-financial-solutions.png';
+import revistas1 from '../assets/images/projects/ECP-consulting-group/revistas-1.jpg';
+import revistas2 from '../assets/images/projects/ECP-consulting-group/revistas-2.png';
+import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
+import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
+import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
+import kaseCabImage from '../assets/images/projects/legal-law-office/KaseCab.png';
+import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
+---
+
+<MainLayout title="Construimos la base de una marca premium y cercana - Mobula Studio">
+  <section class="bg-[#faf1ea] min-h-screen">
+    
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
+      
+      <div class="mb-10">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={ecpWallpaper}
+            alt="ECP Consulting Group - Proyecto"
+            width={1600}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-10">
+        <div class="lg:col-span-7">
+          <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 text-center lg:text-left">
+            Construimos la base de una marca premium y cercana
+          </h1>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+            ECP Consulting Group se acercó con el objetivo de posicionarse como una firma transnacional de alto nivel.
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-0 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+            El reto era crear una identidad que transmitiera carácter corporativo y profesional, sin perder la esencia humana de un equipo internacional.
+          </p>
+
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed max-w-3xl mx-auto text-center lg:text-left lg:mx-0">
+            Mobula acompañó este proceso con la ideación del nombre, diseño de identidad, sistema de comunicación e ilustraciones físicas, sentando las bases para un posicionamiento sólido en sus comunicaciones.
+          </p>
+
+          <div class="hidden lg:grid grid-cols-2 gap-8 md:gap-12 max-w-lg lg:max-w-none mt-8">
+            <div class="text-left">
+              <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+                Año
+              </p>
+              <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">
+                2025
+              </p>
+            </div>
+            <div class="text-left">
+              <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+                Industria
+              </p>
+              <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">
+                Contabilidad | Consultoría
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 hidden lg:block">
+          <div class="rounded-3xl overflow-hidden shadow-xl mx-auto lg:mx-0 h-full">
+            <Image
+              src={ecpFirstSection}
+              alt="Vista previa ECP sección 1"
+              width={900}
+              height={1100}
+              format="webp"
+              quality={85}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-lg mx-auto lg:hidden mb-12">
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+            Año
+          </p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">
+            2025
+          </p>
+        </div>
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+            Industria
+          </p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">
+            Contabilidad | Consultoría
+          </p>
+        </div>
+      </div>
+      
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={personasQueSuman}
+            alt="Personas que suman valor"
+            width={1600}
+            height={1100}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-8 items-stretch mb-16">
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-3xl overflow-hidden shadow-xl bg-[#e9edf3] h-[420px] md:h-[460px] flex items-center justify-center">
+            <Image
+              src={grid1}
+              alt="Mockup mobile"
+              width={1200}
+              height={1200}
+              format="webp"
+              quality={90}
+              class="max-h-[88%] w-auto object-contain"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-3xl overflow-hidden shadow-xl">
+            <Image
+              src={grid2}
+              alt="Tarjetas de presentación"
+              width={1400}
+              height={1100}
+              format="webp"
+              quality={90}
+              class="w-full h-[420px] md:h-[460px] object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={graphics}
+            alt="ECP gráficos de marca"
+            width={1600}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-[#0a8f95]">
+          <div class="absolute inset-0 pointer-events-none">
+            <svg class="absolute left-[-36px] top-[-24px] h-[150%] w-auto" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M60 20C22 96 22 146 42 206c30 90 122 82 162 142 40 60 18 140-46 182" stroke="#B07BFF" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="absolute right-[-36px] bottom-[-24px] h-[150%] w-auto rotate-180" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M60 20C22 96 22 146 42 206c30 90 122 82 162 142 40 60 18 140-46 182" stroke="#B07BFF" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+
+          <div class="relative px-6 py-10 md:px-12 md:py-12">
+            <p class="[font-family:'Be_Vietnam',Helvetica] text-white text-lg md:text-[20px] leading-relaxed text-center max-w-5xl mx-auto">
+              “Trabajar con Mobula ha sido una experiencia muy positiva y enriquecedora. Nos hemos sentido acompañados en todo momento, con un equipo comprometido que entendió nuestras necesidades y nos ayudó a lograr resultados concretos. Los beneficios para nuestra empresa han sido notables y, sobre todo, nos quedamos con la tranquilidad de saber que contamos con un aliado de confianza.”
+            </p>
+            <div class="mt-8 flex flex-col items-center">
+              <img src={ellipse25Url} alt="Brittany Rojas" width="56" height="56" class="w-14 h-14 rounded-full shadow-md" loading="lazy" />
+              <p class="[font-family:'Be_Vietnam',Helvetica] text-white text-sm md:text-base mt-3">
+                <span class="font-semibold">Brittany Rojas</span>
+                <span> – Head of Finance Division</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={andFinancial}
+            alt="and financial solutions"
+            width={1600}
+            height={900}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-8 items-stretch mb-20">
+        <div class="col-span-12 lg:col-span-7">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <Image
+              src={revistas1}
+              alt="Brochure abierto"
+              width={1600}
+              height={1200}
+              format="webp"
+              quality={90}
+              class="w-full h-[420px] md:h-[460px] object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <Image
+              src={revistas2}
+              alt="Brochure cerrado"
+              width={1400}
+              height={1100}
+              format="webp"
+              quality={90}
+              class="w-full h-[420px] md:h-[460px] object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block mb-16">
+        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">
+          Ver más proyectos destacados
+        </h3>
+        {(() => {
+          const featuredProjects = [
+            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage },
+            { id: 'kasecab', title: 'KaseCab.', subtitle: 'Branding', image: kaseCabImage },
+            { id: 'ecp', title: 'ECP', subtitle: 'Branding', image: ecpImage },
+          ];
+          return <ProjectsCarousel client:load projects={featuredProjects} />;
+        })()}
+      </div>
+
+      <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden mb-12">
+        <div class="relative z-10 px-8 py-10 md:px-12 md:py-12 lg:py-16">
+          <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-6 text-left">
+            Suscribite y accedé a todos nuestros servicios
+          </h2>
+          <a 
+            href="/#planes" 
+            class="inline-block bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-lg md:text-xl px-10 md:px-12 py-3.5 md:py-4 rounded-full hover:bg-[#faf1ea] transition-colors duration-300"
+          >
+            Ver Planes
+          </a>
+        </div>
+
+        <div class="pointer-events-none absolute inset-y-0 right-0 hidden md:flex items-center">
+          <Image
+            src={vector22}
+            alt="Decorative shape"
+            width={700}
+            height={700}
+            class="h-[140%] w-auto -mr-10 -rotate-90"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="absolute bottom-0 left-0 right-0 md:hidden">
+          <Image
+            src={vector22}
+            alt="Decorative waves"
+            width={1200}
+            height={200}
+            class="w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
+    
+  </section>
+</MainLayout>

@@ -5,6 +5,7 @@ import '../styles/carousel-animations.css';
 import Footer from '../components/Footer.astro';
 
 const { title = "Mobula Studio" } = Astro.props;
+const isHome = Astro.url?.pathname === '/';
 ---
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@ const { title = "Mobula Studio" } = Astro.props;
 <body class="bg-[#faf1ea]">
   <div class="min-h-screen flex flex-col">
 
-    <Header />
+  <Header showLeftLogo={!isHome} />
     <main class="flex-1">
       <slot />
     </main>
