@@ -1,6 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
+import mobulaLogoSmall from '../assets/images/logo/mobul-litte.png';
+const { showLeftLogo = true } = Astro.props;
+const pathname = Astro.url?.pathname || '/';
+const isWork = pathname === '/proyectos' || pathname === '/LegalLawOffice' || pathname === '/ECPConsultingGroup';
 ---
 
 <header class="sticky top-0 z-50 bg-[#faf1ea]/95 backdrop-blur-sm border-b border-[#13243c]/10 pt-3 pb-2">
@@ -32,49 +36,77 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
       </button>
     </div>
 
-  <div class="hidden lg:flex justify-between items-center h-14">
-      <!-- Left side - Navigation with separators and rounded border -->
-      <nav 
-        class="flex items-center gap-0 rounded-full px-4 py-1"
-        style="border: 2px solid #13243c;"
-      >
-        <a 
-          href="#servicios" 
-          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
-        >
-          Servicios
-        </a>
-        <div class="w-px h-4 bg-[#13243c]/30"></div>
-        <a 
-          href="/proyectos" 
-          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
-        >
-          Nuestro Trabajo
-        </a>
-        <div class="w-px h-4 bg-[#13243c]/30"></div>
-        <a 
-          href="#blog" 
-          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
-        >
-          Blog
-        </a>
-        <div class="w-px h-4 bg-[#13243c]/30"></div>
-        <a 
-          href="#contacto" 
-          class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-base px-7 py-2"
-        >
-          Contacto
-        </a>
-      </nav>
+  <div class="hidden lg:grid grid-cols-12 items-center h-14">
+      <!-- Left: Logo -->
+      <div class={"flex items-center " + (showLeftLogo ? "col-span-3" : "hidden") }>
+        {showLeftLogo && (
+          <a href="/" class="flex items-center">
+            <Image
+              src={mobulaLogoSmall}
+              alt="Mobula Studio Logo"
+              width={120}
+              height={40}
+              format="webp"
+              quality={90}
+              class="h-10 w-auto"
+              loading="eager"
+            />
+          </a>
+        )}
+      </div>
 
-      <div class="flex items-center gap-3">
-        <a 
+      <!-- Center: Navigation with separators and rounded border -->
+        <div class={(showLeftLogo ? "col-span-7" : "col-span-9 col-start-2") + " flex justify-center"}>
+        <nav
+          class="flex items-center gap-2 rounded-full px-4 md:px-5 xl:px-6 py-1"
+          style="border: 2px solid #13243c;"
+        >
+          <a
+            href="#servicios"
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
+          >
+            Servicios
+          </a>
+          <div class="w-px h-4 bg-[#13243c]/30"></div>
+          <a
+            href="/proyectos"
+            class={(isWork ? 'font-semibold ' : 'font-normal ') + "[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"}
+          >
+            Nuestro Trabajo
+          </a>
+          <div class="w-px h-4 bg-[#13243c]/30"></div>
+          <a
+            href="#blog"
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
+          >
+            Blog
+          </a>
+          <div class="w-px h-4 bg-[#13243c]/30"></div>
+          <a
+            href="/#planes"
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
+          >
+            Planes
+          </a>
+          <div class="w-px h-4 bg-[#13243c]/30"></div>
+          <a
+            href="#contacto"
+            class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
+          >
+            Contacto
+          </a>
+        </nav>
+      </div>
+
+      <!-- Right: Actions -->
+      <div class="col-span-2 flex items-center justify-end gap-3">
+        <a
           href="#signin"
           class="[font-family:'Be_Vietnam',Helvetica] text-white bg-[#211ee1] hover:bg-[#1915c7] transition-colors font-semibold text-sm px-6 py-2 rounded-full whitespace-nowrap"
         >
           Sign In
         </a>
-        <a 
+        <a
           href="#planes"
           class="[font-family:'Be_Vietnam',Helvetica] text-white bg-[#211ee1] hover:bg-[#1915c7] transition-colors font-semibold text-sm px-6 py-2 rounded-full whitespace-nowrap"
         >
@@ -122,7 +154,7 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
 
       <a
         href="/proyectos"
-        class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer"
+        class={"mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer " + (isWork ? 'font-semibold' : 'font-normal')}
       >
         Nuestro Trabajo
       </a>
