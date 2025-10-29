@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "./Modal";
 import { Button } from "./Button";
-import { Input } from "./Input";
-import { TextArea } from "./TextArea";
 import { useFormState } from "../hooks/useFormState";
 import { emailService } from "../services/api";
 
@@ -73,14 +70,32 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan }) => {
     onClose();
   };
 
+  if (!isOpen) return null;
+
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={handleClose}
-      title={selectedPlan ? `Suscribirse a ${selectedPlan.name}` : 'Suscribirse'}
-      size="default"
-    >
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div
+        className="absolute inset-0 bg-black bg-opacity-50 transition-opacity"
+        onClick={handleClose}
+      />
+
+      <div className="relative bg-white rounded-2xl shadow-lg max-h-[90vh] overflow-hidden mx-4 max-w-lg w-full">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-2xl">
+            {selectedPlan ? `Suscribirse a ${selectedPlan.name}` : 'Suscribirse'}
+          </h2>
+          <button
+            onClick={handleClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+          <form onSubmit={handleSubmit} className="space-y-6">
         {selectedPlan && (
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-lg mb-2">
@@ -101,45 +116,79 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan }) => {
           </div>
         )}
 
-        <div className="space-y-6">
-          <Input
-            label="Nombre completo"
-            value={formData.name}
-            onChange={(value) => updateField('name', value)}
-            placeholder="Tu nombre"
-            error={errors.name}
-            required
-          />
+            <div className="space-y-6">
+              <div className="flex flex-col items-start gap-5 relative w-full">
+                <label className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-2xl leading-[29.3px]">
+                  Nombre completo <span className="text-red-500">*</span>
+                </label>
+                <div className="relative w-full">
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => updateField('name', e.target.value)}
+                    placeholder="Tu nombre"
+                    className={`flex h-[60px] items-center pl-[30px] pr-2.5 py-2.5 w-full bg-white rounded-xl border ${errors.name ? 'border-red-500' : 'border-[#13243cb5]'} focus:outline-none focus:ring-2 focus:ring-[#211ee1] focus:border-[#211ee1] [font-family:'Be_Vietnam',Helvetica] text-xl text-[#13243c] placeholder:text-[#13243cb5] transition-all`}
+                  />
+                  {errors.name && (
+                    <div className="absolute -bottom-6 left-0 text-red-500 text-sm [font-family:'Be_Vietnam',Helvetica]">{errors.name}</div>
+                  )}
+                </div>
+              </div>
 
-          <Input
-            label="Email"
-            type="email"
-            value={formData.email}
-            onChange={(value) => updateField('email', value)}
-            placeholder="tu@correo.com"
-            error={errors.email}
-            required
-          />
+              <div className="flex flex-col items-start gap-5 relative w-full">
+                <label className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-2xl leading-[29.3px]">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <div className="relative w-full">
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => updateField('email', e.target.value)}
+                    placeholder="tu@correo.com"
+                    className={`flex h-[60px] items-center pl-[30px] pr-2.5 py-2.5 w-full bg-white rounded-xl border ${errors.email ? 'border-red-500' : 'border-[#13243cb5]'} focus:outline-none focus:ring-2 focus:ring-[#211ee1] focus:border-[#211ee1] [font-family:'Be_Vietnam',Helvetica] text-xl text-[#13243c] placeholder:text-[#13243cb5] transition-all`}
+                  />
+                  {errors.email && (
+                    <div className="absolute -bottom-6 left-0 text-red-500 text-sm [font-family:'Be_Vietnam',Helvetica]">{errors.email}</div>
+                  )}
+                </div>
+              </div>
 
-          <Input
-            label="Teléfono"
-            value={formData.phone}
-            onChange={handlePhoneChange}
-            placeholder="8888-8888"
-            error={errors.phone}
-            required
-          />
+              <div className="flex flex-col items-start gap-5 relative w-full">
+                <label className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-2xl leading-[29.3px]">
+                  Teléfono <span className="text-red-500">*</span>
+                </label>
+                <div className="relative w-full">
+                  <input
+                    type="text"
+                    value={formData.phone}
+                    onChange={(e) => handlePhoneChange(e.target.value)}
+                    placeholder="8888-8888"
+                    className={`flex h-[60px] items-center pl-[30px] pr-2.5 py-2.5 w-full bg-white rounded-xl border ${errors.phone ? 'border-red-500' : 'border-[#13243cb5]'} focus:outline-none focus:ring-2 focus:ring-[#211ee1] focus:border-[#211ee1] [font-family:'Be_Vietnam',Helvetica] text-xl text-[#13243c] placeholder:text-[#13243cb5] transition-all`}
+                  />
+                  {errors.phone && (
+                    <div className="absolute -bottom-6 left-0 text-red-500 text-sm [font-family:'Be_Vietnam',Helvetica]">{errors.phone}</div>
+                  )}
+                </div>
+              </div>
 
-          <TextArea
-            label="Mensaje"
-            value={formData.message}
-            onChange={(value) => updateField('message', value)}
-            placeholder="Cuéntanos sobre tu proyecto y cómo podemos ayudarte"
-            error={errors.message}
-            required
-            rows={4}
-          />
-        </div>
+              <div className="flex flex-col items-start gap-5 relative w-full">
+                <label className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-2xl leading-[29.3px]">
+                  Mensaje <span className="text-red-500">*</span>
+                </label>
+                <div className="relative w-full">
+                  <textarea
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => updateField('message', e.target.value)}
+                    placeholder="Cuéntanos sobre tu proyecto y cómo podemos ayudarte"
+                    className={`pl-[30px] pr-2.5 pt-[30px] pb-2.5 w-full bg-white rounded-[20px] border ${errors.message ? 'border-red-500' : 'border-[#13243cb5]'} focus:outline-none focus:ring-2 focus:ring-[#211ee1] focus:border-[#211ee1] [font-family:'Be_Vietnam',Helvetica] text-xl text-[#13243c] placeholder:text-[#13243cb5] transition-all resize-none`}
+                  />
+                  {errors.message && (
+                    <div className="absolute -bottom-6 left-0 text-red-500 text-sm [font-family:'Be_Vietnam',Helvetica]">{errors.message}</div>
+                  )}
+                </div>
+              </div>
+            </div>
 
         {submitStatus && (
           <div className={`
@@ -153,23 +202,25 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan }) => {
           </div>
         )}
 
-        <div className="flex gap-3 justify-end pt-4">
-          <Button
-            variant="ghost"
-            onClick={handleClose}
-            disabled={isSubmitting}
-          >
-            Cancelar
-          </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            loading={isSubmitting}
-          >
-            {isSubmitting ? 'Enviando...' : 'Enviar solicitud'}
-          </Button>
+            <div className="flex gap-3 justify-end pt-4">
+              <Button
+                variant="ghost"
+                onClick={handleClose}
+                disabled={isSubmitting}
+              >
+                Cancelar
+              </Button>
+              <Button
+                type="submit"
+                variant="primary"
+                loading={isSubmitting}
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar solicitud'}
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
-    </Modal>
+      </div>
+    </div>
   );
 };
