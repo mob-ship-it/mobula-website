@@ -1,83 +1,113 @@
 ---
 import { Image } from 'astro:assets';
+import ProjectsMarquee from '../components/ProjectsMarquee';
+import VerticalMarquee from '../components/VerticalMarquee';
 
-import project1 from '../assets/images/projects/project-1.png';
-import project2 from '../assets/images/projects/project-2.jpg';
-import project3 from '../assets/images/projects/project-3.jpg';
-import project4 from '../assets/images/projects/project-4.jpg';
+import project1 from '../assets/images/projects/legal-law-office/LineLaw-wallpaper.png';
+import project2 from '../assets/images/projects/ECP-consulting-group/ECP-wallpaper.png';
+import project3 from '../assets/images/projects/KaseCap/KaseCap-intro.png';
 
 const projects = [
-  { id: 1, image: project1, alt: 'Proyecto 1' },
-  { id: 2, image: project2, alt: 'Proyecto 2' },
-  { id: 3, image: project3, alt: 'Proyecto 3' },
-  { id: 4, image: project4, alt: 'Proyecto 4' },
+  { id: 1, image: project1.src, imageObj: project1, alt: 'Proyecto 1' },
+  { id: 2, image: project2.src, imageObj: project2, alt: 'Proyecto 2' },
+  { id: 3, image: project3.src, imageObj: project3, alt: 'Proyecto 3' },
 ];
+const column1 = [projects[0], projects[1]];
+const column2 = [projects[2], projects[0]];
 ---
 
-<section class="bg-[#13243c] py-16 md:py-20 overflow-hidden">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl mb-6">
-      Lo decimos<br />en serio:
-    </h2>
+<section class="bg-[#13243c] py-4 md:py-6 lg:py-4 overflow-hidden">
+  {/* Mobile Version - Horizontal Marquees */}
+  <div class="lg:hidden">
+    <div class="max-w-4xl mx-auto px-6 text-center mb-6">
+      <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl mb-4">
+        Lo decimos<br />en serio:
+      </h2>
 
-    <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
-      Cada proyecto que ves acá fue creado con estrategia y objetivos bien definidos.
-    </p>
+      <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/90 text-base md:text-lg leading-relaxed mb-6 max-w-xl mx-auto">
+        Cada proyecto que ves acá fue creado con estrategia y objetivos bien definidos.
+      </p>
+      <a 
+        href="/proyectos"
+        class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-base md:text-lg rounded-full px-12 py-3 hover:bg-gray-100 transition-all duration-300"
+      >
+        Ver Proyectos
+      </a>
+    </div>
 
-    <a 
-      href="/proyectos"
-      class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-base md:text-lg rounded-full px-12 py-3 hover:bg-gray-100 transition-all duration-300 mb-12 md:mb-16"
-    >
-      Ver Proyectos
-    </a>
-  </div>
+    {/* Row 1 - Scroll Left to Right */}
+    <div class="mb-4">
+      <ProjectsMarquee client:load projects={projects} direction="left" />
+    </div>
 
-  <!-- Row 1 - Scroll Left -->
-  <div class="relative w-full mb-4 overflow-hidden">
-    <div class="flex animate-scroll-left">
-      {[...projects, ...projects, ...projects].map((project) => (
-        <div class="flex-shrink-0 w-[280px] md:w-[320px] mx-2">
-          <div class="rounded-2xl overflow-hidden bg-white">
-            <Image
-              src={project.image}
-              alt={project.alt}
-              width={320}
-              height={240}
-              format="webp"
-              quality={80}
-              class="w-full h-[200px] md:h-[240px] object-cover"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      ))}
+    {/* Row 2 - Scroll Right to Left */}
+    <div>
+      <ProjectsMarquee client:load projects={projects} direction="right" />
     </div>
   </div>
 
-  <!-- Row 2 - Scroll Right -->
-  <div class="relative w-full overflow-hidden">
-    <div class="flex animate-scroll-right">
-      {[...projects, ...projects, ...projects].map((project) => (
-        <div class="flex-shrink-0 w-[280px] md:w-[320px] mx-2">
-          <div class="rounded-2xl overflow-hidden bg-white">
-            <Image
-              src={project.image}
-              alt={project.alt}
-              width={320}
-              height={240}
-              format="webp"
-              quality={80}
-              class="w-full h-[200px] md:h-[240px] object-cover"
-              loading="lazy"
-            />
-          </div>
+  <div class="hidden lg:block">
+    <div class="grid grid-cols-12 gap-0">
+      
+      <div class="col-span-5 px-8 xl:px-12 py-6 flex flex-col justify-center">
+        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-4xl xl:text-5xl mb-4 leading-tight">
+          Lo decimos<br />en serio:
+        </h2>
+
+        <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/90 text-lg leading-relaxed mb-6">
+          Cada proyecto que ves acá fue creado con estrategia y objetivos bien definidos.
+        </p>
+
+        <a 
+          href="/proyectos"
+          class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-lg rounded-full px-12 py-3 hover:bg-gray-100 transition-all duration-300 w-fit"
+        >
+          Ver Proyectos
+        </a>
+      </div>
+
+      <div class="col-span-7">
+        <div class="grid grid-cols-2 gap-4 h-full">
+          {/* Column 1 - Scroll Up */}
+          <VerticalMarquee client:load projects={column1} direction="up" />
+          
+          <VerticalMarquee client:load projects={column2} direction="down" />
         </div>
-      ))}
+      </div>
+
     </div>
   </div>
+
 </section>
 
-<style>
+<style is:global>
+  /* Horizontal Marquee (Mobile) */
+  .marquee-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .marquee-content {
+    display: flex;
+    width: fit-content;
+    will-change: transform;
+  }
+
+  .marquee-item {
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .marquee-left {
+    animation: scroll-left 40s linear infinite;
+  }
+
+  .marquee-right {
+    animation: scroll-right 40s linear infinite;
+  }
+
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -96,16 +126,65 @@ const projects = [
     }
   }
 
-  .animate-scroll-left {
-    animation: scroll-left 30s linear infinite;
-  }
-
-  .animate-scroll-right {
-    animation: scroll-right 30s linear infinite;
-  }
-
-  .animate-scroll-left:hover,
-  .animate-scroll-right:hover {
+  .marquee-content:hover {
     animation-play-state: paused;
+  }
+
+  .marquee-content {
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Vertical Marquee (Desktop) */
+  .vertical-marquee-container {
+    overflow: hidden;
+    position: relative;
+    height: 600px;
+    width: 100%;
+  }
+
+  .vertical-marquee-content {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    will-change: transform;
+  }
+
+  .vertical-marquee-item {
+    padding: 0.5rem 0;
+    flex-shrink: 0;
+  }
+
+  .vertical-marquee-up {
+    animation: scroll-up 30s linear infinite;
+  }
+
+  .vertical-marquee-down {
+    animation: scroll-down 30s linear infinite;
+  }
+
+  @keyframes scroll-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .vertical-marquee-content:hover {
+    animation-play-state: paused;
+  }
+  .vertical-marquee-content {
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 </style>
