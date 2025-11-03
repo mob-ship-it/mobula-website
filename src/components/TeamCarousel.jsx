@@ -15,6 +15,7 @@ export default function TeamCarousel({ members }) {
         flex: '0 0 auto',
         width: '280px'
       }}
+      className="lg:hidden"
     >
       {members.map((member) => (
         <div key={member.id} className="px-2">
