@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
 
 import ecpWallpaper from '../assets/images/projects/ECP-consulting-group/ECP-wallpaper.png';
+import ecpMobile from '../assets/images/projects/ECP-consulting-group/ECP-mobile-intro.png';
 import ecpFirstSection from '../assets/images/projects/ECP-consulting-group/first-section-image.png';
 import personasQueSuman from '../assets/images/projects/ECP-consulting-group/personas-que-suman.png';
 import grid1 from '../assets/images/projects/ECP-consulting-group/grid-1.png';
@@ -15,7 +16,8 @@ import revistas2 from '../assets/images/projects/ECP-consulting-group/revistas-2
 import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
 import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
 import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
-import kaseCabImage from '../assets/images/projects/legal-law-office/KaseCab.png';
+import kaseCabImage from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
 import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
 ---
 
@@ -33,7 +35,17 @@ import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
             height={1000}
             format="webp"
             quality={90}
-            class="w-full h-auto object-cover"
+            class="hidden lg:block w-full h-auto object-cover"
+            loading="eager"
+          />
+          <Image
+            src={ecpMobile}
+            alt="ECP Consulting Group - Proyecto"
+            width={800}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="lg:hidden w-full h-auto object-cover"
             loading="eager"
           />
         </div>
@@ -248,14 +260,84 @@ import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
         </h3>
         {(() => {
           const featuredProjects = [
-            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage },
-            { id: 'kasecab', title: 'KaseCab.', subtitle: 'Branding', image: kaseCabImage },
-            { id: 'ecp', title: 'ECP', subtitle: 'Branding', image: ecpImage },
+            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage, href: '/LegalLawOffice' },
+            { id: 'kasecab', title: 'KaseCab', subtitle: 'Branding', image: kaseCabImage, href: '/KaseCab' },
+            { id: 'stanzza', title: 'Stanzza', subtitle: 'Performance', image: stanzza, href: '/Stanzza' },
           ];
           return <ProjectsCarousel client:load projects={featuredProjects} />;
         })()}
       </div>
 
+      <div class="mb-8 lg:hidden">
+        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-8">
+          Ver más proyectos destacados
+        </h3>
+      </div>
+
+      <div class="space-y-8 mb-12 lg:hidden">
+        <a href="/LegalLawOffice">
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image
+              src={lineaLawImage}
+              alt="LINEA LAW Project"
+              width={1200}
+              height={800}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
+            LINEA LAW
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
+            Social Media
+          </p>
+        </a>
+
+        <a href="/KaseCab">
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image
+              src={kaseCabImage}
+              alt="KaseCab Project"
+              width={1200}
+              height={800}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
+            KaseCab
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
+            Branding
+          </p>
+        </a>
+
+        <a href="/Stanzza">
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image
+              src={stanzza}
+              alt="Stanzza Project"
+              width={1200}
+              height={800}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
+            Stanzza
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
+            Performance
+          </p>
+        </a>
+      </div>
       <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden mb-12">
         <div class="relative z-10 px-8 py-10 md:px-12 md:py-12 lg:py-16">
           <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-6 text-left">

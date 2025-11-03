@@ -5,6 +5,7 @@ import { Image } from 'astro:assets';
 import project1 from '../assets/images/projects/legal-law-office/LineLaw-wallpaper.png';
 import project2 from '../assets/images/projects/ECP-consulting-group/ECP-wallpaper.png';
 import project3 from '../assets/images/projects/KaseCap/KaseCap-intro.png';
+import project4 from '../assets/images/projects/Stanzza/Stanzza-intro.png';
 ---
 
 <MainLayout title="Proyectos - Mobula Studio">
@@ -55,6 +56,44 @@ import project3 from '../assets/images/projects/KaseCap/KaseCap-intro.png';
               </span>
               <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
                 LinkedIn
+              </span>
+            </div>
+          </div>
+        </a>
+
+        {/* Proyecto 4 - Stanzza */}
+        <a 
+          href="/Stanzza" 
+          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+        >
+          <div class="relative overflow-hidden">
+            <Image
+              src={project4}
+              alt="Stanzza Project"
+              width={800}
+              height={600}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          
+          <div class="p-6 md:p-8">
+            <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
+              Stanzza
+            </h2>
+            <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
+              Más leads calificados en solo un mes.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Social Ads
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Performance
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                YouTube
               </span>
             </div>
           </div>

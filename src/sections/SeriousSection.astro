@@ -3,17 +3,19 @@ import { Image } from 'astro:assets';
 import ProjectsMarquee from '../components/ProjectsMarquee';
 import VerticalMarquee from '../components/VerticalMarquee';
 
-import project1 from '../assets/images/projects/legal-law-office/LineLaw-wallpaper.png';
-import project2 from '../assets/images/projects/ECP-consulting-group/ECP-wallpaper.png';
-import project3 from '../assets/images/projects/KaseCap/KaseCap-intro.png';
+import project1 from '../assets/images/projects/legal-law-office/line-law.png';
+import project2 from '../assets/images/projects/legal-law-office/ECP.png';
+import project3 from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import project4 from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
 
 const projects = [
-  { id: 1, image: project1.src, imageObj: project1, alt: 'Proyecto 1' },
-  { id: 2, image: project2.src, imageObj: project2, alt: 'Proyecto 2' },
-  { id: 3, image: project3.src, imageObj: project3, alt: 'Proyecto 3' },
+  { id: 1, image: project1.src, imageObj: project1, alt: 'LINEA LAW' },
+  { id: 2, image: project2.src, imageObj: project2, alt: 'ECP' },
+  { id: 3, image: project3.src, imageObj: project3, alt: 'KaseCab' },
+  { id: 4, image: project4.src, imageObj: project4, alt: 'Stanzza' },
 ];
 const column1 = [projects[0], projects[1]];
-const column2 = [projects[2], projects[0]];
+const column2 = [projects[2], projects[3]];
 ---
 
 <section class="bg-[#13243c] py-4 md:py-6 lg:py-4 overflow-hidden">
