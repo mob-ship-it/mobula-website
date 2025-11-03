@@ -2,13 +2,30 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
-const ServiceSlide = ({ slide, isActive, index }) => {
+const ServiceSlide = ({ slide, isActive, index, onSlideClick }) => {
     const slideRef = useRef(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(false);
     const animationFrameRef = useRef(null);
 
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current);
+            }
+        };
+    }, []);
+
     const handleMouseMove = useCallback((event) => {
-        if (!isActive || !slideRef.current) return;
+        if (!isActive || !slideRef.current || !isMobile) return;
 
         const rect = slideRef.current.getBoundingClientRect();
         const x = event.clientX - (rect.left + rect.width / 2);
@@ -21,63 +38,78 @@ const ServiceSlide = ({ slide, isActive, index }) => {
         animationFrameRef.current = requestAnimationFrame(() => {
             setMousePosition({ x, y });
         });
-    }, [isActive]);
+    }, [isActive, isMobile]);
 
     const handleMouseLeave = useCallback(() => {
         setMousePosition({ x: 0, y: 0 });
     }, []);
 
-    useEffect(() => {
-        return () => {
-            if (animationFrameRef.current) {
-                cancelAnimationFrame(animationFrameRef.current);
-            }
-        };
-    }, []);
+    const handleClick = () => {
+        if (onSlideClick) {
+            onSlideClick(index);
+        }
+    };
+
+    const desktopStyles = {
+        width: 'clamp(240px, 30vw, 280px)',
+        height: 'clamp(340px, 65vh, 480px)',
+        opacity: 1,
+    };
+
+    const mobileStyles = {
+        width: 'clamp(260px, 80vw, 340px)',
+        height: 'clamp(360px, 70vh, 520px)',
+        transform: isActive
+            ? 'scale(1) rotateX(0deg) rotateY(0deg)'
+            : 'scale(0.8) rotateX(8deg)',
+        opacity: isActive ? 1 : 0.4,
+        transformStyle: 'preserve-3d',
+        willChange: isActive ? 'transform' : 'auto',
+        pointerEvents: isActive ? 'auto' : 'none',
+    };
+
+    const cardTransform = isMobile && isActive
+        ? `translate3d(${mousePosition.x / 25}px, ${mousePosition.y / 25}px, 0)`
+        : 'none';
+
+    const cardTransition = isMobile && isActive 
+        ? 'transform 0.15s ease-out' 
+        : isMobile 
+            ? 'transform 0.6s ease-out' 
+            : 'none';
 
     return (
         <div
             className="embla__slide"
             style={{
-                flex: '0 0 80%',
+                flex: '0 0 auto',
                 minWidth: 0,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                perspective: '1600px',
-                perspectiveOrigin: 'center center'
+                perspective: isMobile ? '1600px' : 'none',
+                perspectiveOrigin: 'center center',
+                paddingLeft: '8px',
+                paddingRight: '8px'
             }}
         >
             <div
                 ref={slideRef}
-                className="relative transition-all duration-700 ease-out"
-                style={{
-                    width: 'clamp(260px, 85vw, 360px)',
-                    height: 'clamp(360px, 70vh, 520px)',
-                    transform: isActive
-                        ? 'scale(1) rotateX(0deg) rotateY(0deg)'
-                        : 'scale(0.8) rotateX(8deg)',
-                    opacity: isActive ? 1 : 0.4,
-                    transformStyle: 'preserve-3d',
-                    willChange: isActive ? 'transform' : 'auto',
-                    pointerEvents: isActive ? 'auto' : 'none',
-                }}
+                className="relative transition-all duration-700 ease-out cursor-pointer"
+                style={isMobile ? mobileStyles : desktopStyles}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
+                onClick={handleClick}
             >
-                {/* Card Container with parallax effect */}
                 <div
                     className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
                     style={{
                         backgroundColor: slide.color || '#13243c',
-                        transform: isActive
-                            ? `translate3d(${mousePosition.x / 25}px, ${mousePosition.y / 25}px, 0)`
-                            : 'none',
-                        transition: isActive ? 'transform 0.15s ease-out' : 'transform 0.6s ease-out',
-                        backfaceVisibility: 'hidden',
+                        transform: cardTransform,
+                        transition: cardTransition,
+                        backfaceVisibility: isMobile ? 'hidden' : 'visible',
                     }}
                 >
-                    {/* Featured Card (Expanded with full content) - Shows when active */}
                     {slide.featured && (
                         <div className="absolute inset-0 p-4 sm:p-5 flex flex-col">
                             {/* Image */}
@@ -179,15 +211,16 @@ export function ServicesCarousel({ slides }) {
     });
 
     const [selectedIndex, setSelectedIndex] = useState(1); // Start with featured slide
-    const [canScrollPrev, setCanScrollPrev] = useState(false);
-    const [canScrollNext, setCanScrollNext] = useState(false);
+
+    const handleSlideClick = useCallback((index) => {
+        if (emblaApi) {
+            emblaApi.scrollTo(index);
+        }
+    }, [emblaApi]);
 
     const onSelect = useCallback(() => {
         if (!emblaApi) return;
-
         setSelectedIndex(emblaApi.selectedScrollSnap());
-        setCanScrollPrev(emblaApi.canScrollPrev());
-        setCanScrollNext(emblaApi.canScrollNext());
     }, [emblaApi]);
 
     useEffect(() => {
@@ -205,14 +238,6 @@ export function ServicesCarousel({ slides }) {
         };
     }, [emblaApi, onSelect]);
 
-    const scrollPrev = useCallback(() => {
-        if (emblaApi) emblaApi.scrollPrev();
-    }, [emblaApi]);
-
-    const scrollNext = useCallback(() => {
-        if (emblaApi) emblaApi.scrollNext();
-    }, [emblaApi]);
-
     return (
         <div className="w-full relative flex justify-center items-center">
             <div className="w-full max-w-7xl mx-auto py-8" ref={emblaRef}>
@@ -223,6 +248,7 @@ export function ServicesCarousel({ slides }) {
                             slide={slide}
                             index={index}
                             isActive={selectedIndex === index}
+                            onSlideClick={handleSlideClick}
                         />
                     ))}
                 </div>
