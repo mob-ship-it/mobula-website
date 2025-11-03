@@ -1,0 +1,269 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+
+import heroIntro from '../assets/images/projects/Stanzza/Stanzza-intro.png';
+import heroMobile from '../assets/images/projects/Stanzza/Stanzza-mobile-intro.png';
+import postMockups from '../assets/images/projects/Stanzza/stanzza-post-mockups.png';
+import post01 from '../assets/images/projects/Stanzza/stanzza-post-01.png';
+import post02 from '../assets/images/projects/Stanzza/stanzza-post-02.png';
+import postMockups02 from '../assets/images/projects/Stanzza/stanzza-post-mockups-02.png';
+import post03 from '../assets/images/projects/Stanzza/stanzza-post-03.png';
+import post04 from '../assets/images/projects/Stanzza/stanzza-post-04.png';
+import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
+import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
+import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
+import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
+import kaseCabImage from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
+---
+
+<MainLayout title="Más leads calificados en solo un mes - Mobula Studio">
+  <section class="bg-[#faf1ea] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
+
+      <div class="mb-10">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={heroIntro}
+            alt="Stanzza - Proyecto"
+            width={1600}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="hidden lg:block w-full h-auto object-cover"
+            loading="eager"
+          />
+          <Image
+            src={heroMobile}
+            alt="Stanzza - Proyecto"
+            width={800}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="lg:hidden w-full h-auto object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight text-left">
+          Más leads calificados en solo un mes
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+        <div>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
+            <span class="font-bold">Una estrategia digital integral que conectó emoción y resultados.</span> Stanzza transformó su presencia digital con una estrategia multicanal diseñada para generar confianza y rendimiento.
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
+            Las campañas se dividieron en tres niveles: <span class="font-bold">awareness, consideración y conversión,</span> adaptadas a dos audiencias clave: <span class="font-bold">adultos mayores y sus cuidadores.</span>
+          </p>
+        </div>
+        <div>
+          <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-xl md:text-2xl mb-4">
+            Resultados Clave
+          </h2>
+          <ul class="list-disc pl-5 space-y-2 [font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
+            <li>+30 % más leads calificados que en meses anteriores.</li>
+            <li>Tres tipos de campañas activas que cubrieron todo el recorrido digital.</li>
+            <li>Mayor engagement y alcance sostenido en Meta y Google.</li>
+            <li>+284 k impresiones en YouTube, fortaleciendo el reconocimiento de marca.</li>
+            <li>Estrategia unificada que combinó bienestar, propósito y performance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-lg lg:max-w-none mb-10">
+        <div class="text-left">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">Año</p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">2025</p>
+        </div>
+        <div class="text-left">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">Industria</p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">Premium Senior Living</p>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={postMockups}
+            alt="Stanzza – mockups"
+            width={1600}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-12">
+        <Image
+          src={post01}
+          alt="Stanzza – post 01"
+          width={1600}
+          height={1200}
+          format="webp"
+          quality={90}
+          class="w-full h-auto object-contain rounded-2xl"
+          loading="lazy"
+        />
+        <Image
+          src={post02}
+          alt="Stanzza – post 02"
+          width={1600}
+          height={1200}
+          format="webp"
+          quality={90}
+          class="w-full h-auto object-contain rounded-2xl"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image
+            src={postMockups02}
+            alt="Stanzza – mockups 02"
+            width={1600}
+            height={1000}
+            format="webp"
+            quality={90}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-16">
+        <Image
+          src={post03}
+          alt="Stanzza – post 03"
+          width={1600}
+          height={1200}
+          format="webp"
+          quality={90}
+          class="w-full h-auto object-contain rounded-2xl"
+          loading="lazy"
+        />
+        <Image
+          src={post04}
+          alt="Stanzza – post 04"
+          width={1600}
+          height={1200}
+          format="webp"
+          quality={90}
+          class="w-full h-auto object-contain rounded-2xl"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="hidden lg:block mb-16">
+        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">Ver más proyectos destacados</h3>
+        {(() => {
+          const featuredProjects = [
+            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage, href: '/LegalLawOffice' },
+            { id: 'ecp', title: 'ECP', subtitle: 'Branding', image: ecpImage, href: '/ECPConsultingGroup' },
+            { id: 'kasecab', title: 'KaseCab', subtitle: 'Branding', image: kaseCabImage, href: '/KaseCab' },
+          ];
+          return <ProjectsCarousel client:load projects={featuredProjects} />;
+        })()}
+      </div>
+
+      <div class="mb-8 lg:hidden">
+        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-8">
+          Ver más proyectos destacados
+        </h3>
+      </div>
+
+      <div class="space-y-8 mb-12 lg:hidden">
+        <a href="/LegalLawOffice">
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image
+              src={lineaLawImage}
+              alt="LINEA LAW Project"
+              width={1200}
+              height={800}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
+            LINEA LAW
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
+            Social Media
+          </p>
+        </a>
+
+        <a href="/ECPConsultingGroup">
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image
+              src={ecpImage}
+              alt="ECP Project"
+              width={1200}
+              height={800}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
+            ECP
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
+            Branding
+          </p>
+        </a>
+
+        <a href="/KaseCab">
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image
+              src={kaseCabImage}
+              alt="KaseCab Project"
+              width={1200}
+              height={800}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
+            KaseCab
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
+            Branding
+          </p>
+        </a>
+      </div>
+
+      <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden mb-12">
+        <div class="relative z-10 px-8 py-10 md:px-12 md:py-12 lg:py-16">
+          <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-6 text-left">
+            Suscribite y accedé a todos nuestros servicios
+          </h2>
+          <a href="/#planes" class="inline-block bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-lg md:text-xl px-10 md:px-12 py-3.5 md:py-4 rounded-full hover:bg-[#faf1ea] transition-colors duration-300">
+            Ver Planes
+          </a>
+        </div>
+
+        <div class="pointer-events-none absolute inset-y-0 right-0 hidden md:flex items-center">
+          <Image src={vector22} alt="Decorative shape" width={700} height={700} class="h-[140%] w-auto -mr-10 -rotate-90" loading="lazy" />
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 md:hidden">
+          <Image src={vector22} alt="Decorative waves" width={1200} height={200} class="w-full h-auto" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+</MainLayout>
