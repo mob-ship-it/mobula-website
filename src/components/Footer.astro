@@ -2,10 +2,11 @@
 import { Image } from 'astro:assets';
 import SocialIcons from './SocialIcons.astro';
 import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
+import vector22 from '../assets/images/mockups/Vector 22.png';
 ---
 
-<footer class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16">
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<footer class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16 relative overflow-hidden w-full">
+  <div class="relative w-full px-4 sm:px-6 lg:px-8 xl:px-12 z-10">
     
     {/* Layout Mobile: Centrado vertical */}
     <div class="flex flex-col items-center text-center gap-8 md:hidden">
@@ -103,15 +104,15 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
 
     <div class="hidden md:block">
       <div class="relative grid grid-cols-12 gap-8 lg:gap-12 items-start">
-        <div class="col-span-12 lg:col-span-4 xl:col-span-3 flex lg:block justify-center relative z-10">
+        <div class="col-span-12 lg:col-span-4 xl:col-span-3 flex lg:block justify-center relative z-10 lg:ml-8 xl:ml-12">
           <Image
             src={mobulaLogo}
             alt="Mobula Studio Logo"
-            width={260}
-            height={140}
+            width={320}
+            height={180}
             format="webp"
             quality={90}
-            class="h-28 lg:h-36 xl:h-40 w-auto"
+            class="h-32 lg:h-44 xl:h-52 w-auto"
           />
         </div>
 
@@ -140,18 +141,41 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
             </button>
           </div>
 
-          {/* Social links as pills */}
-          <div class="mt-10 flex flex-wrap gap-4">
-            <a href="https://instagram.com/mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+          <div class="mt-10 flex flex-wrap gap-4 relative z-10">
+            <a 
+              href="https://instagram.com/mobulastudio" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style="border: 2px solid white;"
+              class="px-6 py-2.5 rounded-full text-white hover:bg-white hover:text-[#13243c] transition-all duration-300 [font-family:'Be_Vietnam',Helvetica] font-normal"
+            >
               Instagram
             </a>
-            <a href="https://facebook.com/mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+            <a 
+              href="https://facebook.com/mobulastudio" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style="border: 2px solid white;"
+              class="px-6 py-2.5 rounded-full text-white hover:bg-white hover:text-[#13243c] transition-all duration-300 [font-family:'Be_Vietnam',Helvetica] font-normal"
+            >
               Facebook
             </a>
-            <a href="https://linkedin.com/company/mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+            <a 
+              href="https://linkedin.com/company/mobulastudio" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style="border: 2px solid white;"
+              class="px-6 py-2.5 rounded-full text-white hover:bg-white hover:text-[#13243c] transition-all duration-300 [font-family:'Be_Vietnam',Helvetica] font-normal"
+            >
               LinkedIn
             </a>
-            <a href="https://medium.com/@mobulastudio" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full border border-white/40 text-white/90 hover:bg-white/10 transition-colors [font-family:'Be_Vietnam',Helvetica]">
+            <a 
+              href="https://medium.com/@mobulastudio" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style="border: 2px solid white;"
+              class="px-6 py-2.5 rounded-full text-white hover:bg-white hover:text-[#13243c] transition-all duration-300 [font-family:'Be_Vietnam',Helvetica] font-normal"
+            >
               Medium
             </a>
           </div>
@@ -159,6 +183,18 @@ import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
       </div>
     </div>
 
+    <div class="absolute right-0 -top-16 h-full w-auto pointer-events-none hidden lg:flex items-start justify-end z-0">
+      <Image
+        src={vector22}
+        alt="Decorative waves"
+        width={600}
+        height={600}
+        format="webp"
+        quality={85}
+        class="h-[110%] w-auto object-contain"
+        loading="lazy"
+      />
+    </div>
     <!-- Separador -->
   <div class="border-t border-[#faf1ea]/20 mt-12 pt-8">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
