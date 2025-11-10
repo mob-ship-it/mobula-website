@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import AnimatedCursor from '../components/AnimatedCursor.jsx';
 import { Image } from 'astro:assets';
 import arrowImage from '../assets/images/mockups/Layer_1.png';
 import '../styles/global.css';
@@ -51,6 +52,7 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
 </head>
 <body class="bg-[#faf1ea]">
   <div class="relative min-h-screen flex flex-col overflow-x-hidden">
+    <AnimatedCursor client:only="react" />
 
     <!-- Global Background Arrow (Layer_1.png) - hidden on small screens -->
     <div aria-hidden="true" class="pointer-events-none fixed z-0 select-none hidden md:block" style="top: -125px; right: 0px;">

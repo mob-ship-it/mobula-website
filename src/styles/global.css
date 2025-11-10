@@ -54,6 +54,16 @@ html {
   scroll-behavior: smooth;
 }
 
+body.custom-cursor-enabled * {
+  cursor: none !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  body.custom-cursor-enabled * {
+    cursor: auto !important;
+  }
+}
+
 /* Animations */
 .animate-fade-in {
   animation: fade-in 1s var(--animation-delay, 0s) ease forwards;

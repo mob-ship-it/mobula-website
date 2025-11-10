@@ -52,9 +52,25 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
       </div>
 
       <div class="mb-8">
-        <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight text-left">
-          Más leads calificados en solo un mes
-        </h1>
+        <div class="flex flex-col lg:flex-row lg:items-start lg:gap-4">
+          <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight text-left">
+            Más leads calificados en solo un mes
+          </h1>
+          <a href="https://stanzza.cr/" target="_blank" rel="noopener" class="hidden lg:inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-sm px-5 py-2 rounded-full hover:bg-[#faf1ea] transition-colors whitespace-nowrap self-start mt-1">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+              <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Visitar sitio
+          </a>
+        </div>
+        <div class="mt-4 lg:hidden">
+          <a href="https://stanzza.cr/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-base md:text-lg px-6 py-2 rounded-full hover:bg-[#faf1ea] transition-colors">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+              <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Visitar sitio
+          </a>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
@@ -171,9 +187,9 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
         <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">{t('project.featuredMore')}</h3>
         {(() => {
           const featuredProjects = [
-            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage, href: translatePath('/LegalLawOffice') },
-            { id: 'ecp', title: 'ECP', subtitle: 'Branding', image: ecpImage, href: translatePath('/ECPConsultingGroup') },
-            { id: 'kasecab', title: 'KaseCab', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
+            { id: 'linea', title: 'Linea Law', subtitle: 'Social Media', image: lineaLawImage, href: translatePath('/LegalLawOffice') },
+            { id: 'ecp', title: 'ECP Consulting Group', subtitle: 'Branding', image: ecpImage, href: translatePath('/ECPConsultingGroup') },
+            { id: 'kasecab', title: 'KaseCab Americas', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
           ];
           return <ProjectsCarousel client:load projects={featuredProjects} />;
         })()}
@@ -200,7 +216,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
             />
           </div>
           <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            LINEA LAW
+            Linea Law
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
             Social Media
@@ -221,7 +237,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
             />
           </div>
           <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            ECP
+            ECP Consulting Group
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
             Branding
@@ -242,7 +258,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
             />
           </div>
           <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            KaseCab
+            KaseCab Americas
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
             Branding

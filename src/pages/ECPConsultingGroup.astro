@@ -57,9 +57,26 @@ const translatePath = i18n.useTranslatedPath(lang);
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-10">
         <div class="lg:col-span-7">
-          <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 text-center lg:text-left">
-            {t('ecp.heading')}
-          </h1>
+          <div class="flex flex-col lg:flex-row lg:items-start lg:gap-4 mb-4">
+            <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight text-center lg:text-left">
+              {t('ecp.heading')}
+            </h1>
+              <a href="https://www.ecpconsultgroup.com/" target="_blank" rel="noopener" class="hidden lg:inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-sm px-5 py-2 rounded-full hover:bg-[#faf1ea] transition-colors whitespace-nowrap self-start mt-1">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                  <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              Visitar sitio
+            </a>
+          </div>
+          <!-- CTA móvil justo debajo del título -->
+          <div class="mt-4 lg:hidden text-center">
+              <a href="https://www.ecpconsultgroup.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-base md:text-lg px-6 py-2 rounded-full hover:bg-[#faf1ea] transition-colors">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                  <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              Visitar sitio
+            </a>
+          </div>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
             {t('ecp.p1')}
           </p>
@@ -264,9 +281,9 @@ const translatePath = i18n.useTranslatedPath(lang);
         </h3>
         {(() => {
           const featuredProjects = [
-            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage, href: translatePath('/LegalLawOffice') },
-            { id: 'kasecab', title: 'KaseCab', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
-            { id: 'stanzza', title: 'Stanzza', subtitle: 'Performance', image: stanzza, href: translatePath('/Stanzza') },
+            { id: 'linea', title: 'Linea Law', subtitle: 'Social Media', image: lineaLawImage, href: translatePath('/LegalLawOffice') },
+            { id: 'kasecab', title: 'KaseCab Americas', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
+            { id: 'stanzza', title: 'Stanzza Senior Living', subtitle: 'Performance', image: stanzza, href: translatePath('/Stanzza') },
           ];
           return <ProjectsCarousel client:load projects={featuredProjects} />;
         })()}
@@ -293,7 +310,7 @@ const translatePath = i18n.useTranslatedPath(lang);
             />
           </div>
           <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            LINEA LAW
+            Linea Law
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
             Social Media
@@ -314,7 +331,7 @@ const translatePath = i18n.useTranslatedPath(lang);
             />
           </div>
           <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            KaseCab
+            KaseCab Americas
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
             Branding
@@ -335,7 +352,7 @@ const translatePath = i18n.useTranslatedPath(lang);
             />
           </div>
           <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">
-            Stanzza
+            Stanzza Senior Living
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">
             Performance

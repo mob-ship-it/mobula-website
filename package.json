@@ -12,10 +12,10 @@
     "build:vite": "vite build"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.0",
+    "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
     "@tabler/icons-react": "^3.35.0",
-    "astro": "^5.14.5",
+    "astro": "^5.15.4",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "motion": "^12.23.12",

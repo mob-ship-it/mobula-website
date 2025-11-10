@@ -5,11 +5,16 @@ const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 
 // Importar imágenes de servicios desde assets
-import marketingImg from '../assets/images/services/marketin-y-estrategia.jpg';
-import conceptoImg from '../assets/images/services/concepto-contenido.jpg';
-import disenioImg from '../assets/images/services/disenio-branding.png';
-import webImg from '../assets/images/services/web-y-experiencia.jpg';
-import animationAndProductionImg from '../assets/images/services/animacion-producción-audiovisual.jpg';
+import marketingImg from '../assets/images/services/marketin-y-estrategia.webp';
+import marketingRightDecor from '../assets/images/services/marketing-right-decor.webp';
+import conceptoRightDecor from '../assets/images/services/concepto-contenido-right-decor.webp';
+import disenioRightDecor from '../assets/images/services/disenio-branding-right-decor.webp';
+import animacionRightDecor from '../assets/images/services/animacion-produccion-right-decor.webp';
+import webRightDecor from '../assets/images/services/web-experiencia-right-decor.webp';
+import conceptoImg from '../assets/images/services/concepto-contenido.webp';
+import disenioImg from '../assets/images/services/disenio-branding.webp';
+import webImg from '../assets/images/services/web-y-experiencia.webp';
+import animationAndProductionImg from '../assets/images/services/animacion-producción-audiovisual.webp';
 
 const servicesEs = [
   {
@@ -24,26 +29,28 @@ const servicesEs = [
       "Email Marketing",
       "Conversión Estratégica"
     ],
+    bgRight: marketingRightDecor.src,
     button: t('services.cta')
   },
   {
     title: "Concepto & Contenido", 
     image: conceptoImg.src,
-    color: "#FF7B7B",
-    bgGradient: "from-[#FF7B7B] to-[#FF9F9F]",
+    color: "#FF6262",
+    bgGradient: "from-[#FF6262] to-[#FF9F9F]",
     services: [
       "Conceptualización Creativa",
       "Creación de Contenido (Digitales y Físicos)",
       "Copywriting y Storytelling",
       "Producción de Contenido Visual (AI, redes, piezas estáticas)"
     ],
+    bgRight: conceptoRightDecor.src,
     button: t('services.cta')
   },
   {
     title: "Diseño & Branding",
     image: disenioImg.src, 
-    color: "#4DD4D4",
-    bgGradient: "from-[#4DD4D4] to-[#7FE5E5]",
+    color: "#008DA0",
+    bgGradient: "from-[#008DA0] to-[#00B5C6]",
     services: [
       "Identidad de Marca (Branding)",
       "Diseño Gráfico",
@@ -53,6 +60,7 @@ const servicesEs = [
       "Packaging",
       "Signage"
     ],
+    bgRight: disenioRightDecor.src,
     button: t('services.cta')
   },
   {
@@ -66,6 +74,8 @@ const servicesEs = [
       "Producción de Video (filmación y edición)",
       "Fotografía Profesional"
     ],
+    bgRight: animacionRightDecor.src,
+    bgRightPosition: 'right 0 top 15%',
     button: t('services.cta')
   },
   {
@@ -79,6 +89,7 @@ const servicesEs = [
       "Experiencia de Usuario (UX/UI)",
       "Posicionamiento SEO"
     ],
+    bgRight: webRightDecor.src,
     button: t('services.cta')
   }
 ];
@@ -96,26 +107,28 @@ const servicesEn = [
       "Email Marketing",
       "Conversion Strategy"
     ],
+    bgRight: marketingRightDecor.src,
     button: t('services.cta')
   },
   {
     title: "Concept & Content", 
     image: conceptoImg.src,
-    color: "#FF7B7B",
-    bgGradient: "from-[#FF7B7B] to-[#FF9F9F]",
+    color: "#FF6262",
+    bgGradient: "from-[#FF6262] to-[#FF9F9F]",
     services: [
       "Creative Conceptualization",
       "Content Creation (digital and physical)",
       "Copywriting & Storytelling",
       "Visual Content Production (AI, social, static assets)"
     ],
+    bgRight: conceptoRightDecor.src,
     button: t('services.cta')
   },
   {
     title: "Design & Branding",
     image: disenioImg.src, 
-    color: "#4DD4D4",
-    bgGradient: "from-[#4DD4D4] to-[#7FE5E5]",
+    color: "#008DA0",
+    bgGradient: "from-[#008DA0] to-[#00B5C6]",
     services: [
       "Brand Identity (Branding)",
       "Graphic Design",
@@ -125,6 +138,7 @@ const servicesEn = [
       "Packaging",
       "Signage"
     ],
+    bgRight: disenioRightDecor.src,
     button: t('services.cta')
   },
   {
@@ -138,6 +152,8 @@ const servicesEn = [
       "Video Production (filming & editing)",
       "Professional Photography"
     ],
+    bgRight: animacionRightDecor.src,
+    bgRightPosition: 'right 0 top 35%',
     button: t('services.cta')
   },
   {
@@ -151,6 +167,7 @@ const servicesEn = [
       "User Experience (UX/UI)",
       "SEO"
     ],
+    bgRight: webRightDecor.src,
     button: t('services.cta')
   }
 ];

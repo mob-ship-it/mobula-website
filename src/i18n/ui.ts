@@ -102,12 +102,25 @@ export const ui = {
     ,
     // Projects (listing page)
     'projects.seoTitle': 'Proyectos - Mobula Studio',
-    'projects.heading': 'Nuestros Proyectos',
-    'projects.description': 'Descubre cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos con estrategias innovadoras y resultados medibles.',
+    'projects.heading': 'Proyectos Destacados',
+    'projects.description': 'Descubrí cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos con estrategias innovadoras y resultados medibles.',
     'projects.cards.legal.desc': 'Engagement y conversiones muy por encima del promedio de la industria legal.',
-    'projects.cards.stanzza.desc': 'Más leads calificados en solo un mes.',
-    'projects.cards.ecp.desc': 'Construimos la base de una marca premium y cercana.',
+  'projects.cards.stanzza.desc': 'Más leads calificados en solo un mes.',
+  // Project card titles
+  'projects.cards.legal.title': 'Linea Law',
+  'projects.cards.stanzza.title': 'Stanzza Senior Living',
+  'projects.cards.ecp.title': 'ECP Consulting Group',
+  'projects.cards.kasecab.title': 'KaseCab Americas',
+    
+  'projects.cards.ecp.desc': 'Construimos la base de una marca premium y cercana.',
+    
     'projects.cards.kasecab.desc': 'Un diseño modular, disruptivo y adaptable.',
+
+    // Project 'more' links (used on projects listing)
+    'projects.more.legal': 'Conocé más sobre Linea Law',
+    'projects.more.stanzza': 'Conocé más sobre Stanzza Senior Living',
+    'projects.more.ecp': 'Conocé más sobre ECP Consulting Group',
+    'projects.more.kasecab': 'Conocé más sobre KaseCab Americas',
 
     // Project generic labels
     'project.featuredMore': 'Ver más proyectos destacados',
@@ -227,13 +240,25 @@ export const ui = {
     'faq.a4': 'Yes, we offer special discounts for annual subscriptions and custom packages based on your business needs. Contact us to learn more.',
 
     // Projects (listing page)
-    'projects.seoTitle': 'Projects - Mobula Studio',
-    'projects.heading': 'Our Projects',
-    'projects.description': 'See how we’ve helped clients reach their goals with innovative strategies and measurable results.',
+  'projects.seoTitle': 'Projects - Mobula Studio',
+  'projects.heading': 'Featured Projects',
+  'projects.description': 'Discover how we\'ve helped our clients reach their goals with innovative strategies and measurable results.',
     'projects.cards.legal.desc': 'Engagement and conversions well above the legal industry average.',
     'projects.cards.stanzza.desc': 'More qualified leads in just one month.',
     'projects.cards.ecp.desc': 'We built the foundation of a premium and approachable brand.',
     'projects.cards.kasecab.desc': 'A modular, disruptive, and adaptable design.',
+
+  // Project card titles
+  'projects.cards.legal.title': 'Linea Law',
+  'projects.cards.stanzza.title': 'Stanzza Senior Living',
+  'projects.cards.ecp.title': 'ECP Consulting Group',
+  'projects.cards.kasecab.title': 'KaseCab Americas',
+
+    // Project 'more' links (used on projects listing)
+    'projects.more.legal': 'Learn more about Linea Law',
+    'projects.more.stanzza': 'Learn more about Stanzza Senior Living',
+    'projects.more.ecp': 'Learn more about ECP Consulting Group',
+    'projects.more.kasecab': 'Learn more about KaseCab Americas',
 
     // Project generic labels
     'project.featuredMore': 'See more featured projects',

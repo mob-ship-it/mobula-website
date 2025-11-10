@@ -123,7 +123,11 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
                                 transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                                 transitionProperty: 'width, height, opacity',
                                 padding: isExpanded ? '24px 32px' : '0',
-                                backgroundColor: isExpanded ? (slide.color || '#13243c') : 'transparent'
+                                backgroundColor: isExpanded ? (slide.color || '#13243c') : 'transparent',
+                                backgroundImage: isExpanded && slide.bgRight ? `url(${slide.bgRight})` : 'none',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: isExpanded && slide.bgRightPosition ? slide.bgRightPosition : 'right center',
+                                backgroundSize: 'auto 80%'
                             }}
                         >
                             {slide.services && (

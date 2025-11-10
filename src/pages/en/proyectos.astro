@@ -27,15 +27,12 @@ const translatePath = i18n.useTranslatedPath(lang);
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        
-        <a 
-          href={translatePath('/LegalLawOffice')} 
-          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-        >
+
+        <a href={translatePath('/LegalLawOffice')} class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
           <div class="relative overflow-hidden">
             <Image
               src={project1}
-              alt="Legal Law Office Project"
+              alt="Linea Law Project"
               width={800}
               height={600}
               format="webp"
@@ -43,10 +40,10 @@ const translatePath = i18n.useTranslatedPath(lang);
               class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          
+
           <div class="p-6 md:p-8">
             <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
-              Legal Law Office
+              {t('projects.cards.legal.title')}
             </h2>
             <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
               {t('projects.cards.legal.desc')}
@@ -62,14 +59,21 @@ const translatePath = i18n.useTranslatedPath(lang);
                 LinkedIn
               </span>
             </div>
+
+            <div class="mt-4 text-sm text-[#13243c]">
+              <span class="inline-flex items-center gap-2 text-[#0b4aa6] underline" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://linealaw.com/', '_blank');">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14 3h7v7" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 14L21 3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 21H3V3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="[font-family:'Be_Vietnam',Helvetica] font-medium">{t('projects.more.legal')}</span>
+              </span>
+            </div>
           </div>
         </a>
 
-        {/* Proyecto 4 - Stanzza */}
-        <a 
-          href={translatePath('/Stanzza')} 
-          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-        >
+        <a href={translatePath('/Stanzza')} class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
           <div class="relative overflow-hidden">
             <Image
               src={project4}
@@ -81,10 +85,10 @@ const translatePath = i18n.useTranslatedPath(lang);
               class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          
+
           <div class="p-6 md:p-8">
             <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
-              Stanzza
+              {t('projects.cards.stanzza.title')}
             </h2>
             <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
               {t('projects.cards.stanzza.desc')}
@@ -100,14 +104,20 @@ const translatePath = i18n.useTranslatedPath(lang);
                 YouTube
               </span>
             </div>
+            <div class="mt-4 text-sm text-[#13243c]">
+              <span class="inline-flex items-center gap-2 text-[#0b4aa6] underline" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://stanzza.cr/', '_blank');">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14 3h7v7" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 14L21 3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 21H3V3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="[font-family:'Be_Vietnam',Helvetica] font-medium">{t('projects.more.stanzza')}</span>
+              </span>
+            </div>
           </div>
         </a>
 
-        {/* Proyecto 2 - ECP Consulting Group */}
-        <a 
-          href={translatePath('/ECPConsultingGroup')} 
-          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-        >
+        <a href={translatePath('/ECPConsultingGroup')} class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
           <div class="relative overflow-hidden">
             <Image
               src={project2}
@@ -119,10 +129,10 @@ const translatePath = i18n.useTranslatedPath(lang);
               class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          
+
           <div class="p-6 md:p-8">
             <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
-              ECP Consulting Group
+              {t('projects.cards.ecp.title')}
             </h2>
             <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
               {t('projects.cards.ecp.desc')}
@@ -138,14 +148,20 @@ const translatePath = i18n.useTranslatedPath(lang);
                 Design
               </span>
             </div>
+            <div class="mt-4 text-sm text-[#13243c]">
+              <span class="inline-flex items-center gap-2 text-[#0b4aa6] underline" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://www.ecpconsultgroup.com/', '_blank');">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14 3h7v7" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 14L21 3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 21H3V3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="[font-family:'Be_Vietnam',Helvetica] font-medium">{t('projects.more.ecp')}</span>
+              </span>
+            </div>
           </div>
         </a>
 
-        {/* Proyecto 3 - KaseCab */}
-        <a 
-          href={translatePath('/KaseCab')} 
-          class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-        >
+        <a href={translatePath('/KaseCab')} class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
           <div class="relative overflow-hidden">
             <Image
               src={project3}
@@ -159,7 +175,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           </div>
           <div class="p-6 md:p-8">
             <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
-              KaseCab
+              {t('projects.cards.kasecab.title')}
             </h2>
             <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
               {t('projects.cards.kasecab.desc')}
@@ -173,6 +189,16 @@ const translatePath = i18n.useTranslatedPath(lang);
               </span>
               <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
                 Design
+              </span>
+            </div>
+            <div class="mt-4 text-sm text-[#13243c]">
+              <span class="inline-flex items-center gap-2 text-[#0b4aa6] underline" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://www.kasecab.com/', '_blank');">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14 3h7v7" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 14L21 3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 21H3V3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="[font-family:'Be_Vietnam',Helvetica] font-medium">{t('projects.more.kasecab')}</span>
               </span>
             </div>
           </div>

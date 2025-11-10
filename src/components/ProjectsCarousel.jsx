@@ -30,7 +30,7 @@ export default function ProjectsCarousel({ projects }) {
             />
           </div>
           <div className="mt-3">
-            <h4 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-sm sm:text-base uppercase group-hover:text-[#211ee1] transition-colors">
+            <h4 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-sm sm:text-base group-hover:text-[#211ee1] transition-colors">
               {p.title}
             </h4>
             {p.subtitle && (
