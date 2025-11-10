@@ -4,9 +4,12 @@ import EmblaCarousel from "../components/EmblaCarousel";
 import { SubscriptionModal } from "../components/SubscriptionModal";
 import { useModal } from "../hooks/useModal";
 import { planService } from "../services/api";
+import * as i18n from "../i18n/utils";
 
-export const PlansSection = () => {
-  const plans = planService.getPlans();
+export const PlansSection = ({ lang }) => {
+  const safeLang = lang === 'en' ? 'en' : 'es';
+  const t = i18n.useTranslations(safeLang);
+  const plans = planService.getPlans(safeLang);
   const { isOpen, openModal, closeModal } = useModal();
   const [selectedPlan, setSelectedPlan] = useState(null);
 
@@ -17,7 +20,7 @@ export const PlansSection = () => {
 
   const formatPrice = (price) => {
     if (typeof price === 'number') {
-      return `$${price.toLocaleString()} / mes`;
+      return `$${price.toLocaleString()}${t('plans.perMonth')}`;
     }
     return price;
   };
@@ -36,7 +39,7 @@ export const PlansSection = () => {
             </div>
 
             <div className="relative self-stretch h-[17.08px] [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-base tracking-[0] leading-[19.5px] whitespace-nowrap">
-              {typeof plan.credits === 'number' ? `${plan.credits} Créditos` : plan.credits}
+              {typeof plan.credits === 'number' ? `${plan.credits} ${t('plans.credits')}` : plan.credits}
             </div>
           </div>
 
@@ -45,7 +48,7 @@ export const PlansSection = () => {
             onClick={() => handleSubscribe(plan)}
             className={`w-full ${isDesktop ? 'h-[40px] text-lg' : 'h-[45px] text-xl'} rounded-[60px]`}
           >
-            Suscribirse
+            {t('plans.subscribe')}
           </Button>
 
           <div className={`flex flex-col ${isDesktop ? 'w-full gap-2' : 'w-[181.43px] gap-3'} relative flex-[0_0_auto]`}>
@@ -73,13 +76,13 @@ export const PlansSection = () => {
         {/* Header Section */}
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-3xl sm:text-4xl lg:text-5xl mb-6">
-            Planes
+            {t('nav.plans')}
           </h2>
 
           <p className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-2xl mx-auto">
-            Nuestros planes te dan acceso a todos nuestros servicios
+            {t('plans.subtitle1')}
             <br />
-            ¡Escogé el tuyo!
+            {t('plans.subtitle2')}
           </p>
         </div>
 
@@ -117,6 +120,7 @@ export const PlansSection = () => {
         isOpen={isOpen}
         onClose={closeModal}
         selectedPlan={selectedPlan}
+        lang={safeLang}
       />
     </div>
   );

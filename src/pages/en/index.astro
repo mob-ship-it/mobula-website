@@ -1,20 +1,19 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import HeroSection from '../sections/HeroSection.astro';
-import ServicesSection from '../sections/ServicesSection.astro';
-import SeriousSection from '../sections/SeriousSection.astro';
-import { PlansSection } from '../sections/PlansSection';
-import TeamSection from '../sections/TeamSection.astro';
-import CreditsSection from '../sections/CreditsSection';
-import FeaturedArticlesSection from '../sections/FeaturedArticlesSection.astro';
-import SubscriptionSection from '../sections/SubscriptionSection';
-import FAQSection from '../sections/FAQSection';
-import * as i18n from '../i18n/utils';
-
+import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from '../../sections/HeroSection.astro';
+import ServicesSection from '../../sections/ServicesSection.astro';
+import SeriousSection from '../../sections/SeriousSection.astro';
+import { PlansSection } from '../../sections/PlansSection';
+import TeamSection from '../../sections/TeamSection.astro';
+import CreditsSection from '../../sections/CreditsSection';
+import FeaturedArticlesSection from '../../sections/FeaturedArticlesSection.astro';
+import SubscriptionSection from '../../sections/SubscriptionSection';
+import FAQSection from '../../sections/FAQSection';
+import * as i18n from '../../i18n/utils';
 const lang = i18n.getLangFromUrl(Astro.url);
 ---
 
-<MainLayout title="Mobula Studio - Marketing Digital">
+<MainLayout title="Mobula Studio - Digital Marketing">
   <!-- Hero Section - Astro estático -->
   <section id="inicio" class="relative">
     <HeroSection />
@@ -58,7 +57,6 @@ const lang = i18n.getLangFromUrl(Astro.url);
 
 
 <script>
-
   document.addEventListener('astro:page-load', () => {
     console.log('Página cargada correctamente');
   });

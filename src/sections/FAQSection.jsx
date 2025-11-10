@@ -1,24 +1,27 @@
 import React, { useState } from "react";
+import * as i18n from "../i18n/utils";
 
-export const FAQSection = () => {
+export const FAQSection = ({ lang }) => {
+  const safeLang = lang === 'en' ? 'en' : 'es';
+  const t = i18n.useTranslations(safeLang);
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
-      question: "¿Qué tipo de soluciones digitales ofrecen para mejorar la eficiencia empresarial?",
-      answer: "Ofrecemos una amplia gama de servicios, desde estrategias de contenido y campañas publicitarias hasta automatización de procesos de marketing, todos diseñados para procesar la decisión y el retorno de la inversión."
+      question: t('faq.q1'),
+      answer: t('faq.a1')
     },
     {
-      question: "¿Cómo pueden ayudarme a escalar mi negocio en un mercado competitivo?",
-      answer: "Desarrollamos estrategias personalizadas de marketing digital, optimización de conversión y análisis de datos para identificar oportunidades de crecimiento y mejorar tu posición en el mercado."
+      question: t('faq.q2'),
+      answer: t('faq.a2')
     },
     {
-      question: "¿Qué beneficios puedo esperar de las soluciones digitales que ofrecen?",
-      answer: "Mayor visibilidad de marca, aumento en conversiones, automatización de procesos, mejor ROI en campañas publicitarias y acceso a métricas detalladas para toma de decisiones informadas."
+      question: t('faq.q3'),
+      answer: t('faq.a3')
     },
     {
-      question: "¿Hay descuentos o beneficios por suscripciones anuales?",
-      answer: "Sí, ofrecemos descuentos especiales para suscripciones anuales y paquetes personalizados según las necesidades de tu negocio. Contáctanos para conocer nuestras ofertas actuales."
+      question: t('faq.q4'),
+      answer: t('faq.a4')
     }
   ];
 
@@ -31,7 +34,7 @@ export const FAQSection = () => {
       <div className="max-w-2xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
         <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-12 text-center lg:text-left">
-          FAQ
+          {t('faq.title')}
         </h2>
 
         {/* Lista de Preguntas */}

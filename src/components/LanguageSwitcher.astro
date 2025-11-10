@@ -1,0 +1,51 @@
+---
+import * as i18n from '../i18n/utils';
+
+const lang = i18n.getLangFromUrl(Astro.url);
+const altHref = i18n.getAlternateLangPath(Astro.url);
+const nextLabel = lang === 'en' ? 'ES' : 'EN';
+const { variant = 'outline-dark' } = Astro.props as { variant?: 'outline-dark' | 'outline-light' | 'link-light' | 'link-dark' | 'button-light' };
+
+const baseBtn = "inline-flex items-center gap-2 [font-family:'Be_Vietnam',Helvetica] font-semibold text-sm px-6 py-2 rounded-full transition-colors whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
+const outlineDark = `${baseBtn} border border-[#13243c] text-[#13243c] bg-transparent hover:bg-[#13243c] hover:text-white focus-visible:outline-[#bb8bfe]`;
+const outlineLight = `${baseBtn} border border-white text-white bg-transparent hover:bg-white hover:text-[#13243c] focus-visible:outline-white`;
+
+const baseLinkLight = "mobile-menu-link inline-flex items-center gap-3 [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer";
+const baseLinkDark = "inline-flex items-center gap-3 [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-2xl tracking-[0] leading-[29.3px] hover:text-[#13243c]/70 transition-colors cursor-pointer";
+
+const buttonLight = "mobile-menu-link inline-flex items-center justify-center gap-2 w-full [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-lg px-8 py-4 rounded-full hover:bg-gray-100 transition-colors cursor-pointer text-center";
+
+const classes =
+  variant === 'outline-light' ? outlineLight :
+  variant === 'link-light' ? baseLinkLight :
+  variant === 'link-dark' ? baseLinkDark :
+  variant === 'button-light' ? buttonLight :
+  outlineDark;
+
+const iconClass = (variant === 'link-light' || variant === 'link-dark') ? 'w-6 h-6' : (variant === 'button-light' ? 'w-5 h-5' : 'w-4 h-4');
+---
+
+<a
+  href={altHref}
+  aria-label={lang === 'en' ? 'Switch to Spanish' : 'Cambiar a Inglés'}
+  class={classes}
+>
+  <!-- Globe icon -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  class={iconClass}
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M2 12h20" />
+    <path d="M12 2a15 15 0 0 1 0 20" />
+    <path d="M12 2a15 15 0 0 0 0 20" />
+  </svg>
+  <span>{nextLabel}</span>
+</a>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
 const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onToggleExpand }) => {
@@ -74,7 +74,7 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
                 <div
                     className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
                     style={{
-                        backgroundColor: slide.color || '#13243c',
+                        backgroundColor: isExpanded ? (slide.color || '#13243c') : 'transparent',
                     }}
                 >
                     <div className="absolute inset-0 flex flex-col lg:flex-row">
@@ -85,10 +85,14 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
                                     ? 'lg:w-[45%] h-[35%] lg:h-full' 
                                     : 'w-full h-full'
                             } transition-all duration-600`}
-                            style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
+                            style={{ 
+                                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                                padding: isExpanded ? '16px' : '0',
+                                backgroundColor: isExpanded ? (slide.color || '#13243c') : 'transparent'
+                            }}
                         >
                             {slide.image && (
-                                <>
+                                <div className="relative w-full h-full rounded-xl overflow-hidden">
                                     <img
                                         src={slide.image}
                                         alt={slide.title}
@@ -100,24 +104,26 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
                                             ? 'from-black/60 via-black/20 to-black/10' 
                                             : 'from-black/80 via-black/30 to-black/20'
                                     } transition-all duration-600`} />
-                                </>
+                                    
+                                    <div className="absolute top-6 left-6 right-6 z-10">
+                                        <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-xl sm:text-2xl lg:text-2xl leading-tight">
+                                            {slide.title}
+                                        </h3>
+                                    </div>
+                                </div>
                             )}
-
-                            <div className="absolute top-6 left-6 right-6 z-10">
-                                <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-xl sm:text-2xl lg:text-2xl leading-tight">
-                                    {slide.title}
-                                </h3>
-                            </div>
                         </div>
                         <div 
                             className={`relative ${
                                 isExpanded 
                                     ? 'lg:w-[55%] h-[65%] lg:h-full opacity-100' 
                                     : 'w-0 h-0 lg:w-0 opacity-0 overflow-hidden'
-                            } transition-all duration-600 flex flex-col justify-center p-6 lg:p-8`}
+                            } transition-all duration-600 flex flex-col justify-center`}
                             style={{ 
                                 transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                                transitionProperty: 'width, height, opacity'
+                                transitionProperty: 'width, height, opacity',
+                                padding: isExpanded ? '24px 32px' : '0',
+                                backgroundColor: isExpanded ? (slide.color || '#13243c') : 'transparent'
                             }}
                         >
                             {slide.services && (
@@ -210,7 +216,7 @@ export function ServicesCarousel({ slides }) {
 
     return (
         <>
-            <style jsx global>{`
+            <style>{`
                 @keyframes slideInFromRight {
                     from {
                         opacity: 0;

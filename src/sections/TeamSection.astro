@@ -4,6 +4,7 @@ import TeamCarousel from '../components/TeamCarousel';
 import arielaDengo from '../assets/images/team/ariela-dengo.jpg';
 import pamelaH from '../assets/images/team/pamela-h.jpg';
 import jorgeC from '../assets/images/team/jorge-c.jpg';
+import * as i18n from '../i18n/utils';
 
 const teamMembers = [
   {
@@ -25,16 +26,18 @@ const teamMembers = [
     image: jorgeC
   }
 ];
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
 ---
 
 <section class="bg-[#faf1ea] py-12 md:py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-8 md:mb-12">
       <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-4">
-        ¡Trabajá con nuestro equipo de expertos!
+        {t('team.title')}
       </h2>
       <p class="[font-family:'Be_Vietnam',Helvetica] text-base md:text-lg text-[#13243c] max-w-3xl leading-relaxed">
-        Diseñadores, Creativos, Project Managers y expertos en Paid Media te ayudarán a concretar tus proyectos.
+        {t('team.description')}
       </p>
     </div>
 

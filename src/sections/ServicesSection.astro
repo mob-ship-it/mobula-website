@@ -1,5 +1,8 @@
 ---
 import { ServicesCarousel } from "../components/ServicesCarousel";
+import * as i18n from '../i18n/utils';
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
 
 // Importar imágenes de servicios desde assets
 import marketingImg from '../assets/images/services/marketin-y-estrategia.jpg';
@@ -8,12 +11,12 @@ import disenioImg from '../assets/images/services/disenio-branding.png';
 import webImg from '../assets/images/services/web-y-experiencia.jpg';
 import animationAndProductionImg from '../assets/images/services/animacion-producción-audiovisual.jpg';
 
-const services = [
+const servicesEs = [
   {
     title: "Marketing & Estrategia",
     image: marketingImg.src,
-    color: "#4A5FD9",
-    bgGradient: "from-[#4A5FD9] to-[#6B7FE8]",
+    color: "#211EE1",
+    bgGradient: "from-[#211EE1] to-[#4A47FF]",
     services: [
       "Marketing Digital",
       "Paid Media",
@@ -21,26 +24,26 @@ const services = [
       "Email Marketing",
       "Conversión Estratégica"
     ],
-    button: "Comenzá Ahora"
+    button: t('services.cta')
   },
   {
     title: "Concepto & Contenido", 
     image: conceptoImg.src,
-    color: "#EF5350",
-    bgGradient: "from-[#EF5350] to-[#F77371]",
+    color: "#FF7B7B",
+    bgGradient: "from-[#FF7B7B] to-[#FF9F9F]",
     services: [
       "Conceptualización Creativa",
       "Creación de Contenido (Digitales y Físicos)",
       "Copywriting y Storytelling",
       "Producción de Contenido Visual (AI, redes, piezas estáticas)"
     ],
-    button: "Comenzá Ahora"
+    button: t('services.cta')
   },
   {
     title: "Diseño & Branding",
     image: disenioImg.src, 
-    color: "#00ACC1",
-    bgGradient: "from-[#00ACC1] to-[#26C6DA]",
+    color: "#4DD4D4",
+    bgGradient: "from-[#4DD4D4] to-[#7FE5E5]",
     services: [
       "Identidad de Marca (Branding)",
       "Diseño Gráfico",
@@ -50,35 +53,109 @@ const services = [
       "Packaging",
       "Signage"
     ],
-    button: "Comenzá Ahora"
+    button: t('services.cta')
   },
   {
     title: "Animación & Producción Audiovisual",
     image: animationAndProductionImg.src,
-    color: "#BB8BFE",
-    bgGradient: "from-[#BB8BFE] to-[#D4B3FF]",
+    color: "#B794F6",
+    bgGradient: "from-[#B794F6] to-[#D4B8FF]",
     services: [
       "Motion Graphics",
       "Animación 2D / 3D", 
       "Producción de Video (filmación y edición)",
       "Fotografía Profesional"
     ],
-    button: "Comenzá Ahora"
+    button: t('services.cta')
   },
   {
     title: "Web & Experiencia",
     image: webImg.src,
-    color: "#13243C",
-    bgGradient: "from-[#13243C] to-[#1E3A5F]",
+    color: "#1E3A5F",
+    bgGradient: "from-[#1E3A5F] to-[#2A4B73]",
     services: [
       "Desarrollo Web",
       "Diseño Web & App",
       "Experiencia de Usuario (UX/UI)",
       "Posicionamiento SEO"
     ],
-    button: "Comenzá Ahora"
+    button: t('services.cta')
   }
 ];
+
+const servicesEn = [
+  {
+    title: "Marketing & Strategy",
+    image: marketingImg.src,
+    color: "#211EE1",
+    bgGradient: "from-[#211EE1] to-[#4A47FF]",
+    services: [
+      "Digital Marketing",
+      "Paid Media",
+      "Brand Positioning",
+      "Email Marketing",
+      "Conversion Strategy"
+    ],
+    button: t('services.cta')
+  },
+  {
+    title: "Concept & Content", 
+    image: conceptoImg.src,
+    color: "#FF7B7B",
+    bgGradient: "from-[#FF7B7B] to-[#FF9F9F]",
+    services: [
+      "Creative Conceptualization",
+      "Content Creation (digital and physical)",
+      "Copywriting & Storytelling",
+      "Visual Content Production (AI, social, static assets)"
+    ],
+    button: t('services.cta')
+  },
+  {
+    title: "Design & Branding",
+    image: disenioImg.src, 
+    color: "#4DD4D4",
+    bgGradient: "from-[#4DD4D4] to-[#7FE5E5]",
+    services: [
+      "Brand Identity (Branding)",
+      "Graphic Design",
+      "Digital Mockups",
+      "Packaging Design",
+      "Editorial Design",
+      "Packaging",
+      "Signage"
+    ],
+    button: t('services.cta')
+  },
+  {
+    title: "Animation & Video Production",
+    image: animationAndProductionImg.src,
+    color: "#B794F6",
+    bgGradient: "from-[#B794F6] to-[#D4B8FF]",
+    services: [
+      "Motion Graphics",
+      "2D / 3D Animation", 
+      "Video Production (filming & editing)",
+      "Professional Photography"
+    ],
+    button: t('services.cta')
+  },
+  {
+    title: "Web & Experience",
+    image: webImg.src,
+    color: "#1E3A5F",
+    bgGradient: "from-[#1E3A5F] to-[#2A4B73]",
+    services: [
+      "Web Development",
+      "Web & App Design",
+      "User Experience (UX/UI)",
+      "SEO"
+    ],
+    button: t('services.cta')
+  }
+];
+
+const services = lang === 'en' ? servicesEn : servicesEs;
 ---
 
 <div class="w-full overflow-hidden">
@@ -87,10 +164,8 @@ const services = [
     <div class="flex flex-col items-center justify-center w-full">
       <!-- Section Title -->
       <div class="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
-        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
-          Todo, en un solo
-          <br />
-          plan mensual
+        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight whitespace-pre-line">
+          {t('services.sectionTitle')}
         </h2>
       </div>
 

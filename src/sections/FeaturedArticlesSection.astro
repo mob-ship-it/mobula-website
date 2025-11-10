@@ -1,19 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import ArticlesCarousel from '../components/ArticlesCarousel';
+import * as i18n from '../i18n/utils';
 
 import article1 from '../assets/images/articles/article-1.png';
 import article2 from '../assets/images/articles/article-2.png';
 
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
+
 const articles = [
   {
     id: 1,
-    title: "Por qué en Mobula ofrecemos más que Marketing Digital",
+    title: t('articles.list.1.title'),
     image: article1
   },
   {
     id: 2,
-    title: "Por qué temerle a la inteligencia artificial",
+    title: t('articles.list.2.title'),
     image: article2
   }
 ];
@@ -22,7 +26,7 @@ const articles = [
 <section class="bg-[#faf1ea] pt-0 pb-10 md:pt-0 md:pb-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-12">
-      Artículos destacados
+      {t('articles.featured')}
     </h2>
 
     <ArticlesCarousel client:load articles={articles} />

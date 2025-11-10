@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import ProjectsMarquee from '../components/ProjectsMarquee';
 import VerticalMarquee from '../components/VerticalMarquee';
+import * as i18n from '../i18n/utils';
 
 import project1 from '../assets/images/projects/legal-law-office/line-law.png';
 import project2 from '../assets/images/projects/legal-law-office/ECP.png';
@@ -16,24 +17,27 @@ const projects = [
 ];
 const column1 = [projects[0], projects[1]];
 const column2 = [projects[2], projects[3]];
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
+const translatePath = i18n.useTranslatedPath(lang);
 ---
 
 <section class="bg-[#13243c] py-4 md:py-6 lg:py-4 overflow-hidden">
   {/* Mobile Version - Horizontal Marquees */}
   <div class="lg:hidden">
     <div class="max-w-4xl mx-auto px-6 text-center mb-6">
-      <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl mb-4">
-        Lo decimos<br />en serio:
+      <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl mb-4 whitespace-pre-line">
+        {t('serious.title')}
       </h2>
 
       <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/90 text-base md:text-lg leading-relaxed mb-6 max-w-xl mx-auto">
-        Cada proyecto que ves acá fue creado con estrategia y objetivos bien definidos.
+        {t('serious.text')}
       </p>
       <a 
-        href="/proyectos"
+        href={translatePath('/proyectos')}
         class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-base md:text-lg rounded-full px-12 py-3 hover:bg-gray-100 transition-all duration-300"
       >
-        Ver Proyectos
+        {t('serious.cta')}
       </a>
     </div>
 
@@ -52,19 +56,18 @@ const column2 = [projects[2], projects[3]];
     <div class="grid grid-cols-12 gap-0">
       
       <div class="col-span-5 px-8 xl:px-12 py-6 flex flex-col justify-center">
-        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-4xl xl:text-5xl mb-4 leading-tight">
-          Lo decimos<br />en serio:
+        <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-4xl xl:text-5xl mb-4 leading-tight whitespace-pre-line">
+          {t('serious.title')}
         </h2>
 
         <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-white/90 text-lg leading-relaxed mb-6">
-          Cada proyecto que ves acá fue creado con estrategia y objetivos bien definidos.
+          {t('serious.text')}
         </p>
-
         <a 
-          href="/proyectos"
+          href={translatePath('/proyectos')}
           class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-lg rounded-full px-12 py-3 hover:bg-gray-100 transition-all duration-300 w-fit"
         >
-          Ver Proyectos
+          {t('serious.cta')}
         </a>
       </div>
 

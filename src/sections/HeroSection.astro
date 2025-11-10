@@ -2,90 +2,75 @@
 import { Image } from 'astro:assets';
 import arrowImage from '../assets/images/mockups/Layer_1.png';
 import mobulaLogo from '../assets/images/logo/mobula-logo-dark.png';
+import * as i18n from '../i18n/utils';
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
+const translatePath = i18n.useTranslatedPath(lang);
 ---
 
-<div class="w-full bg-[#faf1ea]">
+<div class="w-full">
   
-  <div class="lg:hidden w-full flex items-center justify-center px-6 py-12 md:py-16">
-    <div class="max-w-lg mx-auto text-center">
+  <div class="lg:hidden w-full flex items-center justify-center px-6 py-20 md:py-24">
+    <div class="max-w-xl text-center mx-auto">
       
       <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-4xl md:text-5xl leading-tight mb-6">
-        Precisión<br />
-        <span class="text-[#13243c]">& adaptabilidad</span><br />
-        <span class="text-[#13243c]">con resultados.</span>
+        {t('hero.title.line1')}<br />
+        {t('hero.title.line2')}
       </h1>
 
-      <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-base md:text-lg leading-relaxed mb-8 max-w-sm mx-auto">
-        Nos movemos con precisión en las profundidades de un mercado en constante evolución.
+      <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+        {t('hero.subtitle')}
       </p>
-
       <a 
-        href="#planes"
+        href={translatePath('/#planes')}
         style="border: 2px solid #4e3aff;"
-        class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#4e3aff] text-base md:text-lg rounded-full px-12 py-3 hover:bg-[#4e3aff] hover:text-white transition-all duration-300"
+        class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#4e3aff] text-base md:text-lg rounded-full px-12 md:px-14 py-3 hover:bg-[#4e3aff] hover:text-white transition-all duration-300 mx-auto"
       >
-        Ver Planes
+        {t('hero.cta')}
       </a>
 
     </div>
   </div>
 
-  <div class="hidden lg:block w-full bg-[#faf1ea]">
-    <div class="w-full px-6 lg:px-8 xl:px-12 2xl:px-16 py-4 lg:py-6 xl:py-8">
+  <div class="hidden lg:block w-full overflow-hidden">
+    <div class="w-full px-6 lg:px-8 xl:px-12 2xl:px-16 py-2 lg:py-3 xl:py-4">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
         
-  <div class="lg:col-span-6 xl:col-span-5 pl-2 lg:pl-0 relative z-10">
+  <div class="lg:col-span-6 xl:col-span-5 pl-6 lg:pl-8 xl:pl-12 relative z-10 mt-6 lg:mt-12">
 
-          <div class="mb-2">
+          <div class="mb-4 lg:mb-5">
             <Image
               src={mobulaLogo}
               alt="Mobula Studio Logo"
-              width={360}
-              height={200}
+              width={600}
+              height={320}
               format="webp"
               quality={85}
-              class="h-40 xl:h-48 w-auto"
+              class="h-60 xl:h-68 2xl:h-76 w-auto"
               loading="eager"
             />
           </div>
 
-          <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl leading-tight mb-3 lg:mb-4">
-            Precisión en<br />
-            movimiento,<br />
-            adaptabilidad<br />
-            con resultados.
+          <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl leading-tight mb-5 max-w-4xl text-left">
+            {t('hero.title.line1')}<br />
+            {t('hero.title.line2')}
           </h1>
 
-          <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-sm lg:text-base xl:text-lg leading-relaxed mb-6 lg:mb-8 max-w-lg">
-            Nos movemos con precisión en las profundidades de un mercado en constante evolución. Como las mobulas en el océano, nos adaptamos a nuestro entorno, siempre enfocados en la eficiencia y los resultados.
+          <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-lg lg:text-xl xl:text-xl leading-relaxed mb-6 lg:mb-8 max-w-2xl text-left">
+            {t('hero.subtitle')}
           </p>
 
           <a 
-            href="#planes"
-            class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-white bg-[#211ee1] text-sm lg:text-base xl:text-lg rounded-full px-8 lg:px-10 xl:px-12 py-2.5 lg:py-3 xl:py-4 hover:bg-[#1915c7] transition-all duration-300"
+            href={translatePath('/#planes')}
+            class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-white bg-[#211ee1] text-lg lg:text-xl rounded-full px-10 lg:px-12 xl:px-14 py-3 lg:py-3.5 xl:py-4 w-full max-w-2xl text-center hover:bg-[#1915c7] transition-all duration-300"
           >
-            Ver Planes
+            {t('hero.cta')}
           </a>
 
         </div>
 
-        <div class="lg:col-span-6 xl:col-span-7 flex justify-center lg:justify-end items-center relative">
-          <div class="pointer-events-none absolute right-0 flex items-center justify-end z-0" style="top: 55%; transform: translateY(-40%);">
-            <div style="width: clamp(680px, 48vw, 1150px); transform: translateX(8%);">
-              <Image
-                src={arrowImage}
-                alt="Precision Arrow"
-                width={1400}
-                height={1400}
-                format="webp"
-                quality={90}
-                class="w-full h-auto object-contain"
-                loading="eager"
-              />
-            </div>
-          </div>
-        </div>
+        <div class="lg:col-span-6 xl:col-span-7"></div>
 
       </div>
 

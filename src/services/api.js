@@ -52,7 +52,74 @@ export const emailService = {
 
 
 export const planService = {
-  getPlans() {
+  getPlans(lang = 'es') {
+    const isEn = lang === 'en';
+    if (isEn) {
+      return [
+        {
+          id: 'basic',
+          name: 'Basic Plan',
+          price: 500,
+          credits: 15,
+          features: [
+            'Access to all services',
+            'Assigned Project Manager'
+          ]
+        },
+        {
+          id: 'essential',
+          name: 'Essential Plan',
+          price: 700,
+          credits: 25,
+          features: [
+            'Access to all services',
+            'Assigned Project Manager'
+          ]
+        },
+        {
+          id: 'starter',
+          name: 'Starter Plan',
+          price: 1300,
+          credits: 25,
+          features: [
+            'Access to all services',
+            'Assigned Project Manager'
+          ]
+        },
+        {
+          id: 'growth',
+          name: 'Growth Plan',
+          price: 2200,
+          credits: 15,
+          features: [
+            'Access to all services',
+            'Assigned Project Manager'
+          ]
+        },
+        {
+          id: 'enterprise',
+          name: 'Enterprise Plan',
+          price: 'Custom',
+          credits: 'Unlimited',
+          features: [
+            'Access to all services',
+            'Assigned Project Manager'
+          ]
+        },
+        {
+          id: 'social',
+          name: 'Social Impact',
+          price: 'Free',
+          credits: 'Limited',
+          features: [
+            'Access to all services',
+            'Assigned Project Manager'
+          ]
+        }
+      ];
+    }
+    
+    // Spanish (default)
     return [
       {
         id: 'basic',
@@ -66,7 +133,7 @@ export const planService = {
       },
       {
         id: 'essential',
-        name: 'Plan Essencial',
+        name: 'Plan Esencial',
         price: 700,
         credits: 25,
         features: [

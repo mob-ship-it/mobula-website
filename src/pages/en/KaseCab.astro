@@ -1,0 +1,198 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import * as i18n from '../../i18n/utils';
+
+import heroIntro from '../../assets/images/projects/KaseCap/KaseCap-intro.png';
+import heroMobile from '../../assets/images/projects/KaseCap/KaseCab-mobile-intro.png';
+import rightRect from '../../assets/images/projects/KaseCap/blue-butterfly.png';
+import blueprint from '../../assets/images/projects/KaseCap/blue-print-first-image.png';
+import brochure from '../../assets/images/projects/KaseCap/broshure-mockup.png';
+import office from '../../assets/images/projects/KaseCap/office.png';
+import whatsAppResidentialCabinets from '../../assets/images/projects/KaseCap/WhatsApp-Residential-Cabinets.png';
+import whatsAppResidentialGeneral from '../../assets/images/projects/KaseCap/WhatsApp-Residential-General.png';
+import tshirt from '../../assets/images/projects/KaseCap/KaseCab-Tshirt.png';
+import htmlCommercialGeneral from '../../assets/images/projects/KaseCap/Html-Commercial-General.png';
+import htmlCommercialGeneral1 from '../../assets/images/projects/KaseCap/Html-Commercial-General-1.png';
+import htmlResidentialBeds from '../../assets/images/projects/KaseCap/html-residential-beds.png';
+
+import ProjectsCarousel from '../../components/ProjectsCarousel.jsx';
+import ecpImage from '../../assets/images/projects/legal-law-office/ECP.png';
+import lineaLawImage from '../../assets/images/projects/legal-law-office/line-law.png';
+import kaseCabImage from '../../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import stanzza from '../../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
+import vector22 from '../../assets/images/projects/legal-law-office/Vector 22.png';
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
+const translatePath = i18n.useTranslatedPath(lang);
+---
+
+<MainLayout title={t('kase.seoTitle')}>
+  <section class="bg-[#faf1ea] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
+
+      <!-- Hero -->
+      <div class="mb-10">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <Image src={heroIntro} alt="KaseCab - Project" width={1600} height={1000} format="webp" quality={90} class="hidden lg:block w-full h-auto object-cover" loading="eager" />
+          <Image src={heroMobile} alt="KaseCab - Project" width={800} height={1000} format="webp" quality={90} class="lg:hidden w-full h-auto object-cover" loading="eager" />
+        </div>
+      </div>
+
+      <!-- Intro + facts -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-10">
+        <div class="lg:col-span-7">
+          <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 text-center lg:text-left">
+            {t('kase.heading')}
+          </h1>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+            {t('kase.p1')}
+          </p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-0 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+            {t('kase.p2')}
+          </p>
+
+          <div class="hidden lg:grid grid-cols-2 gap-8 md:gap-12 max-w-lg lg:max-w-none mt-8">
+            <div class="text-left">
+              <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">{t('project.year')}</p>
+              <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">2025</p>
+            </div>
+            <div class="text-left">
+              <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">{t('project.industry')}</p>
+              <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">{t('kase.industry')}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 hidden lg:block">
+          <div class="rounded-3xl overflow-hidden shadow-xl mx-auto lg:mx-0 h-full">
+            <Image src={rightRect} alt="KaseCab – detail" width={900} height={1100} format="webp" quality={85} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile facts -->
+      <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-lg mx-auto lg:hidden mb-12">
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">{t('project.year')}</p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">2025</p>
+        </div>
+        <div class="text-center">
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">{t('project.industry')}</p>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">{t('kase.industry')}</p>
+        </div>
+      </div>
+
+      <!-- Visual banners and grids (same as ES) -->
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image src={blueprint} alt="KaseCab – blueprint" width={1600} height={1000} format="webp" quality={90} class="w-full h-auto object-cover" loading="lazy" />
+        </div>
+      </div>
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image src={brochure} alt="KaseCab – brochure" width={1600} height={1000} format="webp" quality={90} class="w-full h-auto object-cover" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="hidden lg:grid grid-cols-2 gap-10 mb-8">
+        <Image src={whatsAppResidentialGeneral} alt="WhatsApp Residential General" width={1200} height={900} format="webp" quality={90} class="w-full h-auto object-contain rounded-2xl" loading="lazy" />
+        <Image src={whatsAppResidentialCabinets} alt="WhatsApp Residential Cabinets" width={1200} height={900} format="webp" quality={90} class="w-full h-auto object-contain rounded-2xl" loading="lazy" />
+      </div>
+
+      <div class="lg:hidden grid grid-cols-1 gap-6 mb-12">
+        <Image src={whatsAppResidentialGeneral} alt="WhatsApp Residential General" width={1200} height={900} format="webp" quality={90} class="w-full h-auto object-contain rounded-2xl" loading="lazy" />
+        <Image src={whatsAppResidentialCabinets} alt="WhatsApp Residential Cabinets" width={1200} height={900} format="webp" quality={90} class="w-full h-auto object-contain rounded-2xl" loading="lazy" />
+      </div>
+
+      <div class="mb-12">
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
+          <Image src={tshirt} alt="KaseCab – T-shirt" width={1600} height={1000} format="webp" quality={90} class="w-full h-auto object-cover" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-8 items-stretch mb-16">
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-3xl shadow-2xl">
+            <Image src={htmlCommercialGeneral} alt="KaseCab – HTML Commercial General" width={1600} height={1200} format="webp" quality={90} class="w-full h-auto object-contain" loading="lazy" />
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-3xl shadow-2xl">
+            <Image src={htmlCommercialGeneral1} alt="KaseCab – HTML Commercial General 1" width={1600} height={1200} format="webp" quality={90} class="w-full h-auto object-contain" loading="lazy" />
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-3xl shadow-2xl">
+            <Image src={htmlResidentialBeds} alt="KaseCab – HTML Residential Beds" width={1600} height={1200} format="webp" quality={90} class="w-full h-auto object-contain" loading="lazy" />
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-3xl shadow-2xl">
+            <Image src={office} alt="KaseCab – Office" width={1600} height={1200} format="webp" quality={90} class="w-full h-auto object-contain" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- More projects -->
+      <div class="hidden lg:block mb-16">
+        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">{t('project.featuredMore')}</h3>
+        {(() => {
+          const featuredProjects = [
+            { id: 'linea', title: 'LINEA LAW', subtitle: 'Social Media', image: lineaLawImage, href: translatePath('/LegalLawOffice') },
+            { id: 'ecp', title: 'ECP', subtitle: 'Branding', image: ecpImage, href: translatePath('/ECPConsultingGroup') },
+            { id: 'stanzza', title: 'Stanzza', subtitle: 'Performance', image: stanzza, href: translatePath('/Stanzza') },
+          ];
+          return <ProjectsCarousel client:load projects={featuredProjects} />;
+        })()}
+      </div>
+
+      <div class="mb-8 lg:hidden">
+        <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-8">{t('project.featuredMore')}</h3>
+      </div>
+
+      <div class="space-y-8 mb-12 lg:hidden">
+        <a href={translatePath('/LegalLawOffice')}>
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image src={lineaLawImage} alt="LINEA LAW Project" width={1200} height={800} format="webp" quality={85} class="w-full h-auto object-cover" loading="lazy" />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">LINEA LAW</p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">Social Media</p>
+        </a>
+
+        <a href={translatePath('/ECPConsultingGroup')}>
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image src={ecpImage} alt="ECP Project" width={1200} height={800} format="webp" quality={85} class="w-full h-auto object-cover" loading="lazy" />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">ECP</p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">Branding</p>
+        </a>
+
+        <a href={translatePath('/Stanzza')}>
+          <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
+            <Image src={stanzza} alt="Stanzza Project" width={1200} height={800} format="webp" quality={85} class="w-full h-auto object-cover" loading="lazy" />
+          </div>
+          <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-lg">Stanzza</p>
+          <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-base">Performance</p>
+        </a>
+      </div>
+
+      <!-- CTA plans -->
+      <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden mb-12">
+        <div class="relative z-10 px-8 py-10 md:px-12 md:py-12 lg:py-16">
+          <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-6 text-left">{t('subscribe.banner')}</h2>
+          <a href={translatePath('/#planes')} class="inline-block bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-lg md:text-xl px-10 md:px-12 py-3.5 md:py-4 rounded-full hover:bg-[#faf1ea] transition-colors duration-300">
+            {t('cta.seePlans')}
+          </a>
+        </div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 hidden md:flex items-center">
+          <Image src={vector22} alt="Decorative shape" width={700} height={700} class="h-[140%] w-auto -mr-10 -rotate-90" loading="lazy" />
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 md:hidden">
+          <Image src={vector22} alt="Decorative waves" width={1200} height={200} class="w-full h-auto" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+</MainLayout>

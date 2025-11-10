@@ -1,52 +1,49 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
-import * as i18n from '../i18n/utils';
+import * as i18n from '../../i18n/utils';
 
-import project1 from '../assets/images/projects/project-1.png';
-import project1Big from '../assets/images/projects/legal-law-office/LineLaw-wallpaper.png';
-import project1Mobile from '../assets/images/projects/legal-law-office/LineLaw-mobile-intro.png';
-import rectangle88 from '../assets/images/projects/legal-law-office/Rectangle 88.png';
-import rectangle89 from '../assets/images/projects/legal-law-office/Rectangle 89.png';
-import seniorBaby from '../assets/images/projects/legal-law-office/senior and baby.png';
-import blog1 from '../assets/images/projects/legal-law-office/blog-1.png';
-import blog2 from '../assets/images/projects/legal-law-office/blog-2.png';
-import iphoneBlue from '../assets/images/projects/legal-law-office/iphone-blue.png';
-import legalOfficeVideo from '../assets/images/projects/legal-law-office/legal-office.mp4';
-import legalOfficeGifUrl from '../assets/images/projects/legal-law-office/lega-office.gif?url';
-import tenPersonGrid from '../assets/images/projects/legal-law-office/10-person-grid.png';
-import familyOffice from '../assets/images/projects/legal-law-office/A-family-office.jpg';
-import banksCanTake from '../assets/images/projects/legal-law-office/Banks-can-take.jpg';
-import twoSeniors from '../assets/images/projects/legal-law-office/two-seniors.png';
-import blog3 from '../assets/images/projects/legal-law-office/blog-3.png';
-import EmblaCarousel from '../components/EmblaCarousel.jsx';
-import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
+import project1 from '../../assets/images/projects/project-1.png';
+import project1Big from '../../assets/images/projects/legal-law-office/LineLaw-wallpaper.png';
+import project1Mobile from '../../assets/images/projects/legal-law-office/LineLaw-mobile-intro.png';
+import rectangle88 from '../../assets/images/projects/legal-law-office/Rectangle 88.png';
+import rectangle89 from '../../assets/images/projects/legal-law-office/Rectangle 89.png';
+import seniorBaby from '../../assets/images/projects/legal-law-office/senior and baby.png';
+import blog1 from '../../assets/images/projects/legal-law-office/blog-1.png';
+import blog2 from '../../assets/images/projects/legal-law-office/blog-2.png';
+import iphoneBlue from '../../assets/images/projects/legal-law-office/iphone-blue.png';
+import legalOfficeVideo from '../../assets/images/projects/legal-law-office/legal-office.mp4';
+import legalOfficeGifUrl from '../../assets/images/projects/legal-law-office/lega-office.gif?url';
+import tenPersonGrid from '../../assets/images/projects/legal-law-office/10-person-grid.png';
+import familyOffice from '../../assets/images/projects/legal-law-office/A-family-office.jpg';
+import banksCanTake from '../../assets/images/projects/legal-law-office/Banks-can-take.jpg';
+import twoSeniors from '../../assets/images/projects/legal-law-office/two-seniors.png';
+import blog3 from '../../assets/images/projects/legal-law-office/blog-3.png';
+import ProjectsCarousel from '../../components/ProjectsCarousel.jsx';
 
-import legalImage1 from '../assets/images/projects/legal-law-office/image-1.png';
-import legalImage2 from '../assets/images/projects/legal-law-office/image-2.png';
-import legalImage3 from '../assets/images/projects/legal-law-office/image-3.png';
-import legalImage4 from '../assets/images/projects/legal-law-office/image-4.png';
-import legalImage5 from '../assets/images/projects/legal-law-office/image-5.png';
-import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
-import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
-import kaseCabImage from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
-import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
-import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
+import legalImage1 from '../../assets/images/projects/legal-law-office/image-1.png';
+import legalImage2 from '../../assets/images/projects/legal-law-office/image-2.png';
+import legalImage3 from '../../assets/images/projects/legal-law-office/image-3.png';
+import legalImage4 from '../../assets/images/projects/legal-law-office/image-4.png';
+import legalImage5 from '../../assets/images/projects/legal-law-office/image-5.png';
+import ecpImage from '../../assets/images/projects/legal-law-office/ECP.png';
+import lineaLawImage from '../../assets/images/projects/legal-law-office/line-law.png';
+import kaseCabImage from '../../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import stanzza from '../../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
+import vector22 from '../../assets/images/projects/legal-law-office/Vector 22.png';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
 ---
 
-<MainLayout title={`${t('projects.cards.legal.desc')} - Mobula Studio`}>
+<MainLayout title={`Engagement and conversions well above the legal industry average - Mobula Studio`}>
   <section class="bg-[#faf1ea] min-h-screen">
-    
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
-      
       <div class="mb-10">
         <div class="relative rounded-3xl overflow-hidden shadow-2xl">
           <Image
             src={project1Big}
-            alt="Legal Law Office - Proyecto"
+            alt="Legal Law Office - Project"
             width={1600}
             height={1000}
             format="webp"
@@ -56,7 +53,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           />
           <Image
             src={project1Mobile}
-            alt="Legal Law Office - Proyecto"
+            alt="Legal Law Office - Project"
             width={800}
             height={1000}
             format="webp"
@@ -70,13 +67,13 @@ const translatePath = i18n.useTranslatedPath(lang);
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-10">
         <div class="lg:col-span-7">
           <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 text-center lg:text-left">
-            Construimos la base de una marca premium y cercana
+            Engagement and conversions well above the industry average
           </h1>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-            Linea Law necesitaba aumentar su visibilidad y credibilidad frente a audiencias locales e internacionales.
+            Linea Law needed to increase visibility and credibility with local and international audiences.
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-0 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-            Mobula diseñó una estrategia continua en LinkedIn, Meta y Google, superando benchmarks del sector legal y generando resultados medibles en solo seis meses.
+            We designed an ongoing strategy across LinkedIn, Meta, and Google—exceeding legal sector benchmarks and delivering measurable results in just six months.
           </p>
 
           <div class="hidden lg:grid grid-cols-2 gap-8 md:gap-12 max-w-lg lg:max-w-none mt-8">
@@ -102,7 +99,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           <div class="rounded-3xl overflow-hidden shadow-xl max-w-xl mx-auto lg:mx-0">
             <Image
               src={rectangle88}
-              alt="Vista previa del proyecto"
+              alt="Project preview"
               width={900}
               height={1100}
               format="webp"
@@ -115,7 +112,6 @@ const translatePath = i18n.useTranslatedPath(lang);
       </div>
 
       <div class="grid grid-cols-2 gap-8 md:gap-12 max-w-lg mx-auto lg:hidden mb-12">
-        
         <div class="text-center">
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
             {t('project.year')}
@@ -124,7 +120,6 @@ const translatePath = i18n.useTranslatedPath(lang);
             2025
           </p>
         </div>
-
         <div class="text-center">
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
             {t('project.industry')}
@@ -133,14 +128,13 @@ const translatePath = i18n.useTranslatedPath(lang);
             Legal | Family Office
           </p>
         </div>
-
       </div>
 
       <div class="hidden lg:block mb-12">
         <div class="rounded-3xl overflow-hidden shadow-2xl">
           <Image
             src={rectangle89}
-            alt="Vista general del proyecto"
+            alt="Project overview"
             width={1600}
             height={900}
             format="webp"
@@ -155,7 +149,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           <div class="rounded-3xl overflow-hidden shadow-xl">
             <Image
               src={seniorBaby}
-              alt="Creativo: senior y bebé"
+              alt="Creative: senior and baby"
               width={1200}
               height={1000}
               format="webp"
@@ -171,13 +165,13 @@ const translatePath = i18n.useTranslatedPath(lang);
           </h2>
           <ul class="space-y-4">
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • Engagement orgánico 10+ superior al promedio de la industria.
+              • Organic engagement 10× above the industry average.
             </li>
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • Más de 120K impresiones en campañas con audiencias premium.
+              • 120K+ impressions in campaigns with premium audiences.
             </li>
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • CTR casi 3× por encima del estándar en LinkedIn.
+              • CTR nearly 3× above the standard on LinkedIn.
             </li>
           </ul>
         </div>
@@ -187,7 +181,7 @@ const translatePath = i18n.useTranslatedPath(lang);
         <div class="rounded-3xl overflow-hidden shadow-xl bg-[#0d1f36] h-[360px] flex items-center justify-center">
           <Image
             src={blog1}
-            alt="Creativo 1"
+            alt="Creative 1"
             width={900}
             height={900}
             format="webp"
@@ -200,7 +194,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           <div class="absolute inset-0 flex items-center justify-center" style="transform: translateY(8%);">
             <Image
               src={blog2}
-              alt="Creativo 2"
+              alt="Creative 2"
               width={900}
               height={900}
               format="webp"
@@ -219,13 +213,13 @@ const translatePath = i18n.useTranslatedPath(lang);
           </h2>
           <ul class="space-y-4">
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • +103K conversiones, con eficiencia hasta 100× mayor que el promedio legal.
+              • 10k+ clicks and up to 100× higher efficiency than the legal average.
             </li>
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • CTR de hasta 20% en keywords clave (vs. 2–4 % de la industria).
+              • CTR up to 20% on key keywords (vs. 2–4% in the industry).
             </li>
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • Alcance internacional en +20 países (EE. UU., Francia, Canadá, Alemania, entre otros).
+              • International reach in 20+ countries (US, France, Canada, Germany, among others).
             </li>
           </ul>
         </div>
@@ -233,7 +227,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           <div class="rounded-3xl overflow-hidden shadow-xl">
             <Image
               src={iphoneBlue}
-              alt="Creativo iPhone azul"
+              alt="iPhone blue creative"
               width={1200}
               height={1000}
               format="webp"
@@ -272,7 +266,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           <div class="rounded-3xl overflow-hidden shadow-xl">
             <Image
               src={tenPersonGrid}
-              alt="Equipo multidisciplinario"
+              alt="Multidisciplinary team"
               width={1200}
               height={1000}
               format="webp"
@@ -288,13 +282,13 @@ const translatePath = i18n.useTranslatedPath(lang);
           </h2>
           <ul class="space-y-4">
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • Más de 1 millón de personas alcanzadas y 5,1 millones de impresiones en campañas de alto impacto.
+              • Reached over 1 million people and 5.1 million impressions in high‑impact campaigns.
             </li>
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • Inversión optimizada con performance constante y resultados sobresalientes en awareness y tráfico.
+              • Optimized spend with steady performance and standout results in awareness and traffic.
             </li>
             <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-              • Presencia internacional en expansión: EE. UU., Canadá y Costa Rica lideraron el alcance global.
+              • Expanding international presence: US, Canada, and Costa Rica led global reach.
             </li>
           </ul>
         </div>
@@ -380,12 +374,11 @@ const translatePath = i18n.useTranslatedPath(lang);
         })()}
       </div>
 
-  <div class="space-y-8 mb-12 lg:hidden">
-        
+      <div class="space-y-8 mb-12 lg:hidden">
         <div class="rounded-3xl overflow-hidden shadow-lg">
           <Image
             src={legalImage1}
-            alt="Legal Law Office - Detalle 1"
+            alt="Legal Law Office - Detail 1"
             width={1200}
             height={800}
             format="webp"
@@ -394,11 +387,10 @@ const translatePath = i18n.useTranslatedPath(lang);
             loading="lazy"
           />
         </div>
-
         <div class="rounded-3xl overflow-hidden shadow-lg">
           <Image
             src={legalImage2}
-            alt="Legal Law Office - Detalle 2"
+            alt="Legal Law Office - Detail 2"
             width={1200}
             height={800}
             format="webp"
@@ -407,26 +399,23 @@ const translatePath = i18n.useTranslatedPath(lang);
             loading="lazy"
           />
         </div>
-
       </div>
 
-  <div class="mb-12 lg:hidden">
+      <div class="mb-12 lg:hidden">
         <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">
           LinkedIn
         </h2>
-        
         <ul class="space-y-4 mb-8">
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Engagement orgánico 10+ superior al promedio de la industria.
+            • Organic engagement 10× above the industry average.
           </li>
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Más de 120K impresiones en campañas con audiencias premium.
+            • 120K+ impressions in campaigns with premium audiences.
           </li>
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • CTR casi 3× por encima del estándar en LinkedIn.
+            • CTR nearly 3× above the standard on LinkedIn.
           </li>
         </ul>
-
         <div class="rounded-3xl overflow-hidden shadow-lg">
           <Image
             src={legalImage3}
@@ -440,6 +429,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           />
         </div>
       </div>
+
       <div class="mb-12 lg:hidden">
         <div class="rounded-3xl overflow-hidden shadow-lg">
           <Image
@@ -454,23 +444,22 @@ const translatePath = i18n.useTranslatedPath(lang);
           />
         </div>
       </div>
-  <div class="mb-12 lg:hidden">
+
+      <div class="mb-12 lg:hidden">
         <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">
           Google
         </h2>
-        
         <ul class="space-y-4 mb-8">
-            <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • +10k de clicks y eficiencia hasta 100+ mayor que el promedio legal.
+          <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
+            • 10k+ clicks and up to 100× higher efficiency than the legal average.
           </li>
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • CTR de hasta 9.62% en algunas campañas (vs. 2-4 % de la industria).
+            • CTR up to 9.62% in some campaigns (vs. 2–4% in the industry).
           </li>
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Alcance internacional con campañas multipaís (EE. UU., Francia, Canadá, Alemania, entre otros).
+            • International reach with multi‑country campaigns (US, France, Canada, Germany, among others).
           </li>
         </ul>
-
         <div class="rounded-3xl overflow-hidden shadow-lg">
           <Image
             src={legalImage5}
@@ -489,16 +478,15 @@ const translatePath = i18n.useTranslatedPath(lang);
         <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-6">
           Meta
         </h2>
-        
         <ul class="space-y-4 mb-8">
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • CPL 45% menor que el promedio del sector legal en Meta.
+            • 45% lower CPL than the legal sector average on Meta.
           </li>
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • Más de 500 leads calificados generados en los primeros 3 meses.
+            • 500+ qualified leads generated in the first 3 months.
           </li>
           <li class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            • ROAS de 4.2x en campañas de conversión optimizadas.
+            • ROAS of 4.2× in optimized conversion campaigns.
           </li>
         </ul>
       </div>
@@ -510,8 +498,7 @@ const translatePath = i18n.useTranslatedPath(lang);
       </div>
 
       <div class="space-y-8 mb-12 lg:hidden">
-        
-  <a href={translatePath('/ECPConsultingGroup')}>
+        <a href={translatePath('/ECPConsultingGroup')}>
           <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
             <Image
               src={ecpImage}
@@ -532,7 +519,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           </p>
         </a>
 
-  <a href={translatePath('/KaseCab')}>
+        <a href={translatePath('/KaseCab')}>
           <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
             <Image
               src={kaseCabImage}
@@ -553,7 +540,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           </p>
         </a>
 
-  <a href={translatePath('/Stanzza')}>
+        <a href={translatePath('/Stanzza')}>
           <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
             <Image
               src={stanzza}
@@ -573,10 +560,9 @@ const translatePath = i18n.useTranslatedPath(lang);
             Performance
           </p>
         </a>
-
       </div>
 
-  <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden mb-12">
+      <div class="relative bg-[#211ee1] rounded-3xl overflow-hidden mb-12">
         <div class="relative z-10 px-8 py-10 md:px-12 md:py-12 lg:py-16">
           <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-6 text-left">
             {t('subscribe.banner')}
@@ -612,6 +598,5 @@ const translatePath = i18n.useTranslatedPath(lang);
         </div>
       </div>
     </div>
-    
   </section>
 </MainLayout>

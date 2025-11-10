@@ -1,32 +1,35 @@
 import React from 'react';
+import * as i18n from "../i18n/utils";
 
-export default function CreditsSection() {
+export default function CreditsSection({ lang }) {
+  const safeLang = lang === 'en' ? 'en' : 'es';
+  const t = i18n.useTranslations(safeLang);
   const creditTiers = [
     {
-      title: "Servicio Profesional de complejidad baja",
+      title: t('credits.tiers.low'),
       amount: "1.00",
-      label: "Crédito /Hora"
+      label: t('credits.tiers.label')
     },
     {
-      title: "Servicio Profesional de complejidad media",
+      title: t('credits.tiers.medium'),
       amount: "1.25",
-      label: "Crédito /Hora"
+      label: t('credits.tiers.label')
     },
     {
-      title: "Servicio Profesional de complejidad alta",
+      title: t('credits.tiers.high'),
       amount: "1.50",
-      label: "Crédito /Hora"
+      label: t('credits.tiers.label')
     }
   ];
   const creditSteps = [
     {
-      text: "Cada solicitud se evalúa según su complejidad para definir cuántos créditos requiere."
+      text: t('credits.steps.1')
     },
     {
-      text: "Una vez aprobada la estimación, se inicia el proyecto."
+      text: t('credits.steps.2')
     },
     {
-      text: "Si no usás todos tus créditos en el mes, no los perdés: se acumulan hasta por 3 meses, dándote la flexibilidad de utilizarlos cuando más los necesités."
+      text: t('credits.steps.3')
     }
   ];
 
@@ -35,7 +38,7 @@ export default function CreditsSection() {
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         {/* Título */}
         <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] text-center mb-12">
-          ¿Cómo funcionan los créditos?
+          {t('credits.howTitle')}
         </h2>
 
         {/* Cajas de información */}

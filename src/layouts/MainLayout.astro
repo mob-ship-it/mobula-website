@@ -1,15 +1,20 @@
 ---
 import Header from '../components/Header.astro';
+import { Image } from 'astro:assets';
+import arrowImage from '../assets/images/mockups/Layer_1.png';
 import '../styles/global.css';
 import '../styles/carousel-animations.css';
 import Footer from '../components/Footer.astro';
 
 const { title = "Mobula Studio" } = Astro.props;
-const isHome = Astro.url?.pathname === '/';
+const path = Astro.url?.pathname || '/';
+const isHome = path === '/' || path === '/en' || path === '/en/';
+const [, maybeLang] = Astro.url.pathname.split('/');
+const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,14 +50,23 @@ const isHome = Astro.url?.pathname === '/';
   </style>
 </head>
 <body class="bg-[#faf1ea]">
-  <div class="min-h-screen flex flex-col">
+  <div class="relative min-h-screen flex flex-col overflow-x-hidden">
 
-  <Header showLeftLogo={!isHome} />
-    <main class="flex-1">
-      <slot />
-    </main>
-        <!-- Footer estático -->
-    <Footer />
+    <!-- Global Background Arrow (Layer_1.png) - hidden on small screens -->
+    <div aria-hidden="true" class="pointer-events-none fixed z-0 select-none hidden md:block" style="top: -125px; right: 0px;">
+      <Image src={arrowImage} alt="" width={1600} height={1600} class="w-auto h-auto object-contain block" style="width: min(52vw, 1200px)" />
+    </div>
+
+    <!-- App Shell -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <Header showLeftLogo={!isHome} />
+      <!-- Reserve space for the fixed header so page content isn't hidden behind it -->
+      <main class="flex-1 pt-16 lg:pt-14">
+        <slot />
+      </main>
+      <!-- Footer estático -->
+      <Footer />
+    </div>
   </div>
 </body>
 </html>

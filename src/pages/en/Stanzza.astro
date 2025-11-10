@@ -1,28 +1,28 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
-import * as i18n from '../i18n/utils';
+import * as i18n from '../../i18n/utils';
 
-import heroIntro from '../assets/images/projects/Stanzza/Stanzza-intro.png';
-import heroMobile from '../assets/images/projects/Stanzza/Stanzza-mobile-intro.png';
-import postMockups from '../assets/images/projects/Stanzza/stanzza-post-mockups.png';
-import post01 from '../assets/images/projects/Stanzza/stanzza-post-01.png';
-import post02 from '../assets/images/projects/Stanzza/stanzza-post-02.png';
-import postMockups02 from '../assets/images/projects/Stanzza/stanzza-post-mockups-02.png';
-import post03 from '../assets/images/projects/Stanzza/stanzza-post-03.png';
-import post04 from '../assets/images/projects/Stanzza/stanzza-post-04.png';
-import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
+import heroIntro from '../../assets/images/projects/Stanzza/Stanzza-intro.png';
+import heroMobile from '../../assets/images/projects/Stanzza/Stanzza-mobile-intro.png';
+import postMockups from '../../assets/images/projects/Stanzza/stanzza-post-mockups.png';
+import post01 from '../../assets/images/projects/Stanzza/stanzza-post-01.png';
+import post02 from '../../assets/images/projects/Stanzza/stanzza-post-02.png';
+import postMockups02 from '../../assets/images/projects/Stanzza/stanzza-post-mockups-02.png';
+import post03 from '../../assets/images/projects/Stanzza/stanzza-post-03.png';
+import post04 from '../../assets/images/projects/Stanzza/stanzza-post-04.png';
+import vector22 from '../../assets/images/projects/legal-law-office/Vector 22.png';
+import ProjectsCarousel from '../../components/ProjectsCarousel.jsx';
+import ecpImage from '../../assets/images/projects/legal-law-office/ECP.png';
+import lineaLawImage from '../../assets/images/projects/legal-law-office/line-law.png';
+import kaseCabImage from '../../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import stanzza from '../../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
-import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
-import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
-import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
-import kaseCabImage from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
-import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
 ---
 
-<MainLayout title="Más leads calificados en solo un mes - Mobula Studio">
+<MainLayout title="More qualified leads in just one month - Mobula Studio">
   <section class="bg-[#faf1ea] min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
 
@@ -30,7 +30,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
         <div class="relative rounded-3xl overflow-hidden shadow-2xl">
           <Image
             src={heroIntro}
-            alt="Stanzza - Proyecto"
+            alt="Stanzza - Project"
             width={1600}
             height={1000}
             format="webp"
@@ -40,7 +40,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
           />
           <Image
             src={heroMobile}
-            alt="Stanzza - Proyecto"
+            alt="Stanzza - Project"
             width={800}
             height={1000}
             format="webp"
@@ -53,29 +53,29 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
 
       <div class="mb-8">
         <h1 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-3xl md:text-4xl lg:text-5xl leading-tight text-left">
-          Más leads calificados en solo un mes
+          More qualified leads in just one month
         </h1>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
         <div>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
-            <span class="font-bold">Una estrategia digital integral que conectó emoción y resultados.</span> Stanzza transformó su presencia digital con una estrategia multicanal diseñada para generar confianza y rendimiento.
+            <span class="font-bold">A comprehensive digital strategy that connected emotion and performance.</span> Stanzza transformed its digital presence with a multichannel strategy designed to build trust and drive results.
           </p>
           <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            Las campañas se dividieron en tres niveles: <span class="font-bold">awareness, consideración y conversión,</span> adaptadas a dos audiencias clave: <span class="font-bold">adultos mayores y sus cuidadores.</span>
+            Campaigns were divided into three levels: <span class="font-bold">awareness, consideration, and conversion,</span> tailored to two key audiences: <span class="font-bold">older adults and their caregivers.</span>
           </p>
         </div>
         <div>
           <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-xl md:text-2xl mb-4">
-            Resultados Clave
+            Key Results
           </h2>
           <ul class="list-disc pl-5 space-y-2 [font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed">
-            <li>+30 % más leads calificados que en meses anteriores.</li>
-            <li>Tres tipos de campañas activas que cubrieron todo el recorrido digital.</li>
-            <li>Mayor engagement y alcance sostenido en Meta y Google.</li>
-            <li>+284 k impresiones en YouTube, fortaleciendo el reconocimiento de marca.</li>
-            <li>Estrategia unificada que combinó bienestar, propósito y performance.</li>
+            <li>+30% more qualified leads than previous months.</li>
+            <li>Three campaign types active, covering the entire digital journey.</li>
+            <li>Higher engagement and sustained reach on Meta and Google.</li>
+            <li>+284k impressions on YouTube, strengthening brand recognition.</li>
+            <li>A unified strategy that combined well-being, purpose, and performance.</li>
           </ul>
         </div>
       </div>
@@ -186,7 +186,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
       </div>
 
       <div class="space-y-8 mb-12 lg:hidden">
-  <a href={translatePath('/LegalLawOffice')}>
+        <a href={translatePath('/LegalLawOffice')}>
           <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
             <Image
               src={lineaLawImage}
@@ -207,7 +207,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
           </p>
         </a>
 
-  <a href={translatePath('/ECPConsultingGroup')}>
+        <a href={translatePath('/ECPConsultingGroup')}>
           <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
             <Image
               src={ecpImage}
@@ -228,7 +228,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
           </p>
         </a>
 
-  <a href={translatePath('/KaseCab')}>
+        <a href={translatePath('/KaseCab')}>
           <div class="rounded-3xl overflow-hidden shadow-lg mb-4">
             <Image
               src={kaseCabImage}
