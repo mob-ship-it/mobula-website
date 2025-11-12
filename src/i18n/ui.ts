@@ -51,6 +51,7 @@ export const ui = {
     'plans.subtitle1': 'Nuestros planes te dan acceso a todos nuestros servicios',
     'plans.subtitle2': '¡Escogé el tuyo!',
     'plans.subscribe': 'Suscribirse',
+    'plans.socialCTA': '¿Cómo obtenerlo?',
     'plans.credits': 'Créditos',
   'plans.perMonth': ' / mes',
 
@@ -190,6 +191,7 @@ export const ui = {
     'plans.subtitle1': 'Our plans give you access to all our services',
     'plans.subtitle2': 'Choose yours!',
     'plans.subscribe': 'Subscribe',
+    'plans.socialCTA': 'How to get it?',
     'plans.credits': 'Credits',
   'plans.perMonth': ' / mo',
 

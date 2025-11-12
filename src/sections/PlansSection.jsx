@@ -54,7 +54,7 @@ export const PlansSection = ({ lang }) => {
             onClick={() => handleSubscribe(plan)}
             className={`w-full ${isDesktop ? 'h-[40px] text-lg' : 'h-[45px] text-xl'} rounded-[60px]`}
           >
-            {plan.id === 'social' ? '¿Cómo obtenerlo?' : t('plans.subscribe')}
+            {plan.id === 'social' ? t('plans.socialCTA') : t('plans.subscribe')}
           </Button>
 
           <div className={`flex flex-col ${isDesktop ? 'w-full gap-2' : 'w-[181.43px] gap-3'} relative flex-[0_0_auto]`}>
