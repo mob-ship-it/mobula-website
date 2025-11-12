@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../components/Button";
 import EmblaCarousel from "../components/EmblaCarousel";
 import { SubscriptionModal } from "../components/SubscriptionModal";
+import { SocialImpactModal } from "../components/SocialImpactModal";
 import { useModal } from "../hooks/useModal";
 import { planService } from "../services/api";
 import * as i18n from "../i18n/utils";
@@ -11,11 +12,16 @@ export const PlansSection = ({ lang }) => {
   const t = i18n.useTranslations(safeLang);
   const plans = planService.getPlans(safeLang);
   const { isOpen, openModal, closeModal } = useModal();
+  const { isOpen: isSocialModalOpen, openModal: openSocialModal, closeModal: closeSocialModal } = useModal();
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handleSubscribe = (plan) => {
     setSelectedPlan(plan);
-    openModal();
+    if (plan.id === 'social') {
+      openSocialModal();
+    } else {
+      openModal();
+    }
   };
 
   const formatPrice = (price) => {
@@ -48,7 +54,7 @@ export const PlansSection = ({ lang }) => {
             onClick={() => handleSubscribe(plan)}
             className={`w-full ${isDesktop ? 'h-[40px] text-lg' : 'h-[45px] text-xl'} rounded-[60px]`}
           >
-            {t('plans.subscribe')}
+            {plan.id === 'social' ? '¿Cómo obtenerlo?' : t('plans.subscribe')}
           </Button>
 
           <div className={`flex flex-col ${isDesktop ? 'w-full gap-2' : 'w-[181.43px] gap-3'} relative flex-[0_0_auto]`}>
@@ -120,6 +126,11 @@ export const PlansSection = ({ lang }) => {
         isOpen={isOpen}
         onClose={closeModal}
         selectedPlan={selectedPlan}
+        lang={safeLang}
+      />
+      <SocialImpactModal
+        isOpen={isSocialModalOpen}
+        onClose={closeSocialModal}
         lang={safeLang}
       />
     </div>

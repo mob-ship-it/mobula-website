@@ -108,7 +108,7 @@ export const planService = {
         },
         {
           id: 'social',
-          name: 'Social Impact',
+          name: 'Social Impact Plan',
           price: 'Free',
           credits: 'Limited',
           features: [
@@ -173,7 +173,7 @@ export const planService = {
       },
       {
         id: 'social',
-        name: 'Impacto Social',
+        name: 'Plan de Impacto Social',
         price: 'Gratuito',
         credits: 'Limitados',
         features: [
