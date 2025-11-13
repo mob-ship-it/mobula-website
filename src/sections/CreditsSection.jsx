@@ -35,14 +35,14 @@ export default function CreditsSection({ lang }) {
 
   return (
     <section className="bg-[#faf1ea] pb-4 pt-6 md:pb-4 md:pt-8">
-      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
-        <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] text-center mb-12">
+        <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-12 text-center lg:text-left">
           {t('credits.howTitle')}
         </h2>
 
-        {/* Cajas de información */}
-        <div className="flex flex-col gap-6 md:gap-8 mt-16 max-w-4xl mx-auto">
+        {/* Cajas de información (mobile) */}
+        <div className="flex flex-col gap-6 md:gap-8 mt-16 max-w-4xl lg:hidden">
           {creditSteps.map((step, index) => (
             <div
               key={index}
@@ -55,9 +55,19 @@ export default function CreditsSection({ lang }) {
             </div>
           ))}
         </div>
+
+        {/* Paragraphs for desktop (lg+) — two borderless paragraphs as requested */}
+        <div className="hidden lg:block mt-12 max-w-4xl">
+          <p className="[font-family:'Be_Vietnam',Helvetica] text-base md:text-lg text-[#13243c] leading-relaxed">
+            {t('credits.steps.1')} {t('credits.steps.2')}
+          </p>
+
+          <p className="[font-family:'Be_Vietnam',Helvetica] text-base md:text-lg text-[#13243c] leading-relaxed mt-6">
+            {t('credits.steps.3')}
+          </p>
+        </div>
         <div className="w-full mb-12">
-          <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-            <div className="w-full space-y-8">
+          <div className="w-full space-y-8">
               {creditTiers.map((tier, index) => (
                 <div key={index} className="w-full">
                   <div className="w-full bg-[#faf1ea] py-6">
@@ -86,7 +96,6 @@ export default function CreditsSection({ lang }) {
               ))}
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

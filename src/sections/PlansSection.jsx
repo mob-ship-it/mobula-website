@@ -33,7 +33,7 @@ export const PlansSection = ({ lang }) => {
 
   const PlanCard = ({ plan, isDesktop = false }) => (
     <div className={isDesktop ? "w-full" : "w-[244px] h-[325.9px] flex-shrink-0"}>
-      <div className={`${isDesktop ? 'h-[280px]' : 'h-[326px]'} rounded-2xl border-2 border-solid border-[#13243c] bg-white hover:shadow-xl hover:border-[#3b82f6] transition-all duration-300 ease-out`}>
+  <div className={`${isDesktop ? 'h-[280px]' : 'h-[326px]'} rounded-2xl border-2 border-solid border-[#13243c] bg-[#faf1ea] hover:shadow-xl hover:border-[#3b82f6] transition-all duration-300 ease-out`}>
         <div className={`flex flex-col ${isDesktop ? 'w-[90%] gap-4' : 'w-[203px] gap-6'} items-start relative top-5 ${isDesktop ? 'left-[5%]' : 'left-[22px]'}`}>
           <div className="flex flex-col items-start gap-3 relative self-stretch w-full flex-[0_0_auto]">
             <div className="h-[17.08px] text-base leading-[19.5px] relative self-stretch mt-[-1.00px] [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] tracking-[0] whitespace-nowrap">
@@ -44,7 +44,7 @@ export const PlansSection = ({ lang }) => {
               {formatPrice(plan.price)}
             </div>
 
-            <div className="relative self-stretch h-[17.08px] [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-base tracking-[0] leading-[19.5px] whitespace-nowrap">
+            <div className="relative self-stretch [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-base tracking-[0] leading-[19.5px] whitespace-normal break-words">
               {typeof plan.credits === 'number' ? `${plan.credits} ${t('plans.credits')}` : plan.credits}
             </div>
           </div>
@@ -52,7 +52,7 @@ export const PlansSection = ({ lang }) => {
           <Button
             variant="primary"
             onClick={() => handleSubscribe(plan)}
-            className={`w-full ${isDesktop ? 'h-[40px] text-lg' : 'h-[45px] text-xl'} rounded-[60px]`}
+            className={`w-full ${isDesktop ? 'h-[40px] text-lg' : (plan.id === 'social' ? 'h-[45px] text-sm whitespace-nowrap' : 'h-[45px] text-xl')} rounded-[60px]`}
           >
             {plan.id === 'social' ? t('plans.socialCTA') : t('plans.subscribe')}
           </Button>
@@ -77,15 +77,15 @@ export const PlansSection = ({ lang }) => {
   );
 
   return (
-    <div className="relative w-full" data-section="plans">
-      <div className="relative w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16">
+    <div className="relative w-full bg-[#faf1ea]" data-section="plans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Header Section */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center lg:text-left mb-12 lg:mb-16">
           <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-3xl sm:text-4xl lg:text-5xl mb-6">
             {t('nav.plans')}
           </h2>
 
-          <p className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-2xl mx-auto">
+          <p className="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto lg:mx-0">
             {t('plans.subtitle1')}
             <br />
             {t('plans.subtitle2')}
@@ -113,7 +113,7 @@ export const PlansSection = ({ lang }) => {
               ))}
             </EmblaCarousel>
           </div>
-          <div className="hidden lg:grid lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          <div className="hidden lg:grid lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
             {plans.map((plan) => (
               <PlanCard key={plan.id} plan={plan} isDesktop={true} />
             ))}

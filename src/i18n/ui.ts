@@ -84,14 +84,14 @@ export const ui = {
     'credits.howTitle': '¿Cómo funcionan los créditos?',
     'credits.steps.1': 'Cada solicitud se evalúa según su complejidad para definir cuántos créditos requiere.',
     'credits.steps.2': 'Una vez aprobada la estimación, se inicia el proyecto.',
-    'credits.steps.3': 'Si no usás todos tus créditos en el mes, se acumulan hasta por 3 meses, dándote flexibilidad.',
+    'credits.steps.3': 'Si no usás todos tus créditos en el mes, se acumulan hasta por 3 meses, dándote flexibilidad de utilizarlos cuando más los necesités.',
     'credits.tiers.low': 'Servicio Profesional de complejidad baja',
     'credits.tiers.medium': 'Servicio Profesional de complejidad media',
     'credits.tiers.high': 'Servicio Profesional de complejidad alta',
     'credits.tiers.label': 'Crédito /Hora',
 
     // FAQ
-    'faq.title': 'Preguntas frecuentes',
+    'faq.title': 'FAQ',
     'faq.q1': '¿Qué tipo de soluciones digitales ofrecen para mejorar la eficiencia empresarial?',
     'faq.a1': 'Ofrecemos una amplia gama de servicios, desde estrategias de contenido y campañas publicitarias hasta automatización de procesos de marketing, todos diseñados para potenciar la decisión y el retorno de la inversión.',
     'faq.q2': '¿Cómo pueden ayudarme a escalar mi negocio en un mercado competitivo?',
@@ -193,7 +193,7 @@ export const ui = {
     'plans.subscribe': 'Subscribe',
     'plans.socialCTA': 'How to get it?',
     'plans.credits': 'Credits',
-  'plans.perMonth': ' / mo',
+  'plans.perMonth': ' / month',
 
     // Subscription form
     'form.title': 'Subscribe',
@@ -212,12 +212,12 @@ export const ui = {
     'form.placeholder.message': 'Tell us how we can help you',
     'form.placeholder.phone': '8888-8888',
     'form.sending': 'Sending...',
-    'form.send': 'Send',
+    'form.send': 'Submit',
   'form.sendRequest': 'Send request',
   'form.cancel': 'Cancel',
     'form.success': 'Thanks! We will contact you soon.',
     'form.error': 'There was an error. Please try again.',
-  'form.plan.perMonth': ' / mo',
+  'form.plan.perMonth': ' / month',
   'form.plan.creditsIncluded': 'credits included',
 
     // Credits Section

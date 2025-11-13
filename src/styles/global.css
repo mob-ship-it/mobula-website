@@ -44,6 +44,9 @@
   }
 }
 
+.faq-card {
+  --faq-border-color: transparent;
+}
 /* CSS Variables */
 :root {
   --animate-spin: spin 1s linear infinite;

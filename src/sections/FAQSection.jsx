@@ -31,9 +31,9 @@ export const FAQSection = ({ lang }) => {
 
   return (
     <section className="bg-[#faf1ea] py-16 md:py-20 lg:py-24">
-      <div className="max-w-2xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título */}
-        <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-12 text-center lg:text-left">
+        <h2 className="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-12">
           {t('faq.title')}
         </h2>
 
@@ -43,14 +43,15 @@ export const FAQSection = ({ lang }) => {
             <div
               key={index}
               className={`
-                rounded-2xl border-2 overflow-hidden cursor-pointer
-                transition-all duration-300 ease-in-out
-                ${openIndex === index 
-                  ? 'bg-[#13243c] border-[#4e3aff]' 
-                  : 'bg-white border-[#13243c]'
-                }
-              `}
+                  faq-card rounded-2xl border-2 overflow-hidden cursor-pointer
+                  transition-all duration-300 ease-in-out
+                    ${openIndex === index 
+                      ? 'bg-[#13243c]' 
+                      : 'bg-[#faf1ea]'
+                    }
+                `}
               onClick={() => toggleFAQ(index)}
+                style={{ borderColor: openIndex === index ? '#211EE1' : '#13243C', borderStyle: 'solid' }}
             >
               {/* Pregunta */}
               <div className="p-6 md:p-8">

@@ -1,7 +1,19 @@
 import React from "react";
 
 export default function ProjectsMarquee({ projects, direction = "left" }) {
-  const duplicatedProjects = [...projects, ...projects, ...projects];
+  const n = projects.length || 0;
+  let mixed = [];
+  if (n > 1) {
+    const step = Math.floor(n / 2) || 1;
+    for (let i = 0; i < n; i++) {
+      mixed.push(projects[i]);
+      mixed.push(projects[(i + step) % n]);
+    }
+  } else {
+    mixed = [...projects];
+  }
+
+  const duplicatedProjects = [...mixed, ...mixed];
   
   return (
     <div className="marquee-container">

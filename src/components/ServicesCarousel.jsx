@@ -106,9 +106,19 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
                                     } transition-all duration-600`} />
                                     
                                     <div className="absolute top-6 left-6 right-6 z-10">
-                                        <h3 className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-xl sm:text-2xl lg:text-2xl leading-tight">
-                                            {slide.title}
-                                        </h3>
+                                        <h3
+                                            className="[font-family:'Bricolage_Grotesque',Helvetica] whitespace-pre-line break-words"
+                                            style={{
+                                                color: '#FFFFFF',
+                                                fontFamily: "Bricolage_Grotesque, Helvetica",
+                                                fontSize: '41px',
+                                                fontStyle: 'normal',
+                                                fontWeight: 500,
+                                                lineHeight: 'normal'
+                                            }}
+                                        >
+                                                {slide.title.replace(' & ', ' &\n')}
+                                            </h3>
                                     </div>
                                 </div>
                             )}

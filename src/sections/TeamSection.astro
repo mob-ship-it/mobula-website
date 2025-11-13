@@ -1,9 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import TeamCarousel from '../components/TeamCarousel';
-import arielaDengo from '../assets/images/team/ariela-dengo.jpg';
-import pamelaH from '../assets/images/team/pamela-h.jpg';
-import jorgeC from '../assets/images/team/jorge-c.jpg';
+import arielaDengo from '../assets/images/team/ariela-dengo.webp';
+import erickV from '../assets/images/team/erick-vasquez.webp';
+import gabrielC from '../assets/images/team/gabriel-chavarria.webp';
+import gavrielA from '../assets/images/team/gavriel-arias.webp';
+import jorgeC from '../assets/images/team/jorge-c.webp';
 import * as i18n from '../i18n/utils';
 
 const teamMembers = [
@@ -15,15 +17,27 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Pamela Hidalgo",
-    role: "PM - Paid Media Strategist",
-    image: pamelaH
-  },
-  {
-    id: 3,
     name: "Jorge Cascante",
     role: "Founder - Web Developer",
     image: jorgeC
+  },
+  {
+    id: 3,
+    name: "Erick Vásquez",
+    role: "Paid Media Specialist",
+    image: erickV
+  },
+  {
+    id: 4,
+    name: "Gabriel Chavarría",
+    role: "Associate Audiovisual Producer",
+    image: gabrielC
+  },
+  {
+    id: 5,
+    name: "Gavriel Arias",
+    role: "Creative Producer",
+    image: gavrielA
   }
 ];
 const lang = i18n.getLangFromUrl(Astro.url);
@@ -36,41 +50,11 @@ const t = i18n.useTranslations(lang);
       <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-3xl md:text-4xl lg:text-5xl text-[#13243c] mb-4">
         {t('team.title')}
       </h2>
-      <p class="[font-family:'Be_Vietnam',Helvetica] text-base md:text-lg text-[#13243c] max-w-3xl leading-relaxed">
+      <p class="[font-family:'Be_Vietnam',Helvetica] text-base md:text-lg text-[#13243c] max-w-3xl leading-relaxed lg:whitespace-nowrap">
         {t('team.description')}
       </p>
     </div>
 
     <TeamCarousel client:load members={teamMembers} />
-
-    <div class="hidden lg:grid lg:grid-cols-3 gap-6">
-      {teamMembers.map((member) => (
-        <div class="relative rounded-2xl overflow-hidden group cursor-pointer">
-          <div class="relative h-[520px]">
-            <Image
-              src={member.image}
-              alt={member.name}
-              width={600}
-              height={800}
-              format="webp"
-              quality={85}
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-            
-            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-2xl mb-2 leading-tight">
-                {member.name}
-              </h3>
-              <p class="[font-family:'Be_Vietnam',Helvetica] text-sm text-white/90 leading-snug">
-                {member.role}
-              </p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
   </div>
 </section>

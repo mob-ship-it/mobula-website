@@ -63,21 +63,22 @@ export const SubscriptionSection = ({ lang }) => {
 
   return (
     <section className="bg-[#faf1ea] py-16 md:py-20 lg:py-24">
-      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        <div className="bg-[#faf1ea] rounded-3xl p-8 md:p-10">
-          <h3
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#faf1ea] rounded-3xl p-8 md:p-10 lg:px-0 lg:py-10">
+          <h2
             id="subscription-form-title"
-            className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl mb-8 text-center lg:text-left"
+            className="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-3xl md:text-4xl lg:text-5xl mb-8 text-center lg:text-left"
           >
             {t('form.title')}
-          </h3>
+          </h2>
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6 lg:space-y-8"
-            aria-labelledby="subscription-form-title"
-            noValidate
-          >
+          <div className="px-4 sm:px-6 lg:px-8">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 lg:space-y-8"
+              aria-labelledby="subscription-form-title"
+              noValidate
+            >
             <div className="grid gap-6 lg:gap-8 lg:grid-cols-2">
               <div className="space-y-2">
                 <label
@@ -219,7 +220,7 @@ export const SubscriptionSection = ({ lang }) => {
                       className={`
                         hidden lg:flex mt-3 h-[58px] px-10 bg-[#211ee1] hover:bg-[#1a18c4] active:bg-[#151199]
                         text-white rounded-full font-semibold text-xl [font-family:'Be_Vietnam',Helvetica]
-                        transition-all duration-200 shadow-lg hover:shadow-xl items-center justify-center gap-2 w-fit
+                        transition-all duration-200 shadow-lg hover:shadow-xl items-center justify-center gap-2 w-full
                         ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}
                       `}
                     >
@@ -331,7 +332,8 @@ export const SubscriptionSection = ({ lang }) => {
                 t('form.send')
               )}
             </button>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </section>

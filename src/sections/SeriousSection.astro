@@ -4,19 +4,42 @@ import ProjectsMarquee from '../components/ProjectsMarquee';
 import VerticalMarquee from '../components/VerticalMarquee';
 import * as i18n from '../i18n/utils';
 
-import project1 from '../assets/images/projects/legal-law-office/line-law.png';
-import project2 from '../assets/images/projects/legal-law-office/ECP.png';
-import project3 from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
-import project4 from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
+import project_ll_main from '../assets/images/projects/legal-law-office/line-law.png';
+import project_ll_1 from '../assets/images/projects/legal-law-office/image-1.png';
+import project_ll_2 from '../assets/images/projects/legal-law-office/image-2.png';
+import project_ll_mobile from '../assets/images/projects/legal-law-office/LineLaw-mobile-intro.png';
+import project_ecp_main from '../assets/images/projects/legal-law-office/ECP.png';
+
+import ecp_intro from '../assets/images/projects/ECP-consulting-group/ECP-mobile-intro.png';
+import ecp_first from '../assets/images/projects/ECP-consulting-group/first-section-image.png';
+import ecp_grid from '../assets/images/projects/ECP-consulting-group/grid-1.png';
+
+import kase_carousel from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
+import kase_intro from '../assets/images/projects/KaseCap/KaseCap-intro.png';
+import kase_blue from '../assets/images/projects/KaseCap/blue-butterfly.png';
+
+import stanzza_main from '../assets/images/projects/Stanzza/Stanzza-carousel-image.png';
+import stanzza_post1 from '../assets/images/projects/Stanzza/stanzza-post-01.png';
 
 const projects = [
-  { id: 1, image: project1.src, imageObj: project1, alt: 'LINEA LAW' },
-  { id: 2, image: project2.src, imageObj: project2, alt: 'ECP' },
-  { id: 3, image: project3.src, imageObj: project3, alt: 'KaseCab' },
-  { id: 4, image: project4.src, imageObj: project4, alt: 'Stanzza' },
+  { id: 1, image: project_ll_main.src, alt: 'LINEA LAW' },
+  { id: 2, image: project_ll_1.src, alt: 'LINEA LAW' },
+  { id: 3, image: project_ll_2.src, alt: 'LINEA LAW' },
+  { id: 4, image: project_ll_mobile.src, alt: 'LINEA LAW' },
+  { id: 5, image: project_ecp_main.src, alt: 'ECP' },
+  { id: 6, image: ecp_intro.src, alt: 'ECP' },
+  { id: 7, image: ecp_first.src, alt: 'ECP' },
+  { id: 8, image: ecp_grid.src, alt: 'ECP' },
+  { id: 9, image: kase_carousel.src, alt: 'KaseCab' },
+  { id: 10, image: kase_intro.src, alt: 'KaseCab' },
+  { id: 11, image: kase_blue.src, alt: 'KaseCab' },
+  { id: 12, image: stanzza_main.src, alt: 'Stanzza' },
+  { id: 13, image: stanzza_post1.src, alt: 'Stanzza' },
 ];
-const column1 = [projects[0], projects[1]];
-const column2 = [projects[2], projects[3]];
+
+// Split projects into two columns for the vertical marquees, alternating to maximize variety
+const column1 = projects.filter((_, i) => i % 2 === 0);
+const column2 = projects.filter((_, i) => i % 2 === 1);
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);

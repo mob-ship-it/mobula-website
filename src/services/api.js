@@ -100,7 +100,7 @@ export const planService = {
           id: 'enterprise',
           name: 'Enterprise Plan',
           price: 'Custom',
-          credits: 'Unlimited',
+          credits: 'The number of credits you need per month',
           features: [
             'Access to all services',
             'Assigned Project Manager'
@@ -110,7 +110,7 @@ export const planService = {
           id: 'social',
           name: 'Social Impact Plan',
           price: 'Free',
-          credits: 'Limited',
+          credits: 15,
           features: [
             'Access to all services',
             'Assigned Project Manager'
@@ -165,7 +165,7 @@ export const planService = {
         id: 'enterprise',
         name: 'Plan Enterprise',
         price: 'Personalizado',
-        credits: 'Ilimitados',
+        credits: 'La cantidad de créditos que necesités al mes',
         features: [
           'Acceso a todos los servicios',
           'Project Manager asignado'
@@ -175,7 +175,7 @@ export const planService = {
         id: 'social',
         name: 'Plan de Impacto Social',
         price: 'Gratuito',
-        credits: 'Limitados',
+        credits: 15,
         features: [
           'Acceso a todos los servicios',
           'Project Manager asignado'
