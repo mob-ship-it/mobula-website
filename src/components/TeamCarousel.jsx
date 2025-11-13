@@ -13,7 +13,8 @@ export default function TeamCarousel({ members }) {
       showArrows={false}
       slideStyle={{
         flex: '0 0 auto',
-        width: '360px'
+        width: 'calc(85% - 16px)',
+        maxWidth: '360px'
       }}
       className="w-full"
     >

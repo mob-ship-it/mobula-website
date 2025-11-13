@@ -44,7 +44,7 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
     };
 
     const mobileStyles = {
-        width: 'clamp(260px, 80vw, 340px)',
+        width: 'clamp(260px, 75vw, 320px)',
         height: isExpanded ? 'clamp(480px, 80vh, 600px)' : 'clamp(360px, 70vh, 520px)',
         transform: isActive ? 'scale(1)' : 'scale(0.85)',
         opacity: isActive ? 1 : 0.5,

@@ -32,7 +32,7 @@ export default function ArticlesCarousel({ articles }) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <h3 className="[font-family:'Be_Vietnam',Helvetica] font-semibold text-white text-lg md:text-xl lg:text-2xl leading-tight">
+              <h3 className="[font-family:'Be_Vietnam',Helvetica] font-semibold text-white leading-tight" style={{ fontSize: 'clamp(14px, 2vw, 20px)' }}>
                 {article.title}
               </h3>
             </div>
