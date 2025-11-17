@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { SubscriptionModal } from './SubscriptionModal';
 
-const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onToggleExpand }) => {
+const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onToggleExpand, onOpenSubscription }) => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -165,6 +166,12 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
                                     {/* CTA Button */}
                                     {slide.button && (
                                         <button 
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                if (onOpenSubscription) {
+                                                    onOpenSubscription();
+                                                }
+                                            }}
                                             className="w-full bg-white hover:bg-gray-50 font-semibold rounded-full py-3 px-6 text-base lg:text-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] shadow-lg opacity-0"
                                             style={{
                                                 color: slide.color || '#bb8bfe',
@@ -186,7 +193,7 @@ const ServiceSlide = ({ slide, isActive, index, onSlideClick, isExpanded, onTogg
     );
 };
 
-export function ServicesCarousel({ slides }) {
+export function ServicesCarousel({ slides, lang = 'es' }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({
         align: 'center',
         containScroll: 'trimSnaps',
@@ -198,6 +205,7 @@ export function ServicesCarousel({ slides }) {
 
     const [selectedIndex, setSelectedIndex] = useState(1);
     const [expandedIndex, setExpandedIndex] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleSlideClick = useCallback((index) => {
         if (emblaApi) {
@@ -266,11 +274,20 @@ export function ServicesCarousel({ slides }) {
                                 isExpanded={expandedIndex === index}
                                 onSlideClick={handleSlideClick}
                                 onToggleExpand={handleToggleExpand}
+                                onOpenSubscription={() => setIsModalOpen(true)}
                             />
                         ))}
                     </div>
                 </div>
             </div>
+            
+            <SubscriptionModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                selectedPlan={null}
+                showPlanSelector={true}
+                lang={lang}
+            />
         </>
     );
 }

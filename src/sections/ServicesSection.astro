@@ -188,7 +188,7 @@ const services = lang === 'en' ? servicesEn : servicesEs;
 
       <!-- Advanced Carousel - Centered and aligned with title -->
       <div class="w-full overflow-visible flex justify-center">
-        <ServicesCarousel client:load slides={services} />
+        <ServicesCarousel client:load slides={services} lang={lang} />
       </div>
     </div>
   </div>

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Button } from "./Button";
 import { useFormState } from "../hooks/useFormState";
-import { emailService } from "../services/api";
+import { emailService, planService } from "../services/api";
 import * as i18n from "../i18n/utils";
 import blueMobula from '../assets/images/services/blue-mobula.png';
 
-export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang }) => {
+export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPlanSelector = false }) => {
   const safeLang = lang === 'en' ? 'en' : 'es';
   const t = i18n.useTranslations(safeLang);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [internalSelectedPlan, setInternalSelectedPlan] = useState(selectedPlan || null);
+  const availablePlans = planService.getPlans(safeLang);
   const inputIds = {
     name: 'subscription-name',
     email: 'subscription-email',
@@ -40,11 +42,18 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang }) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    const activePlan = showPlanSelector ? internalSelectedPlan : selectedPlan;
+    
+    if (showPlanSelector && !internalSelectedPlan) {
+      setSubmitStatus({ type: 'error', message: t('form.selectPlan') || 'Por favor selecciona un plan' });
+      setIsSubmitting(false);
+      return;
+    }
     try {
       const submitData = {
         ...formData,
-        plan: selectedPlan?.id || 'unknown',
-        planName: selectedPlan?.name || 'Unknown Plan'
+        plan: activePlan?.id || 'unknown',
+        planName: activePlan?.name || 'Unknown Plan'
       };
 
     await emailService.sendSubscriptionForm(submitData);
@@ -77,8 +86,11 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang }) => {
   const handleClose = () => {
     resetForm();
     setSubmitStatus(null);
+    setInternalSelectedPlan(selectedPlan || null);
     onClose();
   };
+
+  const activePlan = showPlanSelector ? internalSelectedPlan : selectedPlan;
 
   if (!isOpen) return null;
 
@@ -98,7 +110,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang }) => {
 
         <div className="flex items-center justify-between p-6 border-b border-white/20">
           <h2 id="subscription-modal-title" className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-2xl">
-            {selectedPlan ? selectedPlan.name : t('form.title')}
+            {activePlan ? activePlan.name : t('form.title')}
           </h2>
           <button
             onClick={handleClose}
@@ -112,18 +124,58 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang }) => {
 
         <div className="p-6 pb-28 md:pb-6 overflow-y-auto max-h-[calc(90vh-120px)] relative z-10">
           <form onSubmit={handleSubmit} className="space-y-6" aria-labelledby="subscription-modal-title">
-            {selectedPlan && (
+            {showPlanSelector && (
+              <div className="flex flex-col items-start gap-3 relative w-full">
+                <label htmlFor="plan-selector" className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-base">
+                  {safeLang === 'en' ? 'Select a Plan' : 'Selecciona un Plan'}
+                </label>
+                <select
+                  id="plan-selector"
+                  value={internalSelectedPlan?.id || ''}
+                  onChange={(e) => {
+                    const plan = availablePlans.find(p => p.id === e.target.value);
+                    setInternalSelectedPlan(plan);
+                    setSubmitStatus(null);
+                  }}
+                  className="flex h-[50px] items-center px-4 py-2.5 w-full bg-white rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-white/50 [font-family:'Be_Vietnam',Helvetica] text-base text-[#13243c] transition-all"
+                >
+                  <option value="">{safeLang === 'en' ? 'Choose a plan...' : 'Elegí un plan...'}</option>
+                  {availablePlans.map(plan => (
+                    <option key={plan.id} value={plan.id}>
+                      {plan.name} - {typeof plan.price === 'number' ? `$${plan.price}` : plan.price}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+            {activePlan && !showPlanSelector && (
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl mb-2">
                 <p className="[font-family:'Be_Vietnam',Helvetica] text-white/90 text-base font-medium">
-                  {typeof selectedPlan.price === 'number' 
-                    ? `$${selectedPlan.price.toLocaleString()}${t('form.plan.perMonth')}` 
-                    : selectedPlan.price
+                  {typeof activePlan.price === 'number' 
+                    ? `$${activePlan.price.toLocaleString()}${t('form.plan.perMonth')}` 
+                    : activePlan.price
                   }
                 </p>
                 <p className="[font-family:'Be_Vietnam',Helvetica] text-white/70 text-sm mt-1">
-                  {typeof selectedPlan.credits === 'number' 
-                    ? `${selectedPlan.credits} ${t('form.plan.creditsIncluded')}` 
-                    : selectedPlan.credits
+                  {typeof activePlan.credits === 'number' 
+                    ? `${activePlan.credits} ${t('form.plan.creditsIncluded')}` 
+                    : activePlan.credits
+                  }
+                </p>
+              </div>
+            )}
+            {activePlan && showPlanSelector && (
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl mb-2">
+                <p className="[font-family:'Be_Vietnam',Helvetica] text-white/90 text-base font-medium">
+                  {typeof activePlan.price === 'number' 
+                    ? `$${activePlan.price.toLocaleString()}${t('form.plan.perMonth')}` 
+                    : activePlan.price
+                  }
+                </p>
+                <p className="[font-family:'Be_Vietnam',Helvetica] text-white/70 text-sm mt-1">
+                  {typeof activePlan.credits === 'number' 
+                    ? `${activePlan.credits} ${t('form.plan.creditsIncluded')}` 
+                    : activePlan.credits
                   }
                 </p>
               </div>
