@@ -24,7 +24,7 @@ export const ui = {
 
   // Hero
   'hero.title.line1': 'Precisión en movimiento,',
-  'hero.title.line2': 'adaptabilidad con resultados.',
+  'hero.title.line2': 'adaptabilidad con\u00A0resultados.',
   'hero.title.line3': '',
     'hero.subtitle': 'Nos movemos con precisión en las profundidades de un mercado en constante evolución. Al igual que las mobulas en el océano, nos adaptamos a nuestro entorno, siempre enfocados en la eficiencia y los resultados.',
     'hero.cta': 'Ver Planes',
@@ -46,6 +46,7 @@ export const ui = {
     'articles.featured': 'Artículos destacados',
     'articles.list.1.title': 'Por qué en Mobula ofrecemos más que Marketing Digital',
     'articles.list.2.title': 'Por qué no debés temerle a la Inteligencia Artificial',
+    'articles.list.3.title': 'Lo que nadie te dice sobre la pauta digital (y que sí deberías saber antes de invertir)',
 
     // Plans
     'plans.subtitle1': 'Nuestros planes te dan acceso a todos nuestros servicios',
@@ -164,7 +165,7 @@ export const ui = {
 
     // Hero
   'hero.title.line1': 'Precision in motion,',
-  'hero.title.line2': 'adaptability with results.',
+  'hero.title.line2': 'adaptability with\u00A0results.',
   'hero.title.line3': '',
   'hero.subtitle': 'We move with precision in the depths of an ever‑evolving market. Like mobulas in the ocean, we adapt to our environment—always focused on efficiency and results.',
     'hero.cta': 'See Plans',
@@ -186,6 +187,7 @@ export const ui = {
     'articles.featured': 'Featured articles',
     'articles.list.1.title': 'Why we offer more than Digital Marketing at Mobula',
     'articles.list.2.title': 'Why you shouldn\'t fear Artificial Intelligence',
+    'articles.list.3.title': 'What no one tells you about digital advertising (and what you should know before investing)',
 
     // Plans
     'plans.subtitle1': 'Our plans give you access to all our services',

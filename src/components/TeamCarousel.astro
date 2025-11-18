@@ -107,6 +107,8 @@ const { members } = Astro.props;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    cursor: grab;
+    will-change: scroll-position;
   }
 
   .carousel-track::-webkit-scrollbar {
@@ -184,6 +186,108 @@ const { members } = Astro.props;
         dotsContainer.appendChild(dot);
       });
 
+      let isDragging = false;
+      let startX = 0;
+      let currentX = 0;
+      let startScrollLeft = 0;
+      let velocityX = 0;
+      let lastX = 0;
+      let lastTime = 0;
+      let rafId: number | null = null;
+      const dragThreshold = 5;
+      let hasMoved = false;
+
+      const applyMomentum = () => {
+        if (Math.abs(velocityX) > 0.5) {
+          track.scrollLeft -= velocityX;
+          velocityX *= 0.92; // Smoother friction like Embla
+          rafId = requestAnimationFrame(applyMomentum);
+        } else {
+          velocityX = 0;
+          rafId = null;
+        }
+      };
+
+      const handlePointerDown = (e: MouseEvent) => {
+        if (e.button !== 0) return; // Only left click
+        
+        isDragging = true;
+        hasMoved = false;
+        track.style.cursor = 'grabbing';
+        track.style.userSelect = 'none';
+        track.style.scrollSnapType = 'none'; // Disable snap during drag
+        
+        startX = e.pageX;
+        currentX = e.pageX;
+        lastX = e.pageX;
+        startScrollLeft = track.scrollLeft;
+        lastTime = performance.now();
+        velocityX = 0;
+        
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+
+        e.preventDefault();
+      };
+
+      const handlePointerMove = (e: MouseEvent) => {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        currentX = e.pageX;
+        const deltaX = currentX - startX;
+        
+        if (!hasMoved && Math.abs(deltaX) > dragThreshold) {
+          hasMoved = true;
+        }
+        
+        if (hasMoved) {
+          const now = performance.now();
+          const deltaTime = now - lastTime;
+          const distance = currentX - lastX;
+          
+          const targetScroll = startScrollLeft - deltaX;
+          track.scrollLeft = targetScroll;
+          
+          if (deltaTime > 0) {
+            velocityX = (distance / deltaTime) * 16; // Normalize to ~60fps
+          }
+          
+          lastX = currentX;
+          lastTime = now;
+        }
+      };
+
+      const handlePointerUp = () => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        track.style.cursor = 'grab';
+        track.style.userSelect = '';
+        
+        setTimeout(() => {
+          if (!isDragging) {
+            track.style.scrollSnapType = 'x mandatory';
+          }
+        }, 50);
+        
+        if (hasMoved && Math.abs(velocityX) > 0.5) {
+          applyMomentum();
+        }
+      };
+
+      track.addEventListener('mousedown', handlePointerDown);
+      document.addEventListener('mousemove', handlePointerMove);
+      document.addEventListener('mouseup', handlePointerUp);
+      
+      track.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
       // Update active dot on scroll
       const updateActiveDot = () => {
         const scrollPosition = track.scrollLeft;
