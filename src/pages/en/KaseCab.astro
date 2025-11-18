@@ -16,7 +16,7 @@ import htmlCommercialGeneral from '../../assets/images/projects/KaseCap/Html-Com
 import htmlCommercialGeneral1 from '../../assets/images/projects/KaseCap/Html-Commercial-General-1.png';
 import htmlResidentialBeds from '../../assets/images/projects/KaseCap/html-residential-beds.png';
 
-import ProjectsCarousel from '../../components/ProjectsCarousel.jsx';
+import ProjectsCarousel from '../../components/ProjectsCarousel.astro';
 import ecpImage from '../../assets/images/projects/legal-law-office/ECP.png';
 import lineaLawImage from '../../assets/images/projects/legal-law-office/line-law.png';
 import kaseCabImage from '../../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
@@ -160,7 +160,7 @@ const translatePath = i18n.useTranslatedPath(lang);
             { id: 'ecp', title: 'ECP Consulting Group', subtitle: 'Branding', image: ecpImage, href: translatePath('/ECPConsultingGroup') },
             { id: 'stanzza', title: 'Stanzza Senior Living', subtitle: 'Performance', image: stanzza, href: translatePath('/Stanzza') },
           ];
-          return <ProjectsCarousel client:load projects={featuredProjects} />;
+          return <ProjectsCarousel projects={featuredProjects} />;
         })()}
       </div>
 

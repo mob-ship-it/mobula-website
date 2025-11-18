@@ -1,0 +1,305 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  projects: Array<{
+    id: string;
+    title: string;
+    subtitle?: string;
+    image: ImageMetadata;
+    href?: string;
+  }>;
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="projects-carousel-wrapper">
+  <div class="carousel-container">
+    <div class="carousel-track" data-carousel="projects">
+      {projects.map((project, index) => (
+        <div class="carousel-slide" data-index={index}>
+          <a
+            href={project.href ?? '#'}
+            class="block w-full h-full group cursor-pointer"
+            aria-label={project.title}
+          >
+            <div class="rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={640}
+                height={360}
+                class="w-full h-[200px] sm:h-[220px] object-cover select-none rounded-2xl"
+                style="object-position: center center;"
+                loading="lazy"
+                format="webp"
+              />
+            </div>
+            <div class="mt-3">
+              <h4 class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-sm sm:text-base group-hover:text-[#211ee1] transition-colors">
+                {project.title}
+              </h4>
+              {project.subtitle && (
+                <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/70 text-sm mt-1">
+                  {project.subtitle}
+                </p>
+              )}
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+    <div class="carousel-dots"></div>
+  </div>
+</div>
+
+<style>
+  .projects-carousel-wrapper {
+    width: 100%;
+    position: relative;
+    margin-top: 0.5rem;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    will-change: scroll-position;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-slide {
+    flex: 0 0 88%;
+    scroll-snap-align: start;
+    padding: 0 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .carousel-slide {
+      flex: 0 0 70%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .carousel-slide {
+      flex: 0 0 56%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-slide {
+      flex: 0 0 40%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .carousel-slide {
+      flex: 0 0 36%;
+    }
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+
+  :global(.carousel-dot) {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #211ee1;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  :global(.carousel-dot:hover) {
+    opacity: 0.6;
+  }
+
+  :global(.carousel-dot.active) {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+</style>
+
+<script>
+  function initProjectsCarousel() {
+    const carousels = document.querySelectorAll('[data-carousel="projects"]');
+    
+    carousels.forEach((carousel) => {
+      const track = carousel as HTMLElement;
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      const dotsContainer = track.parentElement?.querySelector('.carousel-dots');
+      
+      if (!dotsContainer || slides.length === 0) return;
+
+      dotsContainer.innerHTML = '';
+
+      slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', `Go to project ${index + 1}`);
+        dot.setAttribute('type', 'button');
+        if (index === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+          const slide = slides[index] as HTMLElement;
+          const slideWidth = slide.offsetWidth + 16; // including gap
+          track.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+          });
+        });
+        
+        dotsContainer.appendChild(dot);
+      });
+
+      let isDragging = false;
+      let startX = 0;
+      let currentX = 0;
+      let startScrollLeft = 0;
+      let velocityX = 0;
+      let lastX = 0;
+      let lastTime = 0;
+      let rafId: number | null = null;
+      const dragThreshold = 5;
+      let hasMoved = false;
+
+      const applyMomentum = () => {
+        if (Math.abs(velocityX) > 0.5) {
+          track.scrollLeft -= velocityX;
+          velocityX *= 0.92; // Smoother friction like Embla
+          rafId = requestAnimationFrame(applyMomentum);
+        } else {
+          velocityX = 0;
+          rafId = null;
+        }
+      };
+
+      const handlePointerDown = (e: MouseEvent) => {
+        if (e.button !== 0) return; // Only left click
+        
+        isDragging = true;
+        hasMoved = false;
+        track.style.cursor = 'grabbing';
+        track.style.userSelect = 'none';
+        track.style.scrollSnapType = 'none'; // Disable snap during drag
+        
+        startX = e.pageX;
+        currentX = e.pageX;
+        lastX = e.pageX;
+        startScrollLeft = track.scrollLeft;
+        lastTime = performance.now();
+        velocityX = 0;
+        
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+
+        e.preventDefault();
+      };
+
+      const handlePointerMove = (e: MouseEvent) => {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        currentX = e.pageX;
+        const deltaX = currentX - startX;
+        
+        if (!hasMoved && Math.abs(deltaX) > dragThreshold) {
+          hasMoved = true;
+        }
+        
+        if (hasMoved) {
+          const now = performance.now();
+          const deltaTime = now - lastTime;
+          const distance = currentX - lastX;
+          
+          const targetScroll = startScrollLeft - deltaX;
+          track.scrollLeft = targetScroll;
+          
+          if (deltaTime > 0) {
+            velocityX = (distance / deltaTime) * 16; // Normalize to ~60fps
+          }
+          
+          lastX = currentX;
+          lastTime = now;
+        }
+      };
+
+      const handlePointerUp = () => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        track.style.cursor = 'grab';
+        track.style.userSelect = '';
+        
+        setTimeout(() => {
+          if (!isDragging) {
+            track.style.scrollSnapType = 'x mandatory';
+          }
+        }, 50);
+        
+        if (hasMoved && Math.abs(velocityX) > 0.5) {
+          applyMomentum();
+        }
+      };
+
+      track.addEventListener('mousedown', handlePointerDown);
+      document.addEventListener('mousemove', handlePointerMove);
+      document.addEventListener('mouseup', handlePointerUp);
+      
+      track.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+
+      // Update active dot on scroll
+      const updateActiveDot = () => {
+        const scrollPosition = track.scrollLeft;
+        const slideWidth = (slides[0] as HTMLElement).offsetWidth + 16;
+        const currentIndex = Math.round(scrollPosition / slideWidth);
+        
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+        });
+      };
+
+      track.addEventListener('scroll', updateActiveDot, { passive: true });
+      
+      setTimeout(updateActiveDot, 100);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectsCarousel);
+  } else {
+    initProjectsCarousel();
+  }
+</script>

@@ -10,7 +10,7 @@ import personasQueSuman from '../assets/images/projects/ECP-consulting-group/per
 import grid1 from '../assets/images/projects/ECP-consulting-group/grid-1.png';
 import grid2 from '../assets/images/projects/ECP-consulting-group/grid-2.png';
 import graphics from '../assets/images/projects/ECP-consulting-group/graphics.png';
-import ellipse25Url from '../assets/images/projects/ECP-consulting-group/Ellipse 25.svg?url';
+import ellipse25 from '../assets/images/projects/ECP-consulting-group/Ellipse 25.svg';
 import andFinancial from '../assets/images/projects/ECP-consulting-group/and-financial-solutions.png';
 // poster URL for the video (lightweight image shown before playback)
 import andFinancialUrl from '../assets/images/projects/ECP-consulting-group/and-financial-solutions.png?url';
@@ -18,7 +18,10 @@ import andFinancialUrl from '../assets/images/projects/ECP-consulting-group/and-
 import ecpVideoEn from '../assets/images/projects/ECP-consulting-group/ECP Institucional ENG.mp4?url';
 import revistas1 from '../assets/images/projects/ECP-consulting-group/revistas-1.jpg';
 import revistas2 from '../assets/images/projects/ECP-consulting-group/revistas-2.png';
-import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
+import bgRightDesktop from '../assets/images/projects/ECP-consulting-group/Vector 22 (2).png?url';
+import bgLeftDesktop from '../assets/images/projects/ECP-consulting-group/Vector 24.png?url';
+import bgMobile from '../assets/images/projects/ECP-consulting-group/Vector 22 (3).png?url';
+import ProjectsCarousel from '../components/ProjectsCarousel.astro';
 import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
 import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
 import kaseCabImage from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
@@ -209,21 +212,18 @@ const translatePath = i18n.useTranslatedPath(lang);
 
       <div class="mb-12">
         <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-[#0a8f95]">
-          <div class="absolute inset-0 pointer-events-none">
-            <svg class="absolute left-[-36px] top-[-24px] h-[150%] w-auto" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M60 20C22 96 22 146 42 206c30 90 122 82 162 142 40 60 18 140-46 182" stroke="#B07BFF" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <svg class="absolute right-[-36px] bottom-[-24px] h-[150%] w-auto rotate-180" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M60 20C22 96 22 146 42 206c30 90 122 82 162 142 40 60 18 140-46 182" stroke="#B07BFF" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
+          <!-- Desktop decorative images: left and right -->
+          <img src={bgLeftDesktop} alt="" class="hidden lg:block absolute left-0 top-0 h-full w-auto pointer-events-none object-cover" loading="lazy" style="object-position: left center;" />
+          <img src={bgRightDesktop} alt="" class="hidden lg:block absolute right-0 bottom-0 h-full w-auto pointer-events-none object-cover" loading="lazy" style="object-position: right center;" />
+          <!-- Mobile decorative image -->
+          <img src={bgMobile} alt="" class="lg:hidden absolute bottom-0 right-0 w-auto h-[60%] pointer-events-none object-contain" loading="lazy" style="object-position: bottom right;" />
 
           <div class="relative px-6 py-10 md:px-12 md:py-12">
             <p class="[font-family:'Be_Vietnam',Helvetica] text-white text-lg md:text-[20px] leading-relaxed text-center max-w-5xl mx-auto">
               “Trabajar con Mobula ha sido una experiencia muy positiva y enriquecedora. Nos hemos sentido acompañados en todo momento, con un equipo comprometido que entendió nuestras necesidades y nos ayudó a lograr resultados concretos. Los beneficios para nuestra empresa han sido notables y, sobre todo, nos quedamos con la tranquilidad de saber que contamos con un aliado de confianza.”
             </p>
             <div class="mt-8 flex flex-col items-center">
-              <img src={ellipse25Url} alt="Brittany Rojas" width="56" height="56" class="w-14 h-14 rounded-full shadow-md" loading="lazy" />
+              <Image src={ellipse25} alt="Brittany Rojas" width={56} height={56} class="w-14 h-14 rounded-full shadow-md" loading="lazy" />
               <p class="[font-family:'Be_Vietnam',Helvetica] text-white text-sm md:text-base mt-3">
                 <span class="font-semibold">Brittany Rojas</span>
                 <span> – Head of Finance Division</span>
@@ -233,16 +233,18 @@ const translatePath = i18n.useTranslatedPath(lang);
         </div>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-16">
         <div class="rounded-3xl overflow-hidden shadow-2xl">
           {
             /* Show language-specific video. Use ?url imports so we render a plain <video> tag. */
           }
           <video
-            class="w-full h-auto object-cover"
-            controls
-            playsinline
+            class="w-full h-auto block"
+            autoplay
             muted
+            loop
+            playsinline
+            controls
             preload="metadata"
             poster={andFinancialUrl}
             aria-label="ECP institucional"
@@ -299,7 +301,7 @@ const translatePath = i18n.useTranslatedPath(lang);
             { id: 'kasecab', title: 'KaseCab Americas', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
             { id: 'stanzza', title: 'Stanzza Senior Living', subtitle: 'Performance', image: stanzza, href: translatePath('/Stanzza') },
           ];
-          return <ProjectsCarousel client:load projects={featuredProjects} />;
+          return <ProjectsCarousel projects={featuredProjects} />;
         })()}
       </div>
 

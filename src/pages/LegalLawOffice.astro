@@ -21,7 +21,7 @@ import banksCanTake from '../assets/images/projects/legal-law-office/Banks-can-t
 import twoSeniors from '../assets/images/projects/legal-law-office/two-seniors.png';
 import blog3 from '../assets/images/projects/legal-law-office/blog-3.png';
 import EmblaCarousel from '../components/EmblaCarousel.jsx';
-import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
+import ProjectsCarousel from '../components/ProjectsCarousel.astro';
 
 import legalImage1 from '../assets/images/projects/legal-law-office/image-1.png';
 import legalImage2 from '../assets/images/projects/legal-law-office/image-2.png';
@@ -126,7 +126,7 @@ const translatePath = i18n.useTranslatedPath(lang);
               format="webp"
               quality={85}
               class="w-full h-auto object-cover"
-              loading="lazy"
+              loading="eager"
             />
           </div>
         </div>
@@ -398,7 +398,7 @@ const translatePath = i18n.useTranslatedPath(lang);
             { id: 'kasecab', title: 'KaseCab Americas', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
             { id: 'stanzza', title: 'Stanzza Senior Living', subtitle: 'Performance', image: stanzza, href: translatePath('/Stanzza') },
           ];
-          return <ProjectsCarousel client:load projects={featuredProjects} />;
+          return <ProjectsCarousel projects={featuredProjects} />;
         })()}
       </div>
 

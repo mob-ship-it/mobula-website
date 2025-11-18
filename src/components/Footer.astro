@@ -6,6 +6,7 @@ import vector22 from '../assets/images/mockups/Vector 22.png';
 import * as i18n from '../i18n/utils';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
+const translatePath = i18n.useTranslatedPath(lang);
 ---
 
 <footer id="contacto" class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16 relative overflow-hidden w-full">
@@ -205,13 +206,13 @@ const t = i18n.useTranslations(lang);
         </p>
         <div class="flex gap-6">
           <a 
-            href="#" 
+            href={translatePath('/privacy')}
             class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/60 hover:text-[#bb8bfe] transition-colors"
           >
             {t('footer.privacy')}
           </a>
           <a 
-            href="#" 
+            href={translatePath('/terms')}
             class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/60 hover:text-[#bb8bfe] transition-colors"
           >
             {t('footer.terms')}

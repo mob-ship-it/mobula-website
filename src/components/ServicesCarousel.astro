@@ -33,7 +33,7 @@ const { slides, lang = 'es' } = Astro.props;
                   src={slide.image}
                   alt={slide.title}
                   class="service-image"
-                  loading={index === 1 ? "eager" : "lazy"}
+                  loading="lazy"
                   format="webp"
                   width={680}
                   height={480}
@@ -57,7 +57,7 @@ const { slides, lang = 'es' } = Astro.props;
                   src={slide.bgRight}
                   alt=""
                   class="service-bg-decoration"
-                  loading={index === 1 ? "eager" : "lazy"}
+                  loading="lazy"
                   format="webp"
                   width={400}
                   height={400}

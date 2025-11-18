@@ -15,7 +15,7 @@ import vector22 from '../assets/images/projects/legal-law-office/Vector 22.png';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
-import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
+import ProjectsCarousel from '../components/ProjectsCarousel.astro';
 import ecpImage from '../assets/images/projects/legal-law-office/ECP.png';
 import lineaLawImage from '../assets/images/projects/legal-law-office/line-law.png';
 import kaseCabImage from '../assets/images/projects/KaseCap/KaseCab-image-carousel.png';
@@ -191,7 +191,7 @@ import stanzza from '../assets/images/projects/Stanzza/Stanzza-carousel-image.pn
             { id: 'ecp', title: 'ECP Consulting Group', subtitle: 'Branding', image: ecpImage, href: translatePath('/ECPConsultingGroup') },
             { id: 'kasecab', title: 'KaseCab Americas', subtitle: 'Branding', image: kaseCabImage, href: translatePath('/KaseCab') },
           ];
-          return <ProjectsCarousel client:load projects={featuredProjects} />;
+          return <ProjectsCarousel projects={featuredProjects} />;
         })()}
       </div>
 
