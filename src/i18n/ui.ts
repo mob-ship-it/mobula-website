@@ -7,7 +7,7 @@ export const defaultLang = 'es';
 
 export const ui = {
   es: {
-    'layout.title': 'Mobula Studio - Marketing Digital',
+    'layout.title': 'Mobula Estudio - Marketing Digital',
     'nav.services': 'Servicios',
     'nav.work': 'Nuestro Trabajo',
     'nav.blog': 'Blog',
@@ -102,7 +102,7 @@ export const ui = {
     'faq.a4': 'Sí, ofrecemos descuentos especiales para suscripciones anuales y paquetes personalizados según las necesidades de tu negocio. Contactanos para conocer nuestras ofertas actuales.'
     ,
     // Projects (listing page)
-    'projects.seoTitle': 'Proyectos - Mobula Studio',
+    'projects.seoTitle': 'Proyectos - Mobula Estudio',
     'projects.heading': 'Proyectos Destacados',
     'projects.description': 'Descubrí cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos con estrategias innovadoras y resultados medibles.',
     'projects.cards.legal.desc': 'Engagement y conversiones muy por encima del promedio de la industria legal.',
@@ -129,7 +129,7 @@ export const ui = {
     'project.industry': 'Industria',
 
     // ECP Project page
-    'ecp.seoTitle': 'Construimos la base de una marca premium y cercana - Mobula Studio',
+    'ecp.seoTitle': 'Construimos la base de una marca premium y cercana - Mobula Estudio',
     'ecp.heading': 'Construimos la base de una marca premium y cercana',
     'ecp.p1': 'ECP Consulting Group se acercó con el objetivo de posicionarse como una firma transnacional de alto nivel.',
     'ecp.p2': 'El reto era crear una identidad que transmitiera carácter corporativo y profesional, sin perder la esencia humana de un equipo internacional.',
@@ -140,14 +140,14 @@ export const ui = {
     'subscribe.banner': 'Suscribite y accedé a todos nuestros servicios'
     ,
     // KaseCab Project page
-    'kase.seoTitle': 'Un diseño modular, disruptivo y adaptable - Mobula Studio',
+    'kase.seoTitle': 'Un diseño modular, disruptivo y adaptable - Mobula Estudio',
     'kase.heading': 'Un diseño modular, disruptivo y adaptable',
     'kase.p1': 'KaseCab nació con el desafío de destacar en una industria donde todos comunican lo mismo. La meta era crear una marca visualmente potente y con un lenguaje propio, capaz de adaptarse tanto al mercado corporativo como al de consumidores.',
     'kase.p2': 'Mobula desarrolló una identidad flexible y llamativa que combina diseño, funcionalidad y carácter. Una marca pensada para durar, con una voz clara y un sistema visual sólido dentro del mobiliario modular.',
     'kase.industry': 'Diseño | Mobiliario Modular'
   },
   en: {
-    'layout.title': 'Mobula Studio - Digital Marketing',
+    'layout.title': 'Mobula Estudio - Digital Marketing',
     'nav.services': 'Services',
     'nav.work': 'Our Work',
     'nav.blog': 'Blog',
@@ -242,7 +242,7 @@ export const ui = {
     'faq.a4': 'Yes, we offer special discounts for annual subscriptions and custom packages based on your business needs. Contact us to learn more.',
 
     // Projects (listing page)
-  'projects.seoTitle': 'Projects - Mobula Studio',
+  'projects.seoTitle': 'Projects - Mobula Estudio',
   'projects.heading': 'Featured Projects',
   'projects.description': 'Discover how we\'ve helped our clients reach their goals with innovative strategies and measurable results.',
     'projects.cards.legal.desc': 'Engagement and conversions well above the legal industry average.',
@@ -268,7 +268,7 @@ export const ui = {
     'project.industry': 'Industry',
 
     // ECP Project page
-    'ecp.seoTitle': 'We built the foundation of a premium and approachable brand - Mobula Studio',
+    'ecp.seoTitle': 'We built the foundation of a premium and approachable brand - Mobula Estudio',
     'ecp.heading': 'We built the foundation of a premium and approachable brand',
     'ecp.p1': 'ECP Consulting Group approached us with the goal of positioning themselves as a high‑level, transnational firm.',
     'ecp.p2': 'The challenge was to create an identity that conveyed a corporate, professional character without losing the human essence of an international team.',
@@ -279,7 +279,7 @@ export const ui = {
     'subscribe.banner': 'Subscribe and get access to all our services'
     ,
     // KaseCab Project page
-    'kase.seoTitle': 'A modular, disruptive, and adaptable design - Mobula Studio',
+    'kase.seoTitle': 'A modular, disruptive, and adaptable design - Mobula Estudio',
     'kase.heading': 'A modular, disruptive, and adaptable design',
     'kase.p1': 'KaseCab was born with the challenge of standing out in an industry where everyone communicates the same. The goal was to create a visually powerful brand with its own language, capable of adapting to both the corporate market and consumers.',
     'kase.p2': 'Mobula developed a flexible and striking identity that combines design, functionality, and character. A brand built to last, with a clear voice and a solid visual system within modular furniture.',

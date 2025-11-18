@@ -12,6 +12,10 @@ import grid2 from '../assets/images/projects/ECP-consulting-group/grid-2.png';
 import graphics from '../assets/images/projects/ECP-consulting-group/graphics.png';
 import ellipse25Url from '../assets/images/projects/ECP-consulting-group/Ellipse 25.svg?url';
 import andFinancial from '../assets/images/projects/ECP-consulting-group/and-financial-solutions.png';
+// poster URL for the video (lightweight image shown before playback)
+import andFinancialUrl from '../assets/images/projects/ECP-consulting-group/and-financial-solutions.png?url';
+// Video sources (ES / EN)
+import ecpVideoEn from '../assets/images/projects/ECP-consulting-group/ECP Institucional ENG.mp4?url';
 import revistas1 from '../assets/images/projects/ECP-consulting-group/revistas-1.jpg';
 import revistas2 from '../assets/images/projects/ECP-consulting-group/revistas-2.png';
 import ProjectsCarousel from '../components/ProjectsCarousel.jsx';
@@ -231,16 +235,26 @@ const translatePath = i18n.useTranslatedPath(lang);
 
       <div class="mb-4">
         <div class="rounded-3xl overflow-hidden shadow-2xl">
-          <Image
-            src={andFinancial}
-            alt="and financial solutions"
-            width={1600}
-            height={900}
-            format="webp"
-            quality={90}
+          {
+            /* Show language-specific video. Use ?url imports so we render a plain <video> tag. */
+          }
+          <video
             class="w-full h-auto object-cover"
-            loading="lazy"
-          />
+            controls
+            playsinline
+            muted
+            preload="metadata"
+            poster={andFinancialUrl}
+            aria-label="ECP institucional"
+          >
+            <!-- Prefer optimized WebM/MP4 variants (place them in /public/videos/). Fallback to original mp4 if not present. -->
+            <source src="/videos/ECP-ES-720.webm" type="video/webm" />
+            <source src="/videos/ECP-ES-720.mp4" type="video/mp4" />
+            <source src="/videos/ECP-ES-360.webm" type="video/webm" />
+            <source src="/videos/ECP-ES-360.mp4" type="video/mp4" />
+            <source src={ecpVideoEn} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
 
