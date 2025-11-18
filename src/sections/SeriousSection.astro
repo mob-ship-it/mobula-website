@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import ProjectsMarquee from '../components/ProjectsMarquee';
-import VerticalMarquee from '../components/VerticalMarquee';
+import ProjectsMarquee from '../components/ProjectsMarquee.astro';
+import VerticalMarquee from '../components/VerticalMarquee.astro';
 import * as i18n from '../i18n/utils';
 
 import project_ll_main from '../assets/images/projects/legal-law-office/line-law.png';
@@ -22,19 +22,19 @@ import stanzza_main from '../assets/images/projects/Stanzza/Stanzza-carousel-ima
 import stanzza_post1 from '../assets/images/projects/Stanzza/stanzza-post-01.png';
 
 const projects = [
-  { id: 1, image: project_ll_main.src, alt: 'LINEA LAW' },
-  { id: 2, image: project_ll_1.src, alt: 'LINEA LAW' },
-  { id: 3, image: project_ll_2.src, alt: 'LINEA LAW' },
-  { id: 4, image: project_ll_mobile.src, alt: 'LINEA LAW' },
-  { id: 5, image: project_ecp_main.src, alt: 'ECP' },
-  { id: 6, image: ecp_intro.src, alt: 'ECP' },
-  { id: 7, image: ecp_first.src, alt: 'ECP' },
-  { id: 8, image: ecp_grid.src, alt: 'ECP' },
-  { id: 9, image: kase_carousel.src, alt: 'KaseCab' },
-  { id: 10, image: kase_intro.src, alt: 'KaseCab' },
-  { id: 11, image: kase_blue.src, alt: 'KaseCab' },
-  { id: 12, image: stanzza_main.src, alt: 'Stanzza' },
-  { id: 13, image: stanzza_post1.src, alt: 'Stanzza' },
+  { id: 1, image: project_ll_main, alt: 'LINEA LAW' },
+  { id: 2, image: project_ll_1, alt: 'LINEA LAW' },
+  { id: 3, image: project_ll_2, alt: 'LINEA LAW' },
+  { id: 4, image: project_ll_mobile, alt: 'LINEA LAW' },
+  { id: 5, image: project_ecp_main, alt: 'ECP' },
+  { id: 6, image: ecp_intro, alt: 'ECP' },
+  { id: 7, image: ecp_first, alt: 'ECP' },
+  { id: 8, image: ecp_grid, alt: 'ECP' },
+  { id: 9, image: kase_carousel, alt: 'KaseCab' },
+  { id: 10, image: kase_intro, alt: 'KaseCab' },
+  { id: 11, image: kase_blue, alt: 'KaseCab' },
+  { id: 12, image: stanzza_main, alt: 'Stanzza' },
+  { id: 13, image: stanzza_post1, alt: 'Stanzza' },
 ];
 
 // Split projects into two columns for the vertical marquees, alternating to maximize variety
@@ -66,12 +66,12 @@ const translatePath = i18n.useTranslatedPath(lang);
 
     {/* Row 1 - Scroll Left to Right */}
     <div class="mb-4">
-      <ProjectsMarquee client:load projects={projects} direction="left" />
+      <ProjectsMarquee projects={projects} direction="left" />
     </div>
 
     {/* Row 2 - Scroll Right to Left */}
     <div>
-      <ProjectsMarquee client:load projects={projects} direction="right" />
+      <ProjectsMarquee projects={projects} direction="right" />
     </div>
   </div>
 
@@ -98,9 +98,9 @@ const translatePath = i18n.useTranslatedPath(lang);
       <div class="col-span-7">
         <div class="grid grid-cols-2 gap-4 h-full">
           {/* Column 1 - Scroll Up */}
-          <VerticalMarquee client:load projects={column1} direction="up" />
+          <VerticalMarquee projects={column1} direction="up" />
           
-          <VerticalMarquee client:load projects={column2} direction="down" />
+          <VerticalMarquee projects={column2} direction="down" />
         </div>
       </div>
 
@@ -108,112 +108,3 @@ const translatePath = i18n.useTranslatedPath(lang);
   </div>
 
 </section>
-
-<style is:global>
-  /* Horizontal Marquee (Mobile) */
-  .marquee-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    padding: 0.5rem 0;
-  }
-
-  .marquee-content {
-    display: flex;
-    width: fit-content;
-    will-change: transform;
-  }
-
-  .marquee-item {
-    padding: 0 0.5rem;
-    flex-shrink: 0;
-  }
-
-  .marquee-left {
-    animation: scroll-left 40s linear infinite;
-  }
-
-  .marquee-right {
-    animation: scroll-right 40s linear infinite;
-  }
-
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-33.333%);
-    }
-  }
-
-  @keyframes scroll-right {
-    0% {
-      transform: translateX(-33.333%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  .marquee-content:hover {
-    animation-play-state: paused;
-  }
-
-  .marquee-content {
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-
-  /* Vertical Marquee (Desktop) */
-  .vertical-marquee-container {
-    overflow: hidden;
-    position: relative;
-    height: 600px;
-    width: 100%;
-  }
-
-  .vertical-marquee-content {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    will-change: transform;
-  }
-
-  .vertical-marquee-item {
-    padding: 0.5rem 0;
-    flex-shrink: 0;
-  }
-
-  .vertical-marquee-up {
-    animation: scroll-up 30s linear infinite;
-  }
-
-  .vertical-marquee-down {
-    animation: scroll-down 30s linear infinite;
-  }
-
-  @keyframes scroll-up {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-50%);
-    }
-  }
-
-  @keyframes scroll-down {
-    0% {
-      transform: translateY(-50%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  .vertical-marquee-content:hover {
-    animation-play-state: paused;
-  }
-  .vertical-marquee-content {
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-</style>

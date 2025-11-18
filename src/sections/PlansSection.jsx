@@ -6,6 +6,7 @@ import { SocialImpactModal } from "../components/SocialImpactModal";
 import { useModal } from "../hooks/useModal";
 import { planService } from "../services/api";
 import * as i18n from "../i18n/utils";
+import checkIcon from "../assets/images/check-icon.svg";
 
 export const PlansSection = ({ lang }) => {
   const safeLang = lang === 'en' ? 'en' : 'es';
@@ -63,7 +64,10 @@ export const PlansSection = ({ lang }) => {
                 <img
                   className="w-[11px] h-[13px] mr-3 flex-shrink-0"
                   alt="Check"
-                  src="https://c.animaapp.com/ZTuOwSBY/img/vector-24-3.svg"
+                  src={checkIcon.src}
+                  width={checkIcon.width}
+                  height={checkIcon.height}
+                  loading="lazy"
                 />
                 <p className={`flex-1 [font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] ${isDesktop ? 'text-sm' : 'text-base'} tracking-[0] leading-[19.5px]`}>
                   {feature}

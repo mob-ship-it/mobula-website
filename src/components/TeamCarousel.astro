@@ -1,0 +1,212 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  members: Array<{
+    id: number;
+    name: string;
+    role: string;
+    image: ImageMetadata;
+  }>;
+}
+
+const { members } = Astro.props;
+---
+
+<div class="team-carousel-wrapper">
+  <!-- Mobile version -->
+  <div class="lg:hidden team-carousel-mobile">
+    <div class="carousel-container">
+      <div class="carousel-track" data-carousel="mobile">
+        {members.map((member, index) => (
+          <div class="carousel-slide" data-index={index}>
+            <div class="relative overflow-hidden rounded-[16px]">
+              <div class="h-[420px] md:h-[380px] overflow-hidden relative rounded-[16px]">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={360}
+                  height={420}
+                  class="w-full h-full object-cover object-top select-none"
+                  loading="lazy"
+                  format="webp"
+                />
+              </div>
+              <div class="pt-4 px-4">
+                <h3 class="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-[22px] md:text-[24px] leading-tight mb-1">
+                  {member.name}
+                </h3>
+                <p class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#13243c]/80 leading-snug">
+                  {member.role}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="carousel-dots mobile-dots"></div>
+    </div>
+  </div>
+
+  <!-- Desktop version -->
+  <div class="hidden lg:block team-carousel-desktop">
+    <div class="carousel-container">
+      <div class="carousel-track" data-carousel="desktop">
+        {members.map((member, index) => (
+          <div class="carousel-slide" data-index={index}>
+            <div class="relative overflow-hidden h-[380px] lg:h-[520px] rounded-[16px]">
+              <div class="h-[280px] lg:h-[520px] overflow-hidden relative rounded-[16px]">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={360}
+                  height={520}
+                  class="w-full h-full object-cover object-top select-none"
+                  loading="lazy"
+                  format="webp"
+                />
+                <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6 text-white bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                  <h3
+                    class="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-white whitespace-normal break-words mb-0"
+                    style="color: #FFF; font-family: Bricolage Grotesque, Bricolage_Grotesque, Helvetica; font-weight: 500; line-height: 1;"
+                  >
+                    <span class="text-[24px] md:text-[36px] lg:text-[50.252px] block leading-[1] max-w-[85%]">{member.name}</span>
+                  </h3>
+                  <p class="[font-family:'Be_Vietnam',Helvetica] text-[14px] md:text-[16px] lg:text-[20px] text-white/90 leading-snug mt-1">
+                    {member.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="carousel-dots desktop-dots"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .team-carousel-wrapper {
+    width: 100%;
+    position: relative;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-slide {
+    flex: 0 0 85%;
+    max-width: 360px;
+    scroll-snap-align: start;
+    padding: 0 0.5rem;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+
+  :global(.carousel-dot) {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #211ee1;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  :global(.carousel-dot:hover) {
+    opacity: 0.6;
+  }
+
+  :global(.carousel-dot.active) {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+</style>
+
+<script>
+  function initCarousel() {
+    const carousels = document.querySelectorAll('[data-carousel]');
+    
+    carousels.forEach((carousel) => {
+      const track = carousel as HTMLElement;
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      const dotsContainer = track.parentElement?.querySelector('.carousel-dots');
+      
+      if (!dotsContainer || slides.length === 0) return;
+
+      // Clear existing dots if any
+      dotsContainer.innerHTML = '';
+
+      // Create dots
+      slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.setAttribute('type', 'button');
+        if (index === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+          const slide = slides[index] as HTMLElement;
+          const slideWidth = slide.offsetWidth + 16; // including gap
+          track.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+          });
+        });
+        
+        dotsContainer.appendChild(dot);
+      });
+
+      // Update active dot on scroll
+      const updateActiveDot = () => {
+        const scrollPosition = track.scrollLeft;
+        const slideWidth = (slides[0] as HTMLElement).offsetWidth + 16;
+        const currentIndex = Math.round(scrollPosition / slideWidth);
+        
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+        });
+      };
+
+      track.addEventListener('scroll', updateActiveDot, { passive: true });
+      
+      // Initial update
+      setTimeout(updateActiveDot, 100);
+    });
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+</script>

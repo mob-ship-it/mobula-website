@@ -56,7 +56,17 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
 
     <!-- Global Background Arrow (Layer_1.png) - hidden on small screens -->
     <div aria-hidden="true" class="pointer-events-none fixed z-0 select-none hidden md:block" style="top: -125px; right: 0px;">
-      <Image src={arrowImage} alt="" width={1600} height={1600} class="w-auto h-auto object-contain block" style="width: min(52vw, 1200px)" />
+      <Image 
+        src={arrowImage} 
+        alt="" 
+        width={1600} 
+        height={1600} 
+        format="webp"
+        quality={80}
+        loading="eager"
+        class="w-auto h-auto object-contain block" 
+        style="width: min(52vw, 1200px)" 
+      />
     </div>
 
     <!-- App Shell -->

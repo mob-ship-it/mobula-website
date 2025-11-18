@@ -56,10 +56,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
         planName: activePlan?.name || 'Unknown Plan'
       };
 
-    await emailService.sendSubscriptionForm(submitData);
-    setSubmitStatus({ type: 'success', message: t('form.success') });
       resetForm();
-      
       setTimeout(() => {
         onClose();
         setSubmitStatus(null);
@@ -258,7 +255,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
                     rows={4}
                     value={formData.message}
                     onChange={(e) => updateField('message', e.target.value)}
-                    placeholder="Por favor indícanos cómo podemos ayudarteacomo podemos ayudarte"
+                    placeholder="Por favor indicanos cómo podemos ayudarte"
                     aria-required="true"
                     aria-invalid={!!errors.message}
                     aria-describedby={errors.message ? 'error-subscription-message' : undefined}

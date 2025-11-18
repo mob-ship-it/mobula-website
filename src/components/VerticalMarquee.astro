@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  projects: Array<{
+    id: number;
+    image: any;
+    alt: string;
+  }>;
+  direction?: 'up' | 'down';
+}
+
+const { projects, direction = 'up' } = Astro.props;
+
+const duplicatedProjects = [...projects, ...projects];
+---
+
+<div class="vertical-marquee-container">
+  <div class={`vertical-marquee-content vertical-marquee-${direction}`}>
+    {duplicatedProjects.map((project, index) => (
+      <div class="vertical-marquee-item">
+        <div class="rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <Image
+            src={project.image}
+            alt={project.alt}
+            class="w-full h-[280px] object-cover"
+            loading="lazy"
+            format="webp"
+            width={320}
+            height={280}
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style is:global>
+  .vertical-marquee-container {
+    overflow: hidden;
+    position: relative;
+    height: 600px;
+    width: 100%;
+  }
+
+  .vertical-marquee-content {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    will-change: transform;
+  }
+
+  .vertical-marquee-item {
+    padding: 0.5rem 0;
+    flex-shrink: 0;
+  }
+
+  .vertical-marquee-up {
+    animation: scroll-up 30s linear infinite;
+  }
+
+  .vertical-marquee-down {
+    animation: scroll-down 30s linear infinite;
+  }
+
+  @keyframes scroll-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .vertical-marquee-content:hover {
+    animation-play-state: paused;
+  }
+
+  .vertical-marquee-content {
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
-import { ServicesCarousel } from "../components/ServicesCarousel";
+import ServicesCarousel from "../components/ServicesCarousel.astro";
+import { SubscriptionModal } from "../components/SubscriptionModal";
 import * as i18n from '../i18n/utils';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
@@ -19,7 +20,7 @@ import animationAndProductionImg from '../assets/images/services/animacion-produ
 const servicesEs = [
   {
     title: "Marketing & Estrategia",
-    image: marketingImg.src,
+    image: marketingImg,
     color: "#211EE1",
     bgGradient: "from-[#211EE1] to-[#4A47FF]",
     services: [
@@ -29,12 +30,12 @@ const servicesEs = [
       "Email Marketing",
       "Conversión Estratégica"
     ],
-    bgRight: marketingRightDecor.src,
+    bgRight: marketingRightDecor,
     button: t('services.cta')
   },
   {
     title: "Concepto & Contenido", 
-    image: conceptoImg.src,
+    image: conceptoImg,
     color: "#FF6262",
     bgGradient: "from-[#FF6262] to-[#FF9F9F]",
     services: [
@@ -43,12 +44,12 @@ const servicesEs = [
       "Copywriting y Storytelling",
       "Producción de Contenido Visual (AI, redes, piezas estáticas)"
     ],
-    bgRight: conceptoRightDecor.src,
+    bgRight: conceptoRightDecor,
     button: t('services.cta')
   },
   {
     title: "Diseño & Branding",
-    image: disenioImg.src, 
+    image: disenioImg, 
     color: "#008DA0",
     bgGradient: "from-[#008DA0] to-[#00B5C6]",
     services: [
@@ -60,12 +61,12 @@ const servicesEs = [
       "Packaging",
       "Signage"
     ],
-    bgRight: disenioRightDecor.src,
+    bgRight: disenioRightDecor,
     button: t('services.cta')
   },
   {
     title: "Animación & Producción Audiovisual",
-    image: animationAndProductionImg.src,
+    image: animationAndProductionImg,
     color: "#B794F6",
     bgGradient: "from-[#B794F6] to-[#D4B8FF]",
     services: [
@@ -74,13 +75,13 @@ const servicesEs = [
       "Producción de Video (filmación y edición)",
       "Fotografía Profesional"
     ],
-    bgRight: animacionRightDecor.src,
+    bgRight: animacionRightDecor,
     bgRightPosition: 'right 0 top 15%',
     button: t('services.cta')
   },
   {
     title: "Web & Experiencia",
-    image: webImg.src,
+    image: webImg,
     color: "#1E3A5F",
     bgGradient: "from-[#1E3A5F] to-[#2A4B73]",
     services: [
@@ -89,7 +90,7 @@ const servicesEs = [
       "Experiencia de Usuario (UX/UI)",
       "Posicionamiento SEO"
     ],
-    bgRight: webRightDecor.src,
+    bgRight: webRightDecor,
     button: t('services.cta')
   }
 ];
@@ -97,7 +98,7 @@ const servicesEs = [
 const servicesEn = [
   {
     title: "Marketing & Strategy",
-    image: marketingImg.src,
+    image: marketingImg,
     color: "#211EE1",
     bgGradient: "from-[#211EE1] to-[#4A47FF]",
     services: [
@@ -107,12 +108,12 @@ const servicesEn = [
       "Email Marketing",
       "Conversion Strategy"
     ],
-    bgRight: marketingRightDecor.src,
+    bgRight: marketingRightDecor,
     button: t('services.cta')
   },
   {
     title: "Concept & Content", 
-    image: conceptoImg.src,
+    image: conceptoImg,
     color: "#FF6262",
     bgGradient: "from-[#FF6262] to-[#FF9F9F]",
     services: [
@@ -121,12 +122,12 @@ const servicesEn = [
       "Copywriting & Storytelling",
       "Visual Content Production (AI, social, static assets)"
     ],
-    bgRight: conceptoRightDecor.src,
+    bgRight: conceptoRightDecor,
     button: t('services.cta')
   },
   {
     title: "Design & Branding",
-    image: disenioImg.src, 
+    image: disenioImg, 
     color: "#008DA0",
     bgGradient: "from-[#008DA0] to-[#00B5C6]",
     services: [
@@ -138,12 +139,12 @@ const servicesEn = [
       "Packaging",
       "Signage"
     ],
-    bgRight: disenioRightDecor.src,
+    bgRight: disenioRightDecor,
     button: t('services.cta')
   },
   {
     title: "Animation & Video Production",
-    image: animationAndProductionImg.src,
+    image: animationAndProductionImg,
     color: "#B794F6",
     bgGradient: "from-[#B794F6] to-[#D4B8FF]",
     services: [
@@ -152,13 +153,13 @@ const servicesEn = [
       "Video Production (filming & editing)",
       "Professional Photography"
     ],
-    bgRight: animacionRightDecor.src,
+    bgRight: animacionRightDecor,
     bgRightPosition: 'right 0 top 35%',
     button: t('services.cta')
   },
   {
     title: "Web & Experience",
-    image: webImg.src,
+    image: webImg,
     color: "#1E3A5F",
     bgGradient: "from-[#1E3A5F] to-[#2A4B73]",
     services: [
@@ -167,7 +168,7 @@ const servicesEn = [
       "User Experience (UX/UI)",
       "SEO"
     ],
-    bgRight: webRightDecor.src,
+    bgRight: webRightDecor,
     button: t('services.cta')
   }
 ];
@@ -175,8 +176,8 @@ const servicesEn = [
 const services = lang === 'en' ? servicesEn : servicesEs;
 ---
 
-<div class="w-full overflow-hidden">
-  <div class="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 lg:py-20">
+<div class="w-full overflow-visible bg-transparent">
+  <div class="max-w-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 lg:py-20">
     <!-- Unified container for title and carousel -->
     <div class="flex flex-col items-center justify-center w-full">
       <!-- Section Title -->
@@ -188,8 +189,51 @@ const services = lang === 'en' ? servicesEn : servicesEs;
 
       <!-- Advanced Carousel - Centered and aligned with title -->
       <div class="w-full overflow-visible flex justify-center">
-        <ServicesCarousel client:load slides={services} lang={lang} />
+        <ServicesCarousel slides={services} lang={lang} />
       </div>
     </div>
   </div>
 </div>
+
+<div id="services-modal-container"></div>
+
+<script>
+  import { SubscriptionModal } from "../components/SubscriptionModal";
+  import { createRoot } from 'react-dom/client';
+  import React from 'react';
+
+  let modalRoot: any = null;
+  let isModalOpen = false;
+
+  function renderModal(isOpen: boolean) {
+    const container = document.getElementById('services-modal-container');
+    if (!container) return;
+
+    if (!modalRoot) {
+      modalRoot = createRoot(container);
+    }
+
+    const lang = document.documentElement.lang || 'es';
+    
+    modalRoot.render(
+      React.createElement(SubscriptionModal, {
+        isOpen: isOpen,
+        onClose: () => {
+          isModalOpen = false;
+          renderModal(false);
+        },
+        selectedPlan: null,
+        showPlanSelector: true,
+        lang: lang
+      })
+    );
+  }
+
+  window.addEventListener('openSubscriptionModal', () => {
+    isModalOpen = true;
+    renderModal(true);
+  });
+
+  // Initial render
+  renderModal(false);
+</script>

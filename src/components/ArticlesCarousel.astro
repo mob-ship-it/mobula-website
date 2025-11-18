@@ -1,0 +1,187 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  articles: Array<{
+    id: number;
+    title: string;
+    image: ImageMetadata;
+  }>;
+}
+
+const { articles } = Astro.props;
+---
+
+<div class="articles-carousel-wrapper">
+  <div class="carousel-container">
+    <div class="carousel-track" data-carousel="articles">
+      {articles.map((article, index) => (
+        <div class="carousel-slide" data-index={index}>
+          <div class="relative rounded-2xl overflow-hidden bg-white shadow-xl h-[380px] md:h-[420px] lg:h-[460px] transition-shadow duration-300 hover:shadow-2xl">
+            <Image
+              src={article.image}
+              alt={article.title}
+              width={800}
+              height={460}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              format="webp"
+            />
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            
+            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+              <h3 class="[font-family:'Be_Vietnam',Helvetica] font-semibold text-white leading-tight article-title">
+                {article.title}
+              </h3>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="carousel-dots"></div>
+  </div>
+</div>
+
+<style>
+  .articles-carousel-wrapper {
+    width: 100%;
+    position: relative;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-slide {
+    flex: 0 0 calc(100% - 48px);
+    max-width: 800px;
+    scroll-snap-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .article-title {
+    font-size: clamp(14px, 2vw, 20px);
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  :global(.carousel-dot) {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #211ee1;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  :global(.carousel-dot:hover) {
+    opacity: 0.6;
+  }
+
+  :global(.carousel-dot.active) {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+</style>
+
+<script>
+  function initArticlesCarousel() {
+    const carousels = document.querySelectorAll('[data-carousel="articles"]');
+    
+    carousels.forEach((carousel) => {
+      const track = carousel as HTMLElement;
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      const dotsContainer = track.parentElement?.querySelector('.carousel-dots');
+      
+      if (!dotsContainer || slides.length === 0) return;
+
+      dotsContainer.innerHTML = '';
+
+      slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', `Go to article ${index + 1}`);
+        dot.setAttribute('type', 'button');
+        if (index === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+          const slide = slides[index] as HTMLElement;
+          const slideWidth = slide.offsetWidth + 16; // including gap
+          const containerWidth = track.offsetWidth;
+          const scrollPosition = slide.offsetLeft - (containerWidth / 2) + (slideWidth / 2);
+          
+          track.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+          });
+        });
+        
+        dotsContainer.appendChild(dot);
+      });
+
+      const updateActiveDot = () => {
+        const scrollPosition = track.scrollLeft;
+        const containerWidth = track.offsetWidth;
+        const scrollCenter = scrollPosition + (containerWidth / 2);
+        
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        
+        slides.forEach((slide, index) => {
+          const slideElement = slide as HTMLElement;
+          const slideCenter = slideElement.offsetLeft + (slideElement.offsetWidth / 2);
+          const distance = Math.abs(scrollCenter - slideCenter);
+          
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+        
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === closestIndex);
+        });
+      };
+
+      track.addEventListener('scroll', updateActiveDot, { passive: true });
+      
+      // Initial update
+      setTimeout(updateActiveDot, 100);
+    });
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initArticlesCarousel);
+  } else {
+    initArticlesCarousel();
+  }
+</script>

@@ -45,7 +45,7 @@ export const ui = {
     // Featured Articles
     'articles.featured': 'Artículos destacados',
     'articles.list.1.title': 'Por qué en Mobula ofrecemos más que Marketing Digital',
-    'articles.list.2.title': 'Por qué temerle a la inteligencia artificial',
+    'articles.list.2.title': 'Por qué no debés temerle a la Inteligencia Artificial',
 
     // Plans
     'plans.subtitle1': 'Nuestros planes te dan acceso a todos nuestros servicios',
@@ -99,7 +99,7 @@ export const ui = {
     'faq.q3': '¿Qué beneficios puedo esperar de las soluciones digitales que ofrecen?',
     'faq.a3': 'Mayor visibilidad de marca, aumento en conversiones, automatización de procesos, mejor ROI en campañas y acceso a métricas para decisiones informadas.',
     'faq.q4': '¿Hay descuentos o beneficios por suscripciones anuales?',
-    'faq.a4': 'Sí, ofrecemos descuentos especiales para suscripciones anuales y paquetes personalizados según las necesidades de tu negocio. Contáctanos para conocer nuestras ofertas actuales.'
+    'faq.a4': 'Sí, ofrecemos descuentos especiales para suscripciones anuales y paquetes personalizados según las necesidades de tu negocio. Contactanos para conocer nuestras ofertas actuales.'
     ,
     // Projects (listing page)
     'projects.seoTitle': 'Proyectos - Mobula Studio',
@@ -185,7 +185,7 @@ export const ui = {
     // Featured Articles
     'articles.featured': 'Featured articles',
     'articles.list.1.title': 'Why we offer more than Digital Marketing at Mobula',
-    'articles.list.2.title': 'Why fear artificial intelligence',
+    'articles.list.2.title': 'Why you shouldn\'t fear Artificial Intelligence',
 
     // Plans
     'plans.subtitle1': 'Our plans give you access to all our services',

@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import TeamCarousel from '../components/TeamCarousel';
+import TeamCarousel from '../components/TeamCarousel.astro';
 import arielaDengo from '../assets/images/team/ariela-dengo.webp';
 import erickV from '../assets/images/team/erick-vasquez.webp';
 import gabrielC from '../assets/images/team/gabriel-chavarria.webp';
@@ -55,6 +55,6 @@ const t = i18n.useTranslations(lang);
       </p>
     </div>
 
-    <TeamCarousel client:load members={teamMembers} />
+    <TeamCarousel members={teamMembers} />
   </div>
 </section>

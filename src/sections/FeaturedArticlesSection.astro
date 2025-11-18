@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ArticlesCarousel from '../components/ArticlesCarousel';
+import ArticlesCarousel from '../components/ArticlesCarousel.astro';
 import * as i18n from '../i18n/utils';
 
 import article1 from '../assets/images/articles/article-1.png';
@@ -29,6 +29,6 @@ const articles = [
       {t('articles.featured')}
     </h2>
 
-    <ArticlesCarousel client:load articles={articles} />
+    <ArticlesCarousel articles={articles} />
   </div>
 </section>

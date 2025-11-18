@@ -80,7 +80,7 @@ export const planService = {
           id: 'starter',
           name: 'Starter Plan',
           price: 1300,
-          credits: 25,
+          credits: 50,
           features: [
             'Access to all services',
             'Assigned Project Manager'
@@ -90,7 +90,7 @@ export const planService = {
           id: 'growth',
           name: 'Growth Plan',
           price: 2200,
-          credits: 15,
+          credits: 100,
           features: [
             'Access to all services',
             'Assigned Project Manager'
@@ -133,7 +133,7 @@ export const planService = {
       },
       {
         id: 'essential',
-        name: 'Plan Esencial',
+        name: 'Plan Essential',
         price: 700,
         credits: 25,
         features: [
@@ -145,7 +145,7 @@ export const planService = {
         id: 'starter',
         name: 'Plan Starter',
         price: 1300,
-        credits: 25,
+        credits: 50,
         features: [
           'Acceso a todos los servicios',
           'Project Manager asignado'
@@ -155,7 +155,7 @@ export const planService = {
         id: 'growth',
         name: 'Plan Growth',
         price: 2200,
-        credits: 15,
+        credits: 100,
         features: [
           'Acceso a todos los servicios',
           'Project Manager asignado'
