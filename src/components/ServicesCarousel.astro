@@ -124,7 +124,11 @@ const { slides, lang = 'es' } = Astro.props;
 
     function scrollToSlide(index: number) {
       const slide = slides[index];
-      if (slide) {
+      if (!slide || !track) return;
+      try {
+        const left = slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2;
+        track.scrollTo({ left, behavior: 'smooth' });
+      } catch (err) {
         slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
     }
