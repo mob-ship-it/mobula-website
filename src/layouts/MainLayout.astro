@@ -22,7 +22,7 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700&display=swap" rel="stylesheet">
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet">
   <meta name="theme-color" content="#ffffff">
@@ -52,7 +52,7 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
 </head>
 <body class="bg-[#faf1ea]">
   <div class="relative min-h-screen flex flex-col overflow-x-hidden">
-    <AnimatedCursor client:only="react" />
+  <AnimatedCursor client:idle />
 
     <!-- Global Background Arrow (Layer_1.png) - hidden on small screens -->
     <div aria-hidden="true" class="pointer-events-none fixed z-0 select-none hidden md:block" style="top: -125px; right: 0px;">
