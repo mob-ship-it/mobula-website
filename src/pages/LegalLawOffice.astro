@@ -14,6 +14,7 @@ import blog2 from '../assets/images/projects/legal-law-office/blog-2.png';
 import iphoneBlue from '../assets/images/projects/legal-law-office/iphone-blue.png';
 import legalOfficeVideo from '../assets/images/projects/legal-law-office/legal-office.mp4';
 import legalOfficeGifUrl from '../assets/images/projects/legal-law-office/lega-office.gif?url';
+import familyOfficeVideo from '../assets/images/projects/legal-law-office/Family Office CR.mp4';
 import tenPersonGrid from '../assets/images/projects/legal-law-office/10-person-grid.png';
 import familyOffice from '../assets/images/projects/legal-law-office/A-family-office.jpg';
 import banksCanTake from '../assets/images/projects/legal-law-office/Banks-can-take.jpg';
@@ -275,11 +276,15 @@ const translatePath = i18n.useTranslatedPath(lang);
           />
         </div>
         <div class="rounded-3xl overflow-hidden shadow-2xl">
-          <img
-            src={legalOfficeGifUrl}
-            alt="Legal office animation"
+          <video
+            src={familyOfficeVideo}
             class="w-full h-auto block"
-            loading="lazy"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="metadata"
           />
         </div>
       </div>
