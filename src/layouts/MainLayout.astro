@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import AnimatedCursor from '../components/AnimatedCursor.jsx';
+import ScrollButtons from '../components/ScrollButtons.astro';
 import { Image } from 'astro:assets';
 import arrowImage from '../assets/images/mockups/Layer_1.png';
 import '../styles/global.css';
@@ -79,6 +80,8 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
       <!-- Footer estático -->
       <Footer />
     </div>
+    <!-- Scroll Buttons -->
+    <ScrollButtons />
   </div>
 </body>
 </html>
