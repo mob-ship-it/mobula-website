@@ -31,7 +31,7 @@ const lang = i18n.getLangFromUrl(Astro.url);
   </section>
   <!-- Plans Section - React interactivo (carousel + subscription) -->
   <section id="planes" class="relative py-12 lg:py-20 bg-[#faf1ea]">
-    <PlansSection client:load lang={lang} />
+    <PlansSection client:idle lang={lang} />
   </section>
   <!-- Team Section - Equipo de expertos -->
   <section id="equipo" class="relative">
@@ -39,7 +39,7 @@ const lang = i18n.getLangFromUrl(Astro.url);
   </section>
   <!-- Credits Section - React para mostrar cómo funcionan los créditos -->
   <section id="creditos" class="relative">
-    <CreditsSection client:load lang={lang} />
+    <CreditsSection client:idle lang={lang} />
   </section>
   <!-- Featured Articles Section - Carousel de artículos destacados -->
   <section class="relative">
@@ -47,12 +47,12 @@ const lang = i18n.getLangFromUrl(Astro.url);
   </section>
   <!-- Subscription Section - Formulario de suscripción -->
   <section id="suscribirse" class="relative">
-    <SubscriptionSection client:load lang={lang} />
+    <SubscriptionSection client:idle lang={lang} />
   </section>
 
   <!-- FAQ Section - Preguntas frecuentes -->
   <section id="faq" class="relative">
-    <FAQSection client:load lang={lang} />
+    <FAQSection client:idle lang={lang} />
   </section>
 </MainLayout>
 

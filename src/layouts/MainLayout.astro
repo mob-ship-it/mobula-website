@@ -23,9 +23,15 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet">
+  </noscript>
   <meta name="theme-color" content="#ffffff">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">

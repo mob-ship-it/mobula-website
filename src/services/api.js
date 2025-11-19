@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const emailService = {
@@ -19,16 +21,31 @@ export const emailService = {
   },
 
   async sendSubscriptionForm(data) {
-    await delay(1500);
-    
-    console.log('Formulario de suscripción enviado:', data);
-    
-    if (Math.random() > 0.1) {
+    try {
+      const payload = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+        plan: data.planName || data.plan,
+        type: 'subscription'
+      };
+      
+      const response = await axios({
+        method: 'post',
+        url: 'https://form-email-sender-omega.vercel.app/mobula',
+        data: payload,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        }
+      });
+      
       return {
         success: true,
         message: 'Tu suscripción ha sido procesada exitosamente. Te contactaremos para coordinar los próximos pasos.'
       };
-    } else {
+    } catch (error) {
       throw new Error('Error al procesar la suscripción. Por favor intenta nuevamente.');
     }
   },

@@ -56,14 +56,23 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
         planName: activePlan?.name || 'Unknown Plan'
       };
 
+      // Comentado temporalmente - envío de correo deshabilitado
+      // const response = await emailService.sendSubscriptionForm(submitData);
+      
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Tu suscripción ha sido procesada exitosamente. Te contactaremos para coordinar los próximos pasos.'
+      });
       resetForm();
+      
       setTimeout(() => {
         onClose();
         setSubmitStatus(null);
+        setInternalSelectedPlan(null);
       }, 3000);
       
     } catch (error) {
-      setSubmitStatus({ type: 'error', message: t('form.error') });
+      setSubmitStatus({ type: 'error', message: error.message || t('form.error') });
     } finally {
       setIsSubmitting(false);
     }

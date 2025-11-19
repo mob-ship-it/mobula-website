@@ -97,7 +97,7 @@ export const PlansSection = ({ lang }) => {
         </div>
 
         {/* Plans Container */}
-        <div className="relative">
+        <div id="planes-cards" className="relative scroll-mt-32">
           <div className="lg:hidden">
             <EmblaCarousel
               options={{
