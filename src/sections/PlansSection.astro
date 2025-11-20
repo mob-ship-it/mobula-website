@@ -279,6 +279,98 @@ const subscribeLabel = (t('plans.subscribe' as any) ?? 'Subscribe');
   subscribeLabel: subscribeLabel
 })}></script>
 
+<script>
+  import { SubscriptionModal } from "../components/SubscriptionModal";
+  import { SocialImpactModal } from "../components/SocialImpactModal";
+  import { createRoot } from 'react-dom/client';
+  import React from 'react';
+
+  let subscriptionModalRoot: any = null;
+  let socialModalRoot: any = null;
+  let isSubscriptionModalOpen = false;
+  let isSocialModalOpen = false;
+
+  function getPlansDataFromDom() {
+    const el = document.getElementById('plans-data');
+    if (!el) return [];
+    try {
+      return JSON.parse(el.textContent || el.innerText || '[]');
+    } catch (err) {
+      console.error('Failed to parse plans-data JSON:', err);
+      return [];
+    }
+  }
+
+  function renderSubscriptionModal(isOpen: boolean, selectedPlan: any = null) {
+    const container = document.getElementById('plans-modal-container');
+    if (!container) return;
+
+    if (!subscriptionModalRoot) {
+      subscriptionModalRoot = createRoot(container);
+    }
+
+    const lang = document.documentElement.lang || 'es';
+    
+    subscriptionModalRoot.render(
+      React.createElement(SubscriptionModal, {
+        isOpen: isOpen,
+        onClose: () => {
+          isSubscriptionModalOpen = false;
+          renderSubscriptionModal(false);
+        },
+        selectedPlan: selectedPlan,
+        lang: lang
+      })
+    );
+  }
+
+  function renderSocialModal(isOpen: boolean) {
+    const container = document.getElementById('plans-modal-container');
+    if (!container) return;
+
+    if (!socialModalRoot) {
+      socialModalRoot = createRoot(container);
+    }
+
+    const lang = document.documentElement.lang || 'es';
+    
+    socialModalRoot.render(
+      React.createElement(SocialImpactModal, {
+        isOpen: isOpen,
+        onClose: () => {
+          isSocialModalOpen = false;
+          renderSocialModal(false);
+        },
+        lang: lang
+      })
+    );
+  }
+
+  renderSubscriptionModal(false);
+  renderSocialModal(false);
+
+  document.addEventListener('click', (e: Event) => {
+    const target = e.target as HTMLElement;
+    const button = target.closest('button[data-plan-id]') as HTMLButtonElement;
+    
+    if (button) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const planId = button.dataset.planId;
+      
+      if (planId === 'social') {
+        isSocialModalOpen = true;
+        renderSocialModal(true);
+      } else {
+        const plansData = getPlansDataFromDom();
+        const plan = plansData.find((p: any) => p.id === planId) || null;
+        isSubscriptionModalOpen = true;
+        renderSubscriptionModal(true, plan);
+      }
+    }
+  });
+</script>
 <style>
   /* Mobile Carousel Styles */
   .plans-carousel-mobile {
