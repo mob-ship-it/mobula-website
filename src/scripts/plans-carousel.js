@@ -384,6 +384,33 @@ function initPlanButtons() {
       }
     });
   });
+  const handlePlanElement = (el) => {
+    if (!el) return;
+    const planId = el.dataset.planId;
+    if (!planId) return;
+    const plan = plansData.find(p => p.id === planId) || null;
+    selectedPlan = plan;
+    lastFocusedEl = el;
+    if (planId === 'social') {
+      renderSocialModal(true);
+    } else {
+      renderSubscriptionModal(true);
+    }
+  };
+
+  const pointerUpHandler = (e) => {
+    try {
+      const el = e.target && e.target.closest && e.target.closest('button[data-plan-id]');
+      if (!el) return;
+      if (e.pointerType && e.pointerType !== 'touch') return;
+      if (typeof hasMoved !== 'undefined' && hasMoved) return;
+      e.preventDefault();
+      e.stopPropagation();
+      handlePlanElement(el);
+    } catch (err) {
+    }
+  };
+  document.addEventListener('pointerup', pointerUpHandler, { capture: true });
 }
 
 if (document.readyState === 'loading') {
