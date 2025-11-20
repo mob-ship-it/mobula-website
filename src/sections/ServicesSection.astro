@@ -5,7 +5,6 @@ import * as i18n from '../i18n/utils';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 
-// Importar imágenes de servicios desde assets
 import marketingImg from '../assets/images/services/marketin-y-estrategia.webp';
 import marketingRightDecor from '../assets/images/services/marketing-right-decor.webp';
 import conceptoRightDecor from '../assets/images/services/concepto-contenido-right-decor.webp';
@@ -188,8 +187,12 @@ const services = lang === 'en' ? servicesEn : servicesEs;
       </div>
 
       <!-- Advanced Carousel - Centered and aligned with title -->
-      <div id="servicios-carousel" class="w-full overflow-visible flex justify-center scroll-mt-24">
-        <ServicesCarousel slides={services} lang={lang} />
+      <div id={t('anchors.servicesCarousel' as any)} class="w-full overflow-visible scroll-mt-24">
+        <div class="max-w-[1800px] w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-center w-full">
+            <ServicesCarousel slides={services} lang={lang} />
+          </div>
+        </div>
       </div>
     </div>
   </div>

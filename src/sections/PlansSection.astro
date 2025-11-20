@@ -1,0 +1,629 @@
+---
+import { Image } from 'astro:assets';
+import * as i18n from '../i18n/utils';
+import checkIcon from '../assets/images/check-icon.svg';
+
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
+
+const getPlans = (lang: string) => {
+  const isEn = lang === 'en';
+  if (isEn) {
+    return [
+      {
+        id: 'basic',
+        name: 'Basic Plan',
+        price: 500,
+        credits: 15,
+        features: [
+          'Access to all services',
+          'Assigned Project Manager'
+        ]
+      },
+      {
+        id: 'essential',
+        name: 'Essential Plan',
+        price: 700,
+        credits: 25,
+        features: [
+          'Access to all services',
+          'Assigned Project Manager'
+        ]
+      },
+      {
+        id: 'starter',
+        name: 'Starter Plan',
+        price: 1300,
+        credits: 50,
+        features: [
+          'Access to all services',
+          'Assigned Project Manager'
+        ]
+      },
+      {
+        id: 'growth',
+        name: 'Growth Plan',
+        price: 2200,
+        credits: 100,
+        features: [
+          'Access to all services',
+          'Assigned Project Manager'
+        ]
+      },
+      {
+        id: 'enterprise',
+        name: 'Enterprise Plan',
+        price: 'Custom',
+        credits: 'The number of credits you need per month',
+        features: [
+          'Access to all services',
+          'Assigned Project Manager'
+        ]
+      },
+      {
+        id: 'social',
+        name: 'Social Impact Plan',
+        price: 'Free',
+        credits: 15,
+        features: [
+          'Access to all services',
+          'Assigned Project Manager'
+        ]
+      }
+    ];
+  }
+  
+  return [
+    {
+      id: 'basic',
+      name: 'Plan Basic',
+      price: 500,
+      credits: 15,
+      features: [
+        'Acceso a todos los servicios',
+        'Project Manager asignado'
+      ]
+    },
+    {
+      id: 'essential',
+      name: 'Plan Essential',
+      price: 700,
+      credits: 25,
+      features: [
+        'Acceso a todos los servicios',
+        'Project Manager asignado'
+      ]
+    },
+    {
+      id: 'starter',
+      name: 'Plan Starter',
+      price: 1300,
+      credits: 50,
+      features: [
+        'Acceso a todos los servicios',
+        'Project Manager asignado'
+      ]
+    },
+    {
+      id: 'growth',
+      name: 'Plan Growth',
+      price: 2200,
+      credits: 100,
+      features: [
+        'Acceso a todos los servicios',
+        'Project Manager asignado'
+      ]
+    },
+    {
+      id: 'enterprise',
+      name: 'Plan Enterprise',
+      price: 'Personalizado',
+      credits: 'La cantidad de créditos que necesités al mes',
+      features: [
+        'Acceso a todos los servicios',
+        'Project Manager asignado'
+      ]
+    },
+    {
+      id: 'social',
+      name: 'Plan de Impacto Social',
+      price: 'Gratuito',
+      credits: 15,
+      features: [
+        'Acceso a todos los servicios',
+        'Project Manager asignado'
+      ]
+    }
+  ];
+};
+
+const plans = getPlans(lang);
+// Server-side currency formatter (USD, no decimals) — use narrow symbol to avoid locale prefix like "US$"
+const priceFormatter = new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'es-AR', { style: 'currency', currency: 'USD', currencyDisplay: 'narrowSymbol', maximumFractionDigits: 0 });
+// i18n strings used in the template (cast to any to avoid strict key typing)
+const carouselLabel = (t('plans.carouselLabel' as any) ?? 'Plans carousel');
+const goToSlideLabel = (t('plans.goToSlide' as any) ?? 'Go to slide {{index}}');
+const subscribeLabel = (t('plans.subscribe' as any) ?? 'Subscribe');
+---
+
+<div class="relative w-full bg-[#faf1ea]" data-section="plans">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <!-- Header Section -->
+    <div class="text-center lg:text-left mb-12 lg:mb-16">
+      <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-[#13243c] text-3xl sm:text-4xl lg:text-5xl mb-6">
+        {t('nav.plans')}
+      </h2>
+
+      <p class="[font-family:'Be_Vietnam',Helvetica] font-normal text-[#13243c] text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto lg:mx-0">
+        {t('plans.subtitle1')}<br />
+        {t('plans.subtitle2')}
+      </p>
+    </div>
+
+    <!-- Plans Container -->
+    <div id={t('anchors.plansCards' as any)} class="relative scroll-mt-32">
+      <!-- Mobile Carousel -->
+      <div class="lg:hidden plans-carousel-mobile">
+        <div class="carousel-container" role="region" aria-roledescription="carousel" aria-label={carouselLabel} tabindex="0">
+          <div class="carousel-track" data-carousel="mobile">
+            {plans.map((plan) => (
+              <div class="carousel-slide" data-plan-id={plan.id}>
+                <div class="plan-card">
+                  <div class="plan-card-content">
+                    <div class="plan-header">
+                      <div class="plan-name">{plan.name}</div>
+                      <div class="plan-price">
+                                        {typeof plan.price === 'number' ? `${priceFormatter.format(plan.price)} ${t('plans.perMonth')}` : plan.price}
+                      </div>
+                      <div class="plan-credits">
+                        {typeof plan.credits === 'number' ? `${plan.credits} ${t('plans.credits')}` : plan.credits}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="plan-button"
+                      data-plan-id={plan.id}
+                      data-plan-name={plan.name}
+                      aria-label={`${t('plans.subscribe')} ${plan.name}`}
+                    >
+                      {plan.id === 'social' ? t('plans.socialCTA') : t('plans.subscribe')}
+                    </button>
+
+                    <div class="plan-features">
+                      {plan.features.map((feature) => (
+                        <div class="feature-item">
+                          <img
+                            class="feature-check"
+                            alt=""
+                            aria-hidden="true"
+                            src={checkIcon.src}
+                            width={checkIcon.width}
+                            height={checkIcon.height}
+                            loading="lazy"
+                          />
+                          <p class="feature-text">{feature}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="carousel-dots mobile-dots"></div>
+        </div>
+      </div>
+
+      <!-- Desktop Grid -->
+      <div class="hidden lg:grid lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
+        {plans.map((plan) => (
+          <div class="plan-card plan-card-desktop">
+            <div class="plan-card-content-desktop">
+              <div class="plan-header-desktop">
+                <div class="plan-name-desktop">{plan.name}</div>
+                <div class="plan-price-desktop">
+                  {typeof plan.price === 'number' ? `${priceFormatter.format(plan.price)} ${t('plans.perMonth')}` : plan.price}
+                </div>
+                <div class="plan-credits-desktop">
+                  {typeof plan.credits === 'number' ? `${plan.credits} ${t('plans.credits')}` : plan.credits}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="plan-button-desktop"
+                data-plan-id={plan.id}
+                data-plan-name={plan.name}
+                aria-label={`${t('plans.subscribe')} ${plan.name}`}
+              >
+                {plan.id === 'social' ? t('plans.socialCTA') : t('plans.subscribe')}
+              </button>
+
+              <div class="plan-features-desktop">
+                {plan.features.map((feature) => (
+                  <div class="feature-item-desktop">
+                    <img
+                      class="feature-check-desktop"
+                      alt=""
+                      aria-hidden="true"
+                      src={checkIcon.src}
+                      width={checkIcon.width}
+                      height={checkIcon.height}
+                      loading="lazy"
+                    />
+                    <p class="feature-text-desktop">{feature}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="plans-modal-container"></div>
+
+<!-- Server-serialized plans JSON for client single source of truth -->
+<script type="application/json" id="plans-data" set:html={JSON.stringify(plans)}></script>
+
+<!-- Ensure html lang is set for client if layout didn't set it -->
+<script>document.documentElement.lang = "{lang}";</script>
+
+<!-- Small i18n bundle for client (dot labels, carousel label) -->
+<script type="application/json" id="plans-i18n" set:html={JSON.stringify({
+  carouselLabel: carouselLabel,
+  goToSlide: goToSlideLabel,
+  subscribeLabel: subscribeLabel
+})}></script>
+
+<style>
+  /* Mobile Carousel Styles */
+  .plans-carousel-mobile {
+    width: 100%;
+    position: relative;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    will-change: scroll-position;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-slide {
+    flex: 0 0 244px;
+    width: 244px;
+    height: 326px;
+    scroll-snap-align: center;
+    padding: 0 0.75rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .plan-card {
+    height: 326px;
+    border-radius: 1rem;
+    border: 2px solid #13243c;
+    background-color: #faf1ea;
+    transition: all 0.3s ease-out;
+    padding: 1.25rem 22px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .plan-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6;
+  }
+
+  .plan-card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    gap: 0.75rem;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .plan-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .plan-name {
+    font-family: Be Vietnam, Helvetica;
+    font-size: 0.95rem;
+    line-height: 1.25rem;
+    color: #13243c;
+    font-weight: 400;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .plan-price {
+    font-family: Bricolage Grotesque, Helvetica;
+    font-size: clamp(1.25rem, 5vw, 1.875rem);
+    line-height: 1.2;
+    color: #13243c;
+    font-weight: 400;
+    /* Prevent price from wrapping to a second line; let the font-size scale instead */
+    white-space: nowrap;
+    overflow-wrap: normal;
+    text-overflow: clip;
+  }
+
+  .plan-credits {
+    font-family: Be Vietnam, Helvetica;
+    font-size: 1rem;
+    line-height: 1.21875rem;
+    color: #13243c;
+    font-weight: 400;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .plan-button {
+    width: 100%;
+    max-width: 100%;
+    height: 45px;
+    background-color: #211ee1;
+    color: white;
+    font-family: Be Vietnam, Helvetica;
+    font-weight: 600;
+    font-size: clamp(0.95rem, 3.2vw, 1.25rem);
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 1rem;
+  }
+
+  .plan-button[data-plan-id="social"] {
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .plan-button:hover {
+    background-color: #1915c7;
+  }
+
+  .plan-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    min-height: 34.61px;
+    width: 100%;
+  }
+
+  .feature-check {
+    width: 11px;
+    height: 13px;
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .feature-text {
+    flex: 1;
+    font-family: Be Vietnam, Helvetica;
+    font-size: 1rem;
+    line-height: 1.21875rem;
+    color: #13243c;
+    font-weight: 400;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  /* Small screens: tighten sizes and avoid overflow (mobile only) */
+  @media (max-width: 640px) {
+    .carousel-track {
+      gap: 0.5rem;
+      padding: 0 0.25rem;
+    }
+
+    /* Make slides adapt to viewport so prices can remain on one line */
+    .carousel-slide {
+      flex: 0 0 min(86vw, 260px);
+      width: min(86vw, 260px);
+      padding: 0 0.5rem;
+      box-sizing: border-box;
+      min-width: 200px;
+    }
+
+    .plan-card {
+      height: 326px;
+      padding: 1rem 16px;
+    }
+
+    /* Increase price size a little on mobile screens (desktop keeps original) */
+    .plan-price {
+      /* Slightly larger on mobile for readability */
+      font-size: clamp(1.6rem, 6.8vw, 2.125rem);
+    }
+
+    .plan-button {
+      height: 42px;
+      font-size: 1rem;
+      padding: 0 0.75rem;
+    }
+
+    .plan-card-content {
+      gap: 0.75rem;
+    }
+  }
+
+  /* Desktop Styles */
+  .plan-card-desktop {
+    width: 100%;
+    height: 280px;
+    border-radius: 1rem;
+    border: 2px solid #13243c;
+    background-color: #faf1ea;
+    transition: all 0.3s ease-out;
+    /* Override padding added to .plan-card so desktop layout keeps original spacing */
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .plan-card-desktop:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6;
+  }
+
+  .plan-card-content-desktop {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 1rem;
+    position: relative;
+    top: 1.25rem;
+    left: 5%;
+    box-sizing: border-box;
+  }
+
+  .plan-header-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .plan-name-desktop {
+    font-family: Be Vietnam, Helvetica;
+    font-size: 1rem;
+    line-height: 1.21875;
+    color: #13243c;
+    font-weight: 400;
+  }
+
+  .plan-price-desktop {
+    font-family: Bricolage Grotesque, Helvetica;
+    font-size: 1.875rem;
+    line-height: 1.22;
+    color: #13243c;
+    font-weight: 400;
+  }
+
+  .plan-credits-desktop {
+    font-family: Be Vietnam, Helvetica;
+    font-size: 1rem;
+    line-height: 1.21875;
+    color: #13243c;
+    font-weight: 400;
+    word-break: break-words;
+  }
+
+  .plan-button-desktop {
+    width: 100%;
+    height: 40px;
+    background-color: #211ee1;
+    color: white;
+    font-family: Be Vietnam, Helvetica;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .plan-button-desktop:hover {
+    background-color: #1915c7;
+  }
+
+  .plan-features-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature-item-desktop {
+    display: flex;
+    align-items: center;
+    height: 30px;
+  }
+
+  .feature-check-desktop {
+    width: 11px;
+    height: 13px;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .feature-text-desktop {
+    flex: 1;
+    font-family: Be Vietnam, Helvetica;
+    font-size: 0.875rem;
+    line-height: 1.21875;
+    color: #13243c;
+    font-weight: 400;
+  }
+
+  /* Dots Styles */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+
+  :global(.carousel-dot) {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #211ee1;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  :global(.carousel-dot:hover) {
+    opacity: 0.6;
+  }
+
+  :global(.carousel-dot.active) {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+</style>
+
+<!-- Client module for carousel and modals -->
+<script type="module" src="/src/scripts/plans-carousel.js"></script>

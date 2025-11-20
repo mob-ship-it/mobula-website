@@ -1,11 +1,18 @@
 ---
 import * as i18n from '../i18n/utils';
+import { ui as uiBundle } from '../i18n/ui';
 
 const lang = i18n.getLangFromUrl(Astro.url);
 const altHref = i18n.getAlternateLangPath(Astro.url);
 const nextLabel = lang === 'en' ? 'ES' : 'EN';
 const { variant = 'outline-dark' } = Astro.props as { variant?: 'outline-dark' | 'outline-light' | 'link-light' | 'link-dark' | 'button-light' };
 
+const anchorKeys = Object.keys(uiBundle.es || {}).filter(k => k.startsWith('anchors.'));
+const anchorPairs = anchorKeys.map(k => ({
+  key: k.replace('anchors.', ''),
+  es: (uiBundle as any).es[k],
+  en: (uiBundle as any).en[k]
+}));
 const baseBtn = "inline-flex items-center gap-2 [font-family:'Be_Vietnam',Helvetica] font-semibold text-sm px-6 py-2 rounded-full transition-colors whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
 const outlineDark = `${baseBtn} border border-[#13243c] text-[#13243c] bg-transparent hover:bg-[#13243c] hover:text-white focus-visible:outline-[#bb8bfe]`;
 const outlineLight = `${baseBtn} border border-white text-white bg-transparent hover:bg-white hover:text-[#13243c] focus-visible:outline-white`;
@@ -26,9 +33,12 @@ const iconClass = (variant === 'link-light' || variant === 'link-dark') ? 'w-6 h
 ---
 
 <a
+  id="lang-switch"
   href={altHref}
   aria-label={lang === 'en' ? 'Switch to Spanish' : 'Cambiar a Inglés'}
   class={classes}
+  data-anchors={JSON.stringify(anchorPairs)}
+  data-lang={lang}
 >
   <!-- Globe icon -->
   <svg
@@ -49,3 +59,31 @@ const iconClass = (variant === 'link-light' || variant === 'link-dark') ? 'w-6 h
   </svg>
   <span>{nextLabel}</span>
 </a>
+
+<script>
+  (() => {
+    try {
+      const link = document.getElementById('lang-switch');
+      if (!link) return;
+      const anchors = JSON.parse(link.getAttribute('data-anchors') || '[]');
+      const currentLang = link.getAttribute('data-lang') || 'es';
+      link.addEventListener('click', (e) => {
+        const currentHash = window.location.hash.replace(/^#/, '');
+        if (!currentHash) return; // proceed with normal navigation
+
+        const pair = anchors.find(p => p.en === currentHash || p.es === currentHash);
+        const targetFragment = pair ? (currentLang === 'en' ? pair.es : pair.en) : null;
+
+        if (!targetFragment) return;
+
+        e.preventDefault();
+        let target = link.getAttribute('href') || window.location.pathname;
+        target = target.replace(/#.*$/, '');
+        target += '#' + encodeURIComponent(targetFragment);
+        window.location.href = target;
+      });
+    } catch (err) {
+      console.warn('LanguageSwitcher client script error', err);
+    }
+  })();
+</script>

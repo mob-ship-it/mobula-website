@@ -3,7 +3,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import HeroSection from '../../sections/HeroSection.astro';
 import ServicesSection from '../../sections/ServicesSection.astro';
 import SeriousSection from '../../sections/SeriousSection.astro';
-import { PlansSection } from '../../sections/PlansSection';
+import PlansSection from '../../sections/PlansSection.astro';
 import TeamSection from '../../sections/TeamSection.astro';
 import CreditsSection from '../../sections/CreditsSection';
 import FeaturedArticlesSection from '../../sections/FeaturedArticlesSection.astro';
@@ -11,41 +11,42 @@ import SubscriptionSection from '../../sections/SubscriptionSection';
 import FAQSection from '../../sections/FAQSection';
 import * as i18n from '../../i18n/utils';
 const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
 ---
 
 <MainLayout title="Mobula Estudio - Digital Marketing">
   <!-- Hero Section - Astro estático -->
-  <section id="inicio" class="relative">
+  <section id={t('anchors.home' as any)} class="relative">
     <HeroSection />
   </section>
 
   <!-- Services Section - React interactivo (carousel) -->
-  <section id="servicios" class="relative py-12 lg:py-20">
+  <section id={t('anchors.services' as any)} class="relative py-12 lg:py-20">
     <ServicesSection />
   </section>
 
   <!-- Serious Section - "Lo decimos en serio" con proyectos -->
-  <section id="proyectos" class="relative">
+  <section id={t('anchors.projects' as any)} class="relative">
     <SeriousSection />
   </section>
-  <!-- Plans Section - React interactivo (carousel + subscription) -->
-  <section id="planes" class="relative py-12 lg:py-20 bg-[#faf1ea]">
-    <PlansSection client:idle lang={lang} />
+  <!-- Plans Section - Astro carousel con modales React -->
+  <section id={t('anchors.plans' as any)} class="relative py-12 lg:py-20 bg-[#faf1ea]">
+    <PlansSection />
   </section>
   <!-- Team Section - Equipo de expertos -->
-  <section id="equipo" class="relative">
+  <section id={t('anchors.team' as any)} class="relative">
     <TeamSection />
   </section>
   <!-- Credits Section - React para mostrar cómo funcionan los créditos -->
-  <section id="creditos" class="relative">
+  <section id={t('anchors.credits' as any)} class="relative">
     <CreditsSection client:idle lang={lang} />
   </section>
   <!-- Featured Articles Section - Carousel de artículos destacados -->
-  <section id="articulos" class="relative">
+  <section id={t('anchors.articles' as any)} class="relative">
     <FeaturedArticlesSection />
   </section>
   <!-- Subscription Section - Formulario de suscripción -->
-  <section id="suscribirse" class="relative">
+  <section id={t('anchors.subscribe' as any)} class="relative">
     <SubscriptionSection client:idle lang={lang} />
   </section>
 

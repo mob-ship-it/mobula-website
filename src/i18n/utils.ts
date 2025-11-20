@@ -32,10 +32,29 @@ export function useTranslatedPath(lang: Lang) {
 
 export function getAlternateLangPath(url: URL, targetLang?: Lang): string {
   const currentLang = getLangFromUrl(url);
-  const pathNoLang = getUrlWithoutLang(url);
+  const pathNoLang = getUrlWithoutLang(url); // e.g. '/' or '/projects' or '/proyectos/slug'
   const nextLang: Lang = targetLang ?? (currentLang === 'en' ? (defaultLang as Lang) : 'en');
-  if (!showDefaultLang && nextLang === defaultLang) {
-    return pathNoLang;
+  const trimmed = pathNoLang.replace(/^\/+/, '').replace(/\/+$/, '');
+  const segments = trimmed === '' ? [] : trimmed.split('/');
+
+  let translatedFirst = segments[0] || '';
+  if (segments.length > 0) {
+    const anchorKeys = Object.keys(ui[currentLang] || {}).filter(k => k.startsWith('anchors.'));
+    for (const key of anchorKeys) {
+      const valCurr = (ui as any)[currentLang][key];
+      const valNext = (ui as any)[nextLang][key];
+      const valDefault = (ui as any)[defaultLang][key];
+      if (valCurr === segments[0] || valDefault === segments[0] || (ui.en && (ui as any).en[key] === segments[0])) {
+        translatedFirst = valNext || segments[0];
+        break;
+      }
+    }
   }
-  return `/${nextLang}${pathNoLang}`;
+  const rest = segments.slice(1).join('/');
+  const combined = [translatedFirst, rest].filter(Boolean).join('/');
+
+  if (!showDefaultLang && nextLang === defaultLang) {
+    return combined ? `/${combined}` : '/';
+  }
+  return combined ? `/${nextLang}/${combined}` : `/${nextLang}`;
 }

@@ -21,7 +21,7 @@ const translatePath = i18n.useTranslatedPath(lang);
         {t('hero.subtitle')}
       </p>
       <a 
-        href={translatePath('/#planes')}
+        href={translatePath(`/#${t('anchors.plans' as any)}`)}
         style="border: 2px solid #4e3aff;"
         class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#4e3aff] text-base md:text-lg rounded-full px-12 md:px-14 py-3 hover:bg-[#4e3aff] hover:text-white transition-all duration-300 mx-auto"
       >
@@ -61,7 +61,7 @@ const translatePath = i18n.useTranslatedPath(lang);
           </p>
 
           <a 
-            href={translatePath('/#planes-cards')}
+            href={translatePath(`/#${t('anchors.plansCards' as any)}`)}
             class="inline-block [font-family:'Be_Vietnam',Helvetica] font-semibold text-white bg-[#211ee1] text-base lg:text-lg rounded-full px-10 lg:px-12 xl:px-14 py-3 lg:py-3 xl:py-3.5 w-full max-w-2xl text-center hover:bg-[#1915c7] transition-all duration-300"
           >
             {t('hero.cta')}

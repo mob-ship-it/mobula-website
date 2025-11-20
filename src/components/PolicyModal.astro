@@ -1,0 +1,174 @@
+---
+import blueMobula from '../assets/images/services/blue-mobula.png';
+const { lang = 'es', idPrefix = 'policy' } = Astro.props || {};
+const safeLang = lang === 'en' ? 'en' : 'es';
+---
+
+<div id="policy-modals-root">
+  <!-- Privacy Modal -->
+  <div id="policy-modal-privacy" class="policy-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="policy-overlay" data-action="close"></div>
+    <div class="policy-panel">
+      <img src={blueMobula.src} alt="Mobula" class="policy-decor" />
+      <div class="policy-header">
+        <h2 class="policy-title">{safeLang === 'en' ? 'Privacy Policy' : 'Política de Privacidad'}</h2>
+        <button class="policy-close" data-action="close" aria-label="Close">✕</button>
+      </div>
+      <div class="policy-body" tabindex="0">
+        {safeLang === 'en' ? (
+          <>
+            <p class="mb-4">This Privacy Policy describes how we collect, use, and share your personal information when you use our services. It is generic placeholder text intended to stand in for a full policy.</p>
+            <h3 class="font-semibold">Information We Collect</h3>
+            <p class="mb-4">We may collect information you provide directly (such as name and email) and information collected automatically (such as usage data and cookies).</p>
+            <h3 class="font-semibold">How We Use Information</h3>
+            <p class="mb-4">We use information to provide and improve our services, to communicate with you, and to comply with legal obligations.</p>
+            <h3 class="font-semibold">Contact</h3>
+            <p>If you have questions about this policy, contact us at <a href="mailto:mob@mobulaestudio.com">mob@mobulaestudio.com</a>.</p>
+          </>
+        ) : (
+          <>
+            <p class="mb-4">Esta Política de Privacidad describe cómo recopilamos, usamos y compartimos su información personal cuando utiliza nuestros servicios. Es un texto genérico de relleno para ilustrar el modal.</p>
+            <h3 class="font-semibold">Información que recopilamos</h3>
+            <p class="mb-4">Podemos recopilar información que usted proporciona directamente (como nombre y correo) y información recopilada automáticamente (como datos de uso y cookies).</p>
+            <h3 class="font-semibold">Cómo usamos la información</h3>
+            <p class="mb-4">Usamos la información para proveer y mejorar nuestros servicios, comunicarnos con usted y cumplir obligaciones legales.</p>
+            <h3 class="font-semibold">Contacto</h3>
+            <p>Si tiene preguntas sobre esta política, contáctenos en <a href="mailto:mob@mobulaestudio.com">mob@mobulaestudio.com</a>.</p>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div id="policy-modal-terms" class="policy-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="policy-overlay" data-action="close"></div>
+    <div class="policy-panel">
+      <img src={blueMobula.src} alt="Mobula" class="policy-decor" />
+      <div class="policy-header">
+        <h2 class="policy-title">{safeLang === 'en' ? 'Terms of Service' : 'Términos de Servicio'}</h2>
+        <button class="policy-close" data-action="close" aria-label="Close">✕</button>
+      </div>
+      <div class="policy-body" tabindex="0">
+        {safeLang === 'en' ? (
+          <>
+            <p class="mb-4">These Terms of Service govern your use of our website and services. This is placeholder text that should be replaced with your actual terms.</p>
+            <h3 class="font-semibold">Acceptance</h3>
+            <p class="mb-4">By using our services you agree to the terms and conditions described herein.</p>
+            <h3 class="font-semibold">Use of Service</h3>
+            <p class="mb-4">Users must use the service in accordance with applicable laws and not violate rights of others.</p>
+            <h3 class="font-semibold">Limitation of Liability</h3>
+            <p class="mb-4">Our liability is limited to the extent permitted by law.</p>
+          </>
+        ) : (
+          <>
+            <p class="mb-4">Estos Términos de Servicio regulan su uso de nuestro sitio web y servicios. Este es un texto genérico de ejemplo que debería reemplazarse por sus términos reales.</p>
+            <h3 class="font-semibold">Aceptación</h3>
+            <p class="mb-4">Al usar nuestros servicios usted acepta los términos y condiciones descritos aquí.</p>
+            <h3 class="font-semibold">Uso del servicio</h3>
+            <p class="mb-4">Los usuarios deben usar el servicio conforme a la ley aplicable y sin violar derechos de terceros.</p>
+            <h3 class="font-semibold">Limitación de responsabilidad</h3>
+            <p class="mb-4">Nuestra responsabilidad se limita en la medida permitida por la ley.</p>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+:root{
+  --mobula-blue: #211EE1;
+}
+.policy-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.policy-modal.open {
+  display: flex;
+}
+.policy-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  transition: opacity 200ms ease;
+}
+.policy-panel {
+  position: relative;
+  background: rgba(19,36,60,0.95);
+  border-radius: 32px;
+  max-width: 760px;
+  width: calc(100% - 48px);
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+  z-index: 10;
+  font-family: 'Be_Vietnam', Helvetica;
+  max-height: calc(100vh - 80px);
+}
+.policy-decor {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -50px;
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.95;
+  z-index: 0;
+}
+.policy-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 22px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  z-index: 2;
+}
+.policy-title {
+  font-family: 'Bricolage_Grotesque', Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.policy-close {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #FFFFFF;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.policy-close:hover{ transform: scale(1.05); background: rgba(255,255,255,0.1); }
+.policy-body {
+  padding: 24px 28px 100px 28px;
+  max-height: calc(100vh - 200px);
+  overflow: auto;
+  z-index: 2;
+  color: rgba(255,255,255,0.95);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.policy-body h3 { margin-top: 14px; color: white; font-weight: 700; }
+.policy-body p { color: rgba(255,255,255,0.95); }
+.policy-body a { color: var(--mobula-blue); text-decoration: underline; }
+
+@media (max-width: 640px){
+  .policy-panel{ border-radius: 24px; max-height: calc(100vh - 20px); }
+  .policy-decor{ width: 140px; height: 140px; bottom: -36px; }
+  .policy-title{ font-size: 20px; }
+  .policy-body { padding-bottom: 80px; max-height: calc(100vh - 140px); }
+}
+
+</style>

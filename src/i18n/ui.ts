@@ -289,5 +289,35 @@ export const ui = {
   },
 } as const;
 
+(ui as any).es = Object.assign({}, (ui as any).es, {
+  'anchors.home': 'inicio',
+  'anchors.services': 'servicios',
+  'anchors.servicesCarousel': 'servicios-carousel',
+  'anchors.projects': 'proyectos',
+  'anchors.plans': 'planes',
+  'anchors.plansCards': 'planes-cards',
+  'anchors.team': 'equipo',
+  'anchors.credits': 'creditos',
+  'anchors.articles': 'articulos',
+  'anchors.subscribe': 'suscribirse',
+  'anchors.contact': 'contacto',
+  'anchors.faq': 'faq'
+});
+
+(ui as any).en = Object.assign({}, (ui as any).en, {
+  'anchors.home': 'home',
+  'anchors.services': 'services',
+  'anchors.servicesCarousel': 'services-carousel',
+  'anchors.projects': 'projects',
+  'anchors.plans': 'plans',
+  'anchors.plansCards': 'plans-cards',
+  'anchors.team': 'team',
+  'anchors.credits': 'credits',
+  'anchors.articles': 'articles',
+  'anchors.subscribe': 'subscribe',
+  'anchors.contact': 'contact',
+  'anchors.faq': 'faq'
+});
+
 // If false, keep default language (es) without prefix in URLs
 export const showDefaultLang = false;

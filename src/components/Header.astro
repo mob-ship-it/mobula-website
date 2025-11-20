@@ -7,11 +7,12 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 const { showLeftLogo = true } = Astro.props;
 const pathname = Astro.url?.pathname || '/';
 const pathNoLang = i18n.getUrlWithoutLang(Astro.url);
-const isWork = pathNoLang === '/proyectos' || pathNoLang === '/LegalLawOffice' || pathNoLang === '/ECPConsultingGroup' || pathNoLang === '/KaseCab' || pathNoLang === '/Stanzza';
 const lang = i18n.getLangFromUrl(Astro.url);
 const showLeftLogoEffective = showLeftLogo;
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
+const projectsSlug = `/${t('anchors.projects' as any)}`;
+const isWork = pathNoLang === projectsSlug || pathNoLang === '/LegalLawOffice' || pathNoLang === '/ECPConsultingGroup' || pathNoLang === '/KaseCab' || pathNoLang === '/Stanzza';
 const isHome = pathNoLang === '/';
 ---
 
@@ -74,35 +75,35 @@ const isHome = pathNoLang === '/';
           style="border: 2px solid #13243c;"
         >
           <a
-            href={translatePath('/#servicios-carousel')}
+            href={translatePath(`/#${t('anchors.servicesCarousel' as any)}`)}
             class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
           >
             {t('nav.services')}
           </a>
           <div class="w-px h-4 bg-[#13243c]/30"></div>
           <a
-            href={translatePath('/proyectos')}
+            href={translatePath(`/${t('anchors.projects' as any)}`)}
             class={(isWork ? 'font-semibold ' : 'font-normal ') + "[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"}
           >
             {t('nav.work')}
           </a>
           <div class="w-px h-4 bg-[#13243c]/30"></div>
           <a
-            href={translatePath('/#planes-cards')}
+            href={translatePath(`/#${t('anchors.plansCards' as any)}`)}
             class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
           >
             {t('nav.plans')}
           </a>
           <div class="w-px h-4 bg-[#13243c]/30"></div>
           <a
-            href={translatePath('/#articulos')}
+            href={translatePath(`/#${t('anchors.articles' as any)}`)}
             class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
           >
             {t('nav.blog')}
           </a>
           <div class="w-px h-4 bg-[#13243c]/30"></div>
           <a
-            href={translatePath('/#contacto')}
+            href={translatePath(`/#${t('anchors.contact' as any)}`)}
             class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] hover:text-[#13243c]/70 transition-colors font-normal text-sm xl:text-base px-4 md:px-5 xl:px-6 py-2 whitespace-nowrap"
           >
             {t('nav.contact')}
@@ -114,7 +115,7 @@ const isHome = pathNoLang === '/';
       <div class="col-span-2 flex items-center justify-end gap-3">
         <LanguageSwitcher variant="outline-dark" />
         <a
-          href={translatePath('/#planes-cards')}
+          href={translatePath(`/#${t('anchors.plansCards' as any)}`)}
           class="[font-family:'Be_Vietnam',Helvetica] text-white bg-[#211ee1] hover:bg-[#1915c7] transition-colors font-semibold text-sm px-6 py-2 rounded-full whitespace-nowrap"
         >
           {t('nav.plans')}
@@ -152,7 +153,7 @@ const isHome = pathNoLang === '/';
 
     <nav class="flex flex-col items-start justify-center gap-8 w-full max-w-sm">
       <a
-        href={translatePath('/#servicios-carousel')}
+        href={translatePath(`/#${t('anchors.servicesCarousel' as any)}`)}
         class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer"
       >
         {t('nav.services')}
@@ -160,7 +161,7 @@ const isHome = pathNoLang === '/';
       <div class="w-full max-w-[305px] h-px bg-white/30"></div>
 
       <a
-        href={translatePath('/proyectos')}
+        href={translatePath(`/${t('anchors.projects' as any)}`)}
         class={"mobile-menu-link [font-family:'Be_Vietnam',Helvetica] text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer " + (isWork ? 'font-semibold' : 'font-normal')}
       >
         {t('nav.work')}
@@ -168,7 +169,7 @@ const isHome = pathNoLang === '/';
       <div class="w-full max-w-[305px] h-px bg-white/30"></div>
 
       <a
-        href={translatePath('/#articulos')}
+        href={translatePath(`/#${t('anchors.articles' as any)}`)}
         class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer"
       >
         {t('nav.blog')}
@@ -176,14 +177,14 @@ const isHome = pathNoLang === '/';
       <div class="w-full max-w-[305px] h-px bg-white/30"></div>
 
       <a
-        href={translatePath('/#contacto')}
+        href={translatePath(`/#${t('anchors.contact' as any)}`)}
         class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[29.3px] hover:text-gray-300 transition-colors cursor-pointer"
       >
         {t('nav.contact')}
       </a>
       <div class="flex flex-col gap-4 w-full max-w-[305px] mt-8">
         <a
-          href={translatePath('/#planes-cards')}
+          href={translatePath(`/#${t('anchors.plansCards' as any)}`)}
           class="mobile-menu-link [font-family:'Be_Vietnam',Helvetica] font-semibold text-[#13243c] bg-white text-lg px-8 py-4 rounded-full hover:bg-gray-100 transition-colors cursor-pointer text-center"
         >
           {t('nav.plans')}

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import SocialIcons from './SocialIcons.astro';
+import PolicyModal from './PolicyModal.astro';
 import mobulaLogo from '../assets/images/logo/mobula-logo-light.png';
 import vector22 from '../assets/images/mockups/Vector 22.png';
 import * as i18n from '../i18n/utils';
@@ -9,7 +10,7 @@ const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
 ---
 
-<footer id="contacto" class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16 relative overflow-hidden w-full">
+<footer id={t('anchors.contact' as any)} class="bg-[#13243c] text-[#faf1ea] py-12 lg:py-16 relative overflow-hidden w-full">
   <div class="relative w-full px-4 sm:px-6 lg:px-8 xl:px-12 z-10">
     
     {/* Layout Mobile: Centrado vertical */}
@@ -207,12 +208,14 @@ const translatePath = i18n.useTranslatedPath(lang);
         <div class="flex gap-6">
           <a 
             href={translatePath('/privacy')}
+            onclick="openPolicyModal('privacy'); return false;"
             class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/60 hover:text-[#bb8bfe] transition-colors"
           >
             {t('footer.privacy')}
           </a>
           <a 
             href={translatePath('/terms')}
+            onclick="openPolicyModal('terms'); return false;"
             class="[font-family:'Be_Vietnam',Helvetica] text-sm text-[#faf1ea]/60 hover:text-[#bb8bfe] transition-colors"
           >
             {t('footer.terms')}
@@ -222,3 +225,36 @@ const translatePath = i18n.useTranslatedPath(lang);
     </div>
   </div>
 </footer>
+<PolicyModal lang={lang} />
+
+<script>
+  (function(){
+    function openPolicyModal(type){
+      const id = type === 'terms' ? 'policy-modal-terms' : 'policy-modal-privacy';
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.add('open');
+      el.setAttribute('aria-hidden', 'false');
+    }
+    function closePolicyModal(el){
+      if(!el) return;
+      el.classList.remove('open');
+      el.setAttribute('aria-hidden', 'true');
+    }
+    window.openPolicyModal = openPolicyModal;
+    window.closePolicyModal = closePolicyModal;
+
+    document.addEventListener('click', function(e){
+      const target = e.target;
+      if(!(target instanceof Element)) return;
+      if(target.matches('[data-action="close"]') || target.closest('[data-action="close"]')){
+        const modal = target.closest('.policy-modal');
+        if(modal) closePolicyModal(modal);
+      }
+      if(target.matches('.policy-close')){
+        const modal = target.closest('.policy-modal');
+        if(modal) closePolicyModal(modal);
+      }
+    }, true);
+  })();
+</script>

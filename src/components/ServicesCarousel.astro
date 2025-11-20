@@ -22,7 +22,8 @@ const { slides, lang = 'es' } = Astro.props;
 
 <div class="services-carousel-wrapper">
   <div class="services-carousel" data-carousel="services">
-    <div class="services-track">
+    <div class="services-carousel-container">
+      <div class="services-track">
       {slides.map((slide, index) => (
         <div class="service-slide" data-slide-index={index}>
           <div class="service-card" data-color={slide.color}>
@@ -61,17 +62,6 @@ const { slides, lang = 'es' } = Astro.props;
                   format="webp"
                   width={400}
                   height={400}
-                  style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: slide.bgRightPosition?.includes('top') ? '15%' : '50%',
-                    transform: 'translateY(-50%)',
-                    height: '80%',
-                    width: 'auto',
-                    objectFit: 'contain',
-                    pointerEvents: 'none',
-                    zIndex: 0
-                  }}
                 />
               )}
               {slide.services && (
@@ -104,6 +94,7 @@ const { slides, lang = 'es' } = Astro.props;
           </div>
         </div>
       ))}
+      </div>
     </div>
   </div>
 </div>
@@ -112,58 +103,87 @@ const { slides, lang = 'es' } = Astro.props;
 
 <script>
   function initServicesCarousel() {
-    const carousel = document.querySelector('[data-carousel="services"]') as HTMLElement;
+    const carousel = document.querySelector('[data-carousel="services"]');
     if (!carousel) return;
 
-    const track = carousel.querySelector('.services-track') as HTMLElement;
-    const slides = Array.from(track.querySelectorAll('.service-slide')) as HTMLElement[];
-    
-    let selectedIndex = 1; // Start at second slide
-    let expandedIndex: number | null = null;
+    const container = carousel.querySelector('.services-carousel-container');
+    if (!container) return;
+
+    const track = container.querySelector('.services-track');
+    if (!(track instanceof HTMLElement)) return;
+    const trackEl = track;
+    const handledCards = new WeakSet();
+
+    const getSlides = () => Array.from(trackEl.querySelectorAll('.service-slide')).filter(el => el instanceof HTMLElement);
+
+    let slides = getSlides();
+
+    function forceSlideLayout() {
+      slides.forEach(s => {
+        s.style.display = s.style.display || 'flex';
+        s.style.flex = s.style.flex || '0 0 auto';
+        s.style.boxSizing = 'border-box';
+      });
+    }
+
+    let selectedIndex = 0;
+    let expandedIndex = null;
+    let lastInteraction = 0;
     let isMobile = window.innerWidth < 1024;
 
-    function scrollToSlide(index: number) {
-      const slide = slides[index];
-      if (!slide || !track) return;
-      try {
-        const left = slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2;
-        track.scrollTo({ left, behavior: 'smooth' });
-      } catch (err) {
-        slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+    const getGap = () => {
+      const gap = getComputedStyle(trackEl).gap;
+      const px = parseFloat(gap);
+      return Number.isFinite(px) && gap.includes('px') ? px : 16;
+    };
+
+    function imagesLoadedPromise() {
+      const imgs = Array.from(container.querySelectorAll('img'));
+      if (!imgs.length) return Promise.resolve();
+      return Promise.all(imgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        });
+      }));
+    }
+
+    function safeSlideWidth() {
+      slides = getSlides();
+      if (!slides[0]) return 0;
+      const gap = getGap();
+      const w = slides[0].offsetWidth || slides[0].getBoundingClientRect().width || 300;
+      return w + gap;
+    }
+
+    function scrollToSlide(index) {
+      slides = getSlides();
+      if (!slides[0]) return;
+      const gap = getGap();
+      const representativeWidth = (slides[0].offsetWidth || slides[0].getBoundingClientRect().width) + gap;
+      const left = Math.round(representativeWidth * index);
+      const maxScroll = Math.max(0, trackEl.scrollWidth - trackEl.clientWidth);
+      const finalLeft = Math.max(0, Math.min(maxScroll, left));
+      trackEl.scrollTo({ left: finalLeft, behavior: 'smooth' });
     }
 
     function updateSelectedSlide() {
-      const trackRect = track.getBoundingClientRect();
-      const centerX = trackRect.left + trackRect.width / 2;
-
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-
-      slides.forEach((slide, index) => {
-        const slideRect = slide.getBoundingClientRect();
-        const slideCenterX = slideRect.left + slideRect.width / 2;
-        const distance = Math.abs(centerX - slideCenterX);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      if (closestIndex !== selectedIndex) {
-        selectedIndex = closestIndex;
+      const slideWidth = Math.max(1, safeSlideWidth());
+      const currentIndex = Math.round(trackEl.scrollLeft / slideWidth);
+      if (currentIndex !== selectedIndex) {
+        selectedIndex = currentIndex;
         updateSlideStates();
       }
     }
 
     function updateSlideStates() {
       slides.forEach((slide, index) => {
-        const card = slide.querySelector('.service-card') as HTMLElement;
+        const card = slide.querySelector('.service-card');
         const isActive = index === selectedIndex;
-        
+
         if (isMobile) {
-          slide.style.transform = isActive ? 'scale(1)' : 'scale(0.85)';
+          slide.style.transform = isActive ? 'scale(1)' : 'scale(0.90)';
           slide.style.opacity = isActive ? '1' : '0.5';
           slide.style.pointerEvents = isActive ? 'auto' : 'none';
         } else {
@@ -174,54 +194,92 @@ const { slides, lang = 'es' } = Astro.props;
       });
     }
 
-    function toggleExpand(index: number) {
+    function ensureFullyVisible(index) {
+      slides = getSlides();
       const slide = slides[index];
-      const card = slide.querySelector('.service-card') as HTMLElement;
-      
+      if (!slide) return;
+      const card = slide.querySelector('.service-card');
+
+      const slideRect = slide.getBoundingClientRect();
+      const trackRect = trackEl.getBoundingClientRect();
+
+      if (slideRect.left >= trackRect.left && slideRect.right <= trackRect.right) return;
+
+      const cardRect = card.getBoundingClientRect();
+      const cardCenterViewportX = cardRect.left + cardRect.width / 2;
+      const offsetWithinTrack = cardCenterViewportX - trackRect.left;
+      const targetLeft = trackEl.scrollLeft + offsetWithinTrack - trackEl.clientWidth / 2;
+
+      const maxScroll = Math.max(0, trackEl.scrollWidth - trackEl.clientWidth);
+      const finalLeft = Math.max(0, Math.min(maxScroll, targetLeft));
+
+      const prevSnap = trackEl.style.scrollSnapType;
+      trackEl.style.scrollSnapType = 'none';
+      trackEl.scrollTo({ left: finalLeft, behavior: 'smooth' });
+
+      setTimeout(() => { trackEl.style.scrollSnapType = prevSnap || 'x mandatory'; }, 350);
+    }
+
+    function toggleExpand(index) {
+      slides = getSlides();
+      const slide = slides[index];
+      if (!slide) return false;
+      const card = slide.querySelector('.service-card');
+
       if (expandedIndex === index) {
-        // Collapse
         expandedIndex = null;
         card.classList.remove('expanded');
+        forceSlideLayout();
+        return false;
       } else {
-        // Collapse others first
         slides.forEach(s => {
-          const c = s.querySelector('.service-card') as HTMLElement;
-          c.classList.remove('expanded');
-        });
-        
-        // Expand this one
+            const c = s.querySelector('.service-card');
+            c && c.classList.remove('expanded');
+          });
         expandedIndex = index;
         card.classList.add('expanded');
+        forceSlideLayout();
+        return true;
       }
     }
 
-    // Click handlers
-    slides.forEach((slide, index) => {
-      const card = slide.querySelector('.service-card') as HTMLElement;
-      
-      card.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
-        if (target.hasAttribute('data-open-modal') || target.closest('[data-open-modal]')) {
-          return; // Let modal button handle its own click
-        }
+    function attachClickHandlers() {
+      slides = getSlides();
+      slides.forEach((slide, index) => {
+        const card = slide.querySelector('.service-card');
+        if (!card) return;
+        if (handledCards.has(card)) return;
+        handledCards.add(card);
 
-        if (isMobile) {
-          const isActive = index === selectedIndex;
-          if (isActive) {
-            toggleExpand(index);
+        card.addEventListener('click', (e) => {
+          const target = e.target;
+          if (!(target instanceof Element)) return;
+          if (target.hasAttribute('data-open-modal')) return;
+
+          lastInteraction = performance.now();
+
+          if (isMobile) {
+            const isActive = index === selectedIndex;
+            if (isActive) {
+              toggleExpand(index);
+            } else {
+              scrollToSlide(index);
+            }
           } else {
-            scrollToSlide(index);
+            if (index !== selectedIndex) {
+              selectedIndex = index;
+              scrollToSlide(index);
+              updateSlideStates();
+            }
+            const opened = toggleExpand(index);
+            if (opened) {
+              setTimeout(() => ensureFullyVisible(index), 140);
+            }
           }
-        } else {
-          if (index !== selectedIndex) {
-            scrollToSlide(index);
-          }
-          toggleExpand(index);
-        }
+        });
       });
-    });
+    }
 
-    // Modal button handlers
     document.querySelectorAll('[data-open-modal]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -236,16 +294,14 @@ const { slides, lang = 'es' } = Astro.props;
     let velocityX = 0;
     let lastX = 0;
     let lastTime = 0;
-    let rafId: number | null = null;
+    let rafId = null;
     const dragThreshold = 5;
     let hasMoved = false;
 
-    const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
-
     const applyMomentum = () => {
       if (Math.abs(velocityX) > 0.5) {
-        track.scrollLeft -= velocityX;
-        velocityX *= 0.92; // Smoother friction like Embla
+        trackEl.scrollLeft -= velocityX;
+        velocityX *= 0.92;
         rafId = requestAnimationFrame(applyMomentum);
       } else {
         velocityX = 0;
@@ -253,120 +309,95 @@ const { slides, lang = 'es' } = Astro.props;
       }
     };
 
-    const handlePointerDown = (e: MouseEvent) => {
-      if (e.button !== 0) return; // Only left click
-      
+    const handleMouseDown = (e) => {
+      if (e.button !== 0) return;
       isDragging = true;
       hasMoved = false;
-      track.style.cursor = 'grabbing';
-      track.style.userSelect = 'none';
-      track.style.scrollSnapType = 'none'; // Disable snap during drag
-      
+      trackEl.style.cursor = 'grabbing';
+      trackEl.style.userSelect = 'none';
+      trackEl.style.scrollSnapType = 'none';
       startX = e.pageX;
       currentX = e.pageX;
       lastX = e.pageX;
-      startScrollLeft = track.scrollLeft;
+      startScrollLeft = trackEl.scrollLeft;
       lastTime = performance.now();
       velocityX = 0;
-      
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       e.preventDefault();
     };
 
-    const handlePointerMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       if (!isDragging) return;
-      
       e.preventDefault();
       currentX = e.pageX;
       const deltaX = currentX - startX;
-      
-      if (!hasMoved && Math.abs(deltaX) > dragThreshold) {
-        hasMoved = true;
-      }
-      
+      if (!hasMoved && Math.abs(deltaX) > dragThreshold) hasMoved = true;
       if (hasMoved) {
         const now = performance.now();
         const deltaTime = now - lastTime;
         const distance = currentX - lastX;
-        
         const targetScroll = startScrollLeft - deltaX;
-        track.scrollLeft = targetScroll;
-        
-        if (deltaTime > 0) {
-          velocityX = (distance / deltaTime) * 16; // Normalize to ~60fps
-        }
-        
+        trackEl.scrollLeft = targetScroll;
+        if (deltaTime > 0) velocityX = (distance / deltaTime) * 16;
         lastX = currentX;
         lastTime = now;
       }
     };
 
-    const handlePointerUp = () => {
+    const handleMouseUp = () => {
       if (!isDragging) return;
-      
       isDragging = false;
-      track.style.cursor = 'grab';
-      track.style.userSelect = '';
-      
-      setTimeout(() => {
-        if (!isDragging) {
-          track.style.scrollSnapType = 'x mandatory';
-        }
-      }, 50);
-      
-      if (hasMoved && Math.abs(velocityX) > 0.5) {
-        applyMomentum();
-      }
+      trackEl.style.cursor = 'grab';
+      trackEl.style.userSelect = '';
+      setTimeout(() => { if (!isDragging) trackEl.style.scrollSnapType = 'x mandatory'; }, 50);
+      if (hasMoved && Math.abs(velocityX) > 0.5) applyMomentum();
     };
 
-    track.addEventListener('mousedown', handlePointerDown);
-    document.addEventListener('mousemove', handlePointerMove);
-    document.addEventListener('mouseup', handlePointerUp);
-    
-    track.addEventListener('click', (e) => {
-      if (hasMoved) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    }, true);
-    // Scroll tracking
-    let scrollTimeout: number;
-    track.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = window.setTimeout(() => {
-        updateSelectedSlide();
-      }, 150);
-    });
+    trackEl.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    trackEl.addEventListener('click', (e) => { if (hasMoved) { e.preventDefault(); e.stopPropagation(); } }, true);
 
-    // Resize handler
+    let scrollTimeout;
+    trackEl.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => updateSelectedSlide(), 100);
+    }, { passive: true });
+
     function handleResize() {
       const wasMobile = isMobile;
       isMobile = window.innerWidth < 1024;
-      
-      if (wasMobile !== isMobile) {
-        updateSlideStates();
+      if (wasMobile !== isMobile) updateSlideStates();
+      forceSlideLayout();
+      if (!isMobile && expandedIndex !== null) {
+        setTimeout(() => ensureFullyVisible(expandedIndex), 120);
       }
     }
-
     window.addEventListener('resize', handleResize);
 
-    // Initial setup
-    setTimeout(() => {
-      scrollToSlide(1);
-      updateSlideStates();
-    }, 100);
+    imagesLoadedPromise().then(() => {
+      slides = getSlides();
+      forceSlideLayout();
+      attachClickHandlers();
+
+      if (!trackEl.style.scrollSnapType) trackEl.style.scrollSnapType = 'x mandatory';
+      if (!trackEl.style.overflowX) trackEl.style.overflowX = 'auto';
+
+      setTimeout(() => {
+        scrollToSlide(0);
+        updateSlideStates();
+      }, 80);
+    });
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      try { track.removeEventListener('mousedown', handleMouseDown); } catch(e){}
+      try { document.removeEventListener('mousemove', handleMouseMove); } catch(e){}
+      try { document.removeEventListener('mouseup', handleMouseUp); } catch(e){}
     };
   }
 
-  // Initialize on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initServicesCarousel);
   } else {
@@ -381,6 +412,7 @@ const { slides, lang = 'es' } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* center the container that holds the carousel */
     background: transparent;
     box-shadow: none;
   }
@@ -388,26 +420,73 @@ const { slides, lang = 'es' } = Astro.props;
   .services-carousel {
     width: 100%;
     max-width: 100%;
-    margin: 0 auto;
-    padding: 2rem 0;
+    margin: 0;
+    padding-block: 3.5rem;
+    padding-inline: 0;
+    min-height: 560px;
     overflow: visible;
     background: transparent;
     box-shadow: none;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .services-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Mobile: full width */
+    overflow: hidden; /* Critical: contains the scrollable track */
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1024px) {
+    .services-carousel-container {
+      max-width: 1600px; /* Wider container on desktop */
+    }
   }
 
   .services-track {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto;
+    gap: 0px; /* Mobile: no gap (cards touching) */
+    padding: 0; /* Mobile: no horizontal padding */
+    overflow-x: auto; /* Allow horizontal scroll */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 3rem 2rem;
     cursor: grab;
     will-change: scroll-position;
     background: transparent;
     box-shadow: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 1024px) {
+    .services-track {
+      gap: 1rem;
+      padding: 0 0.5rem;
+    }
+  }
+
+  .services-track .service-slide:last-child {
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .service-image,
+  .service-image img {
+    display: block;
+    border: none;
+    outline: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .service-image-wrapper,
+  .service-card {
+    background-clip: padding-box;
   }
 
   .services-track::-webkit-scrollbar {
@@ -416,7 +495,8 @@ const { slides, lang = 'es' } = Astro.props;
 
   .service-slide {
     flex: 0 0 auto;
-    scroll-snap-align: center;
+    scroll-snap-align: center; /* Mobile: center each card */
+    padding: 0; /* Mobile: remove slide internal padding */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -426,6 +506,12 @@ const { slides, lang = 'es' } = Astro.props;
     z-index: 1;
   }
 
+  @media (min-width: 1024px) {
+    .service-slide {
+      scroll-snap-align: start;
+      padding: 0 0.5rem;
+    }
+  }
   .service-card {
     position: relative;
     width: clamp(260px, 75vw, 320px);
@@ -573,6 +659,22 @@ const { slides, lang = 'es' } = Astro.props;
     }
   }
 
+  .service-bg-decoration {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .service-card.expanded .service-bg-decoration {
+    opacity: 1;
+  }
   .service-content {
     display: flex;
     flex-direction: column;
