@@ -20,7 +20,10 @@ export const useFormState = (initialState = {}) => {
     };
 
     const validateField = (field, value, rules) => {
-        if (rules.required && !value.trim()) {
+        const isEmpty = Array.isArray(value)
+            ? value.length === 0
+            : !(typeof value === 'string' ? value : String(value || '')).trim();
+        if (rules.required && isEmpty) {
             return "Este campo es obligatorio";
         }
 
@@ -30,6 +33,10 @@ export const useFormState = (initialState = {}) => {
 
         if (rules.phone && value && !/^\d{4}-\d{4}$/.test(value)) {
             return "Formato: 8888-8888";
+        }
+
+        if (rules.url && value && !/^https?:\/\/.+\..+/.test(value.trim())) {
+            return "Por favor ingrese una URL válida (ej: https://ejemplo.com)";
         }
 
         return null;
