@@ -198,7 +198,7 @@ const services = lang === 'en' ? servicesEn : servicesEs;
   </div>
 </div>
 
-<div id="services-modal-container"></div>
+<div id="services-modal-container" data-lang={lang}></div>
 
 <script>
   import { SubscriptionModal } from "../components/SubscriptionModal";
@@ -216,7 +216,7 @@ const services = lang === 'en' ? servicesEn : servicesEs;
       modalRoot = createRoot(container);
     }
 
-    const lang = document.documentElement.lang || 'es';
+    const lang = container.getAttribute('data-lang') || document.documentElement.lang || 'es';
     
     modalRoot.render(
       React.createElement(SubscriptionModal, {

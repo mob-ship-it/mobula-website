@@ -80,6 +80,10 @@ export const ui = {
     'form.error': 'Hubo un error. Por favor intenta nuevamente.',
   'form.plan.perMonth': ' / mes',
   'form.plan.creditsIncluded': 'créditos incluidos',
+  'form.selectPlan': 'Por favor selecciona un plan',
+  'form.selectAPlan': 'Selecciona un Plan',
+  'form.choosePlan': 'Elegí un plan...',
+  'form.subscriptionSuccess': 'Tu suscripción ha sido procesada exitosamente. Te contactaremos para coordinar los próximos pasos.',
 
     // Credits Section
     'credits.howTitle': '¿Cómo funcionan los créditos?',
@@ -257,6 +261,10 @@ export const ui = {
     'form.error': 'There was an error. Please try again.',
   'form.plan.perMonth': ' / month',
   'form.plan.creditsIncluded': 'credits included',
+  'form.selectPlan': 'Please select a plan',
+  'form.selectAPlan': 'Select a Plan',
+  'form.choosePlan': 'Choose a plan...',
+  'form.subscriptionSuccess': 'Your subscription has been processed successfully. We will contact you to coordinate the next steps.',
 
     // Credits Section
     'credits.howTitle': 'How do credits work?',

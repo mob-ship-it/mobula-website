@@ -45,7 +45,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
     const activePlan = showPlanSelector ? internalSelectedPlan : selectedPlan;
     
     if (showPlanSelector && !internalSelectedPlan) {
-      setSubmitStatus({ type: 'error', message: t('form.selectPlan') || 'Por favor selecciona un plan' });
+      setSubmitStatus({ type: 'error', message: t('form.selectPlan') });
       setIsSubmitting(false);
       return;
     }
@@ -56,12 +56,12 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
         planName: activePlan?.name || 'Unknown Plan'
       };
 
-      // Comentado temporalmente - envío de correo deshabilitado
-      // const response = await emailService.sendSubscriptionForm(submitData);
+
+      await emailService.sendSubscriptionForm(submitData);
       
       setSubmitStatus({ 
         type: 'success', 
-        message: 'Tu suscripción ha sido procesada exitosamente. Te contactaremos para coordinar los próximos pasos.'
+        message: t('form.subscriptionSuccess')
       });
       resetForm();
       
@@ -133,7 +133,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
             {showPlanSelector && (
               <div className="flex flex-col items-start gap-3 relative w-full">
                 <label htmlFor="plan-selector" className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-base">
-                  {safeLang === 'en' ? 'Select a Plan' : 'Selecciona un Plan'}
+                  {t('form.selectAPlan')}
                 </label>
                 <select
                   id="plan-selector"
@@ -190,7 +190,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
             <div className="space-y-6">
               <div className="flex flex-col items-start gap-3 relative w-full">
                 <label htmlFor={inputIds.name} className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-base">
-                  Nombre
+                  {t('form.name')}
                 </label>
                 <div className="relative w-full">
                   <input
@@ -198,7 +198,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
                     type="text"
                     value={formData.name}
                     onChange={(e) => updateField('name', e.target.value)}
-                    placeholder="juan@correo.com"
+                    placeholder={t('form.placeholder.name')}
                     aria-required="true"
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? 'error-subscription-name' : undefined}
@@ -234,7 +234,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
 
               <div className="flex flex-col items-start gap-3 relative w-full">
                 <label htmlFor={inputIds.phone} className="[font-family:'Be_Vietnam',Helvetica] font-normal text-white text-base">
-                  Teléfono
+                  {t('form.phone')}
                 </label>
                 <div className="relative w-full">
                   <input
@@ -242,7 +242,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
                     type="text"
                     value={formData.phone}
                     onChange={(e) => handlePhoneChange(e.target.value)}
-                    placeholder="8888-8888"
+                    placeholder={t('form.placeholder.phone')}
                     aria-required="true"
                     aria-invalid={!!errors.phone}
                     aria-describedby={errors.phone ? 'error-subscription-phone' : undefined}
@@ -294,7 +294,7 @@ export const SubscriptionModal = ({ isOpen, onClose, selectedPlan, lang, showPla
               disabled={isSubmitting}
               className="w-full h-[50px] bg-[#211EE1] hover:bg-[#1a17b8] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold [font-family:'Bricolage_Grotesque',Helvetica] text-lg rounded-full transition-all mb-32 md:mb-0"
             >
-              {isSubmitting ? t('form.sending') : 'Enviar'}
+              {isSubmitting ? t('form.sending') : t('form.send')}
             </button>
           </form>
         </div>

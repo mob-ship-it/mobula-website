@@ -264,7 +264,7 @@ const subscribeLabel = (t('plans.subscribe' as any) ?? 'Subscribe');
   </div>
 </div>
 
-<div id="plans-modal-container"></div>
+<div id="plans-modal-container" data-lang={lang}></div>
 
 <!-- Server-serialized plans JSON for client single source of truth -->
 <script type="application/json" id="plans-data" set:html={JSON.stringify(plans)}></script>
@@ -309,7 +309,7 @@ const subscribeLabel = (t('plans.subscribe' as any) ?? 'Subscribe');
       subscriptionModalRoot = createRoot(container);
     }
 
-    const lang = document.documentElement.lang || 'es';
+    const lang = container.getAttribute('data-lang') || document.documentElement.lang || 'es';
     
     subscriptionModalRoot.render(
       React.createElement(SubscriptionModal, {
@@ -332,7 +332,8 @@ const subscribeLabel = (t('plans.subscribe' as any) ?? 'Subscribe');
       socialModalRoot = createRoot(container);
     }
 
-    const lang = document.documentElement.lang || 'es';
+    const modalContainer = document.getElementById('plans-modal-container');
+    const lang = modalContainer?.getAttribute('data-lang') || document.documentElement.lang || 'es';
     
     socialModalRoot.render(
       React.createElement(SocialImpactModal, {

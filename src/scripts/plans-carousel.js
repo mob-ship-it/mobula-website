@@ -119,7 +119,7 @@ async function renderSubscriptionModal(isOpen) {
     const mod = await import('../components/SubscriptionModal.jsx');
     const SubscriptionModal = mod.default ?? mod.SubscriptionModal ?? ((props) => React.createElement('div', null, 'Missing component'));
 
-    const lang = document.documentElement.lang || 'es';
+    const lang = container.getAttribute('data-lang') || document.documentElement.lang || 'es';
     subscriptionModalRoot = createRoot(modalDiv);
     subscriptionModalRoot.render(React.createElement(SubscriptionModal, { isOpen, onClose, selectedPlan, lang }));
 
@@ -162,7 +162,7 @@ async function renderSocialModal(isOpen) {
     const mod = await import('../components/SocialImpactModal.jsx');
     const SocialImpactModal = mod.default ?? mod.SocialImpactModal ?? ((props) => React.createElement('div', null, 'Missing component'));
 
-    const lang = document.documentElement.lang || 'es';
+    const lang = container.getAttribute('data-lang') || document.documentElement.lang || 'es';
     socialModalRoot = createRoot(modalDiv);
     socialModalRoot.render(React.createElement(SocialImpactModal, { isOpen, onClose, lang }));
 
