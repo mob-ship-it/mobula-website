@@ -7,12 +7,40 @@ import arrowImage from '../assets/images/mockups/Layer_1.png';
 import '../styles/global.css';
 import '../styles/carousel-animations.css';
 import Footer from '../components/Footer.astro';
+import { SITE_URL } from '../config/site';
+import { getLangFromUrl, getAlternateLangPath } from '../i18n/utils';
+import { ui } from '../i18n/ui';
 
-const { title = "Mobula Studio" } = Astro.props;
-const path = Astro.url?.pathname || '/';
-const isHome = path === '/' || path === '/en' || path === '/en/';
-const [, maybeLang] = Astro.url.pathname.split('/');
-const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
+const { title = "Mobula Studio", description: propDescription } = Astro.props;
+const pathname = Astro.url?.pathname || '/';
+const isHome = pathname === '/' || pathname === '/en' || pathname === '/en/';
+const lang = getLangFromUrl(Astro.url);
+
+// Meta description: prop o inferida por ruta
+const pathNorm = pathname.replace(/^\/en\/?/, '/').replace(/\/+$/, '') || '/';
+const descriptionKeyByPath: Record<string, string> = {
+  '/': 'seo.home.description',
+  '/proyectos': 'seo.projects.description',
+  '/projects': 'seo.projects.description',
+  '/brief': 'seo.brief.description',
+  '/LegalLawOffice': 'seo.legal.description',
+  '/Stanzza': 'seo.stanzza.description',
+  '/ECPConsultingGroup': 'seo.ecp.description',
+  '/KaseCab': 'seo.kase.description',
+};
+const descriptionKey = descriptionKeyByPath[pathNorm] || 'seo.home.description';
+const description = propDescription ?? (ui[lang] as Record<string, string>)[descriptionKey] ?? (ui.es as Record<string, string>)['seo.home.description'];
+
+// Canonical: URL absoluta sin query
+const canonicalPath = pathname.replace(/\/+$/, '') || '/';
+const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+
+// Hreflang: URLs alternativas ES y EN
+const pathEs = getAlternateLangPath(Astro.url, 'es');
+const pathEn = getAlternateLangPath(Astro.url, 'en');
+const urlEs = `${SITE_URL}${pathEs}`;
+const urlEn = `${SITE_URL}${pathEn}`;
+const urlXDefault = `${SITE_URL}${pathEs}`;
 ---
 
 <!DOCTYPE html>
@@ -21,6 +49,11 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" hreflang="es" href={urlEs} />
+  <link rel="alternate" hreflang="en" href={urlEn} />
+  <link rel="alternate" hreflang="x-default" href={urlXDefault} />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700&display=swap" as="style" onload="this.rel='stylesheet'">

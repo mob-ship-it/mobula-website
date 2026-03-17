@@ -8,6 +8,14 @@ export const defaultLang = 'es';
 export const ui = {
   es: {
     'layout.title': 'Mobula Estudio - Marketing Digital',
+    // SEO meta descriptions (~150-160 caracteres)
+    'seo.home.description': 'Agencia de marketing digital. Estrategia, paid media, contenido y branding. Planes mensuales con créditos. Consultá y llevá tu marca al siguiente nivel.',
+    'seo.projects.description': 'Proyectos de Mobula: Linea Law, Stanzza, ECP Consulting Group, KaseCab. Casos de éxito en estrategia digital, branding y paid media.',
+    'seo.brief.description': 'Completá el brief para recibir una propuesta a medida. Contanos tu negocio, objetivos y presupuesto. Te respondemos en menos de 48 horas.',
+    'seo.legal.description': 'Caso Linea Law: engagement y conversiones por encima del promedio del sector legal. Estrategia en Meta, Google y LinkedIn por Mobula.',
+    'seo.stanzza.description': 'Caso Stanzza: más leads calificados en un mes. Estrategia multicanal para senior living. Awareness, consideración y conversión.',
+    'seo.ecp.description': 'Caso ECP Consulting Group: identidad de marca premium y cercana. Naming, diseño de identidad y sistema de comunicación por Mobula.',
+    'seo.kase.description': 'Caso KaseCab: diseño modular, disruptivo y adaptable. Identidad de marca para mobiliario modular. Branding y sistema visual.',
     'nav.services': 'Servicios',
     'nav.work': 'Nuestro Trabajo',
     'nav.blog': 'Blog',
@@ -189,6 +197,14 @@ export const ui = {
   },
   en: {
     'layout.title': 'Mobula Estudio - Digital Marketing',
+    // SEO meta descriptions (~150-160 chars)
+    'seo.home.description': 'Digital marketing agency. Strategy, paid media, content and branding. Monthly plans with credits. Get in touch and take your brand to the next level.',
+    'seo.projects.description': 'Mobula projects: Linea Law, Stanzza, ECP Consulting Group, KaseCab. Success stories in digital strategy, branding and paid media.',
+    'seo.brief.description': 'Fill out the brief to receive a tailored proposal. Tell us about your business, goals and budget. We respond within 48 hours.',
+    'seo.legal.description': 'Linea Law case study: engagement and conversions above the legal industry average. Strategy on Meta, Google and LinkedIn by Mobula.',
+    'seo.stanzza.description': 'Stanzza case study: more qualified leads in one month. Multichannel strategy for senior living. Awareness, consideration and conversion.',
+    'seo.ecp.description': 'ECP Consulting Group case study: premium, approachable brand identity. Naming, identity design and communication system by Mobula.',
+    'seo.kase.description': 'KaseCab case study: modular, disruptive, adaptable design. Brand identity for modular furniture. Branding and visual system.',
     'nav.services': 'Services',
     'nav.work': 'Our Work',
     'nav.blog': 'Blog',
