@@ -1,0 +1,12 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import BriefForm from '../../components/BriefForm';
+import * as i18n from '../../i18n/utils';
+
+const lang = 'en';
+const t = i18n.useTranslations(lang);
+---
+
+<MainLayout title={`${t('brief.form.title')} - Mobula Estudio`}>
+  <BriefForm client:load lang={lang} />
+</MainLayout>

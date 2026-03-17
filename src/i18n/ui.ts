@@ -80,6 +80,10 @@ export const ui = {
     'form.error': 'Hubo un error. Por favor intenta nuevamente.',
   'form.plan.perMonth': ' / mes',
   'form.plan.creditsIncluded': 'créditos incluidos',
+  'form.selectPlan': 'Por favor selecciona un plan',
+  'form.selectAPlan': 'Selecciona un Plan',
+  'form.choosePlan': 'Elegí un plan...',
+  'form.subscriptionSuccess': 'Tu suscripción ha sido procesada exitosamente. Te contactaremos para coordinar los próximos pasos.',
 
     // Credits Section
     'credits.howTitle': '¿Cómo funcionan los créditos?',
@@ -140,6 +144,42 @@ export const ui = {
     // Subscribe banner
     'subscribe.banner': 'Suscribite y accedé a todos nuestros servicios'
     ,
+    // Brief form
+    'nav.brief': 'Brief',
+    'brief.form.title': 'Brief para propuesta de servicios',
+    'brief.form.subtitle': 'Este Brief nos permitirá obtener una visión clara, sus necesidades y expectativas, para crear una propuesta a medida.',
+    'brief.form.sectionGeneral': 'Datos Generales',
+    'brief.form.companyName': 'Nombre de la empresa',
+    'brief.form.contactName': 'Nombre de contacto',
+    'brief.form.website': 'Website',
+    'brief.form.antecedentes': 'Antecedentes',
+    'brief.form.sectorIndustria': 'Sector o industria',
+    'brief.form.tiempoEnMercado': '¿Cuánto tiempo lleva en el mercado?',
+    'brief.form.productoEstrella': '¿Su producto estrella?',
+    'brief.form.valorPromedio': 'Valor promedio de su producto o servicio',
+    'brief.form.puntosDolor': '¿Cuáles son los desafíos o problemas que enfrentan actualmente?',
+    'brief.form.otro': 'Otro (especificar)',
+    'brief.form.estrategias': '¿Qué estrategias han intentado y por qué cree que no funcionaron?',
+    'brief.form.publicoObjetivo': 'Público objetivo. ¿A quién va dirigido su negocio/producto?',
+    'brief.form.competencia': 'Competencia',
+    'brief.form.diferenciacion': '¿Qué diferencia su producto/servicio de la competencia?',
+    'brief.form.presupuesto': 'Presupuesto estimado para publicidad por mes',
+    'brief.form.comoSupo': '¿Cómo supo de Mobula?',
+    'brief.form.placeholder.company': 'Nombre de la empresa',
+    'brief.form.placeholder.contact': 'Tu nombre',
+    'brief.form.placeholder.website': 'https://www.miempresa.com',
+    'brief.form.placeholder.sector': 'Sector o industria:',
+    'brief.form.placeholder.tiempo': '¿Cuánto tiempo lleva en el mercado?',
+    'brief.form.placeholder.producto': '¿Su producto estrella?',
+    'brief.form.placeholder.valor': 'Valor promedio de su producto o servicio',
+    'brief.form.placeholder.otro': 'Si ninguno aplica, describa aquí...',
+    'brief.form.placeholder.estrategias': 'Estrategias que probaron y por qué no funcionaron...',
+    'brief.form.placeholder.publico': 'A quién va dirigido su producto o servicio',
+    'brief.form.placeholder.competencia': 'Principales competidores',
+    'brief.form.placeholder.diferenciacion': 'Qué los hace únicos',
+    'brief.form.success': '¡Gracias! Recibiremos tu brief y en menos de 48 horas te contactaremos con nuestra propuesta.',
+    'brief.form.error': 'Hubo un error al enviar. Por favor intenta nuevamente.',
+    'brief.form.footer': 'Con estos datos podremos entender mejor sus necesidades y diseñar una propuesta alineada con sus objetivos.',
     // KaseCab Project page
     'kase.seoTitle': 'Un diseño modular, disruptivo y adaptable - Mobula Estudio',
     'kase.heading': 'Un diseño modular, disruptivo y adaptable',
@@ -221,6 +261,10 @@ export const ui = {
     'form.error': 'There was an error. Please try again.',
   'form.plan.perMonth': ' / month',
   'form.plan.creditsIncluded': 'credits included',
+  'form.selectPlan': 'Please select a plan',
+  'form.selectAPlan': 'Select a Plan',
+  'form.choosePlan': 'Choose a plan...',
+  'form.subscriptionSuccess': 'Your subscription has been processed successfully. We will contact you to coordinate the next steps.',
 
     // Credits Section
     'credits.howTitle': 'How do credits work?',
@@ -280,6 +324,42 @@ export const ui = {
     // Subscribe banner
     'subscribe.banner': 'Subscribe and get access to all our services'
     ,
+    // Brief form
+    'nav.brief': 'Brief',
+    'brief.form.title': 'Brief for service proposal',
+    'brief.form.subtitle': 'This Brief will help us understand your needs and expectations to create a tailored proposal.',
+    'brief.form.sectionGeneral': 'General Information',
+    'brief.form.companyName': 'Company name',
+    'brief.form.contactName': 'Contact name',
+    'brief.form.website': 'Website',
+    'brief.form.antecedentes': 'Background',
+    'brief.form.sectorIndustria': 'Sector or industry',
+    'brief.form.tiempoEnMercado': 'How long have you been in the market?',
+    'brief.form.productoEstrella': 'Your star product?',
+    'brief.form.valorPromedio': 'Average value of your product or service',
+    'brief.form.puntosDolor': 'What challenges or problems are you currently facing?',
+    'brief.form.otro': 'Other (specify)',
+    'brief.form.estrategias': 'What strategies have you tried and why do you think they didn\'t work?',
+    'brief.form.publicoObjetivo': 'Target audience. Who is your business/product aimed at?',
+    'brief.form.competencia': 'Competition',
+    'brief.form.diferenciacion': 'What differentiates your product/service from the competition?',
+    'brief.form.presupuesto': 'Estimated monthly advertising budget',
+    'brief.form.comoSupo': 'How did you hear about Mobula?',
+    'brief.form.placeholder.company': 'Company name',
+    'brief.form.placeholder.contact': 'Your name',
+    'brief.form.placeholder.website': 'https://www.mycompany.com',
+    'brief.form.placeholder.sector': 'Sector or industry:',
+    'brief.form.placeholder.tiempo': 'How long have you been in the market?',
+    'brief.form.placeholder.producto': 'Your star product?',
+    'brief.form.placeholder.valor': 'Average value of your product or service',
+    'brief.form.placeholder.otro': 'If none apply, describe here...',
+    'brief.form.placeholder.estrategias': 'Strategies you tried and why they didn\'t work...',
+    'brief.form.placeholder.publico': 'Who your product or service is aimed at',
+    'brief.form.placeholder.competencia': 'Main competitors',
+    'brief.form.placeholder.diferenciacion': 'What makes you unique',
+    'brief.form.success': 'Thanks! We received your brief and will contact you within 48 hours with our proposal.',
+    'brief.form.error': 'There was an error sending. Please try again.',
+    'brief.form.footer': 'With this information we can better understand your needs and design a proposal aligned with your goals.',
     // KaseCab Project page
     'kase.seoTitle': 'A modular, disruptive, and adaptable design - Mobula Estudio',
     'kase.heading': 'A modular, disruptive, and adaptable design',
@@ -301,7 +381,8 @@ export const ui = {
   'anchors.articles': 'articulos',
   'anchors.subscribe': 'suscribirse',
   'anchors.contact': 'contacto',
-  'anchors.faq': 'faq'
+  'anchors.faq': 'faq',
+  'anchors.brief': 'brief'
 });
 
 (ui as any).en = Object.assign({}, (ui as any).en, {
@@ -316,7 +397,8 @@ export const ui = {
   'anchors.articles': 'articles',
   'anchors.subscribe': 'subscribe',
   'anchors.contact': 'contact',
-  'anchors.faq': 'faq'
+  'anchors.faq': 'faq',
+  'anchors.brief': 'brief'
 });
 
 // If false, keep default language (es) without prefix in URLs

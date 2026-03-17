@@ -64,7 +64,57 @@ export const emailService = {
     } else {
       throw new Error('Error al agendar la llamada. Por favor intenta nuevamente.');
     }
-  }
+  },
+
+  /**
+   * Envía el formulario Brief a la API. La API backend debe estar configurada para
+   * reenviar los datos a 3 correos (configurar en form-email-sender-omega o similar).
+   */
+  async sendBriefForm(data) {
+    try {
+      const payload = {
+        type: 'brief',
+        companyName: data.companyName,
+        contactName: data.contactName,
+        email: data.email,
+        website: data.website,
+        sectorOrIndustry: data.sectorIndustria,
+        timeInMarket: data.tiempoEnMercado,
+        starProduct: data.productoEstrella,
+        averageValue: data.valorPromedio,
+        servicesOfInterest: data.serviciosInteres,
+        expectedResults: data.resultadosEsperados,
+        painPoints: data.puntosDolor,
+        painPointsOther: data.puntosDolorOtro || '',
+        strategiesTried: data.estrategiasIntentadas || '',
+        targetAudience: data.publicoObjetivo,
+        competition: data.competencia,
+        differentiation: data.diferenciacion,
+        budget: data.presupuesto,
+        howDidYouHear: data.comoSupo,
+      };
+
+      const response = await axios({
+        method: 'post',
+        url: 'https://form-email-sender-omega.vercel.app/mobula-brief',
+        data: payload,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      });
+
+      return {
+        success: true,
+        message: 'Brief enviado correctamente.',
+      };
+    } catch (error) {
+      throw new Error(
+        error.response?.data?.message ||
+          'Error al enviar el brief. Por favor intenta nuevamente.'
+      );
+    }
+  },
 };
 
 
