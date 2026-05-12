@@ -454,7 +454,8 @@ export const ui = {
   'anchors.subscribe': 'suscribirse',
   'anchors.contact': 'contacto',
   'anchors.faq': 'faq',
-  'anchors.brief': 'brief'
+  'anchors.brief': 'brief',
+  'anchors.briefContent': 'brief-contenido'
 });
 
 (ui as any).en = Object.assign({}, (ui as any).en, {
@@ -470,7 +471,8 @@ export const ui = {
   'anchors.subscribe': 'subscribe',
   'anchors.contact': 'contact',
   'anchors.faq': 'faq',
-  'anchors.brief': 'brief'
+  'anchors.brief': 'brief',
+  'anchors.briefContent': 'brief-content'
 });
 
 // If false, keep default language (es) without prefix in URLs

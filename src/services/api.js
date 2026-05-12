@@ -153,12 +153,9 @@ export const emailService = {
         additionalInfo: data.additionalInfo
       };
 
-      console.log('Payload a enviar:', payload);
-
       const response = await axios({
         method: 'post',
         url: 'https://form-email-sender-omega.vercel.app/mobula-brief',
-        //url: 'http://localhost:3000/mobula-brief', // <-- Cambiado para pruebas locales
         data: payload,
         headers: {
           'Content-Type': 'application/json',
