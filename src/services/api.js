@@ -115,6 +115,65 @@ export const emailService = {
       );
     }
   },
+
+  async sendBriefContentForm(data) {
+    try {
+      const payload = {
+        type: 'brief-content',
+        companyName: data.companyName,
+        contactName: data.contactName,
+        email: data.email,
+        socialMedia: data.socialMedia,
+        website: data.website,
+        location: data.location,
+        whatYouSell: data.whatYouSell,
+        mainProduct: data.mainProduct,
+        whyChooseYou: data.whyChooseYou,
+        projectGoal: data.projectGoal,
+        projectGoalOther: data.projectGoalOther,
+        targetAudience: data.targetAudience,
+        audienceInterests: data.audienceInterests,
+        audienceInterestsOther: data.audienceInterestsOther,
+        availableMaterials: data.availableMaterials,
+        materialsLink: data.materialsLink,
+        visualStyleAction: data.visualStyleAction,
+        visualStyleLookingFor: data.visualStyleLookingFor,
+        visualReferences: data.visualReferences,
+        visualDislikes: data.visualDislikes,
+        toneOfVoice: data.toneOfVoice,
+        pronoun: data.pronoun,
+        needsToDevelop: data.needsToDevelop,
+        needsToDevelopOther: data.needsToDevelopOther,
+        channels: data.channels,
+        channelsOther: data.channelsOther,
+        formats: data.formats,
+        formatsOther: data.formatsOther,
+        quantity: data.quantity,
+        deliveryDate: data.deliveryDate,
+        additionalInfo: data.additionalInfo
+      };
+
+      const response = await axios({
+        method: 'post',
+        url: 'https://form-email-sender-omega.vercel.app/mobula-brief',
+        data: payload,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      });
+
+      return {
+        success: true,
+        message: 'Brief enviado correctamente.',
+      };
+    } catch (error) {
+      throw new Error(
+        error.response?.data?.message ||
+          'Error al enviar el brief. Por favor intenta nuevamente.'
+      );
+    }
+  },
 };
 
 
