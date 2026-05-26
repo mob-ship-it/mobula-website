@@ -8,11 +8,21 @@ import '../styles/global.css';
 import '../styles/carousel-animations.css';
 import Footer from '../components/Footer.astro';
 
-const { title = "Mobula Studio" } = Astro.props;
+const {
+  title = "Mobula Studio",
+  description,
+  ogImage = "/imgOG.webp",
+} = Astro.props;
 const path = Astro.url?.pathname || '/';
 const isHome = path === '/' || path === '/en' || path === '/en/';
 const [, maybeLang] = Astro.url.pathname.split('/');
 const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
+const defaultDescription = lang === 'en'
+  ? 'Mobula Estudio - digital marketing, design, branding and content on a monthly plan. Strategy, paid media and measurable results.'
+  : 'Mobula Estudio - marketing digital, diseno, branding y contenido en plan mensual. Estrategia, paid media y resultados medibles.';
+const metaDescription = description ?? defaultDescription;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site).href;
 ---
 
 <!DOCTYPE html>
@@ -21,6 +31,17 @@ const lang = (maybeLang === 'en' || maybeLang === 'es') ? maybeLang : 'es';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
+  <meta name="description" content={metaDescription}>
+  <link rel="canonical" href={canonicalUrl.href}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={metaDescription}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl.href}>
+  <meta property="og:image" content={ogImageUrl}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={metaDescription}>
+  <meta name="twitter:image" content={ogImageUrl}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:500,400,600|Be+Vietnam:500,400,700&display=swap" as="style" onload="this.rel='stylesheet'">
