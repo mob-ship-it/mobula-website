@@ -1,0 +1,81 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import type { Project } from '../../data/projects/types';
+import { getFeaturedForProject } from '../../data/projects/featured';
+import * as i18n from '../../i18n/utils';
+import ProjectHero from './ProjectHero.astro';
+import ProjectIntro from './ProjectIntro.astro';
+import ProjectGallery from './ProjectGallery.astro';
+import ProjectTestimonial from './ProjectTestimonial.astro';
+import ProjectFeatured from './ProjectFeatured.astro';
+import ProjectSubscribe from './ProjectSubscribe.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const lang = i18n.getLangFromUrl(Astro.url) as 'es' | 'en';
+const t = i18n.useTranslations(lang);
+const translatePath = i18n.useTranslatedPath(lang);
+
+const featured = getFeaturedForProject(project.slug, lang).map((item) => ({
+  id: item.id,
+  title: item.title,
+  subtitle: item.subtitle,
+  image: item.image,
+  href: translatePath(item.path),
+}));
+
+const subscribeHref = lang === 'en' ? '/en#plans' : '/#planes';
+---
+
+<MainLayout title={project.seoTitle[lang]}>
+  <section class="bg-[#faf1ea] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
+      <ProjectHero
+        desktop={project.hero.desktop}
+        mobile={project.hero.mobile}
+        alt={project.hero.alt[lang]}
+      />
+
+      <ProjectIntro
+        intro={project.intro}
+        year={project.year}
+        siteUrl={project.siteUrl}
+        lang={lang}
+        visitSiteLabel={t('project.visitSite')}
+        yearLabel={t('project.year')}
+        industryLabel={t('project.industry')}
+        keyResultsLabel={t('project.keyResults')}
+      />
+
+      <ProjectGallery
+        rows={project.gallery}
+        lang={lang}
+        fallbackAlt={project.hero.alt[lang]}
+      />
+
+      {project.testimonial?.quote?.[lang]?.trim() && (
+        <ProjectTestimonial
+          quote={project.testimonial.quote[lang]}
+          name={project.testimonial.name}
+          role={project.testimonial.role[lang]}
+          photo={project.testimonial.photo}
+          placeholder={t('project.testimonialPlaceholder')}
+        />
+      )}
+
+      <ProjectFeatured
+        heading={t('project.featuredMore')}
+        projects={featured}
+      />
+
+      <ProjectSubscribe
+        banner={t('subscribe.banner')}
+        ctaLabel={t('cta.seePlans')}
+        ctaHref={subscribeHref}
+      />
+    </div>
+  </section>
+</MainLayout>

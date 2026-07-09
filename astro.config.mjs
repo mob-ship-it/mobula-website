@@ -37,6 +37,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@i18n': '/src/i18n',
+        '@data': '/src/data',
       },
     },
     css: {
