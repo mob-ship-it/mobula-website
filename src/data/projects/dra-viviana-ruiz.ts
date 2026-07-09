@@ -2,6 +2,8 @@ import type { Project } from './types';
 import hero from '../../assets/images/projects/dra_viviana_ruiz/heroviviana.webp';
 import sideImage from '../../assets/images/projects/dra_viviana_ruiz/mockup.webp';
 import gallery from '../../assets/images/projects/dra_viviana_ruiz/logosdra_viviana.webp';
+import arteEng from '../../assets/images/projects/dra_viviana_ruiz/arte_eng.webp';
+import tarjeta from '../../assets/images/projects/dra_viviana_ruiz/tarjetapresentacion.webp';
 import photo from '../../assets/images/projects/dra_viviana_ruiz/vivianaphoto.webp';
 
 export const draVivianaRuiz: Project = {
@@ -67,9 +69,28 @@ export const draVivianaRuiz: Project = {
         en: 'Dr. Viviana Ruiz - Visual identity system',
       },
     },
+    // Extra mobile gallery frames from Figma (desktop keeps the identity board only).
+    {
+      type: 'full',
+      visibility: 'mobile',
+      image: arteEng,
+      alt: {
+        es: 'Dra. Viviana Ruiz - Arte digital',
+        en: 'Dr. Viviana Ruiz - Digital artwork',
+      },
+    },
+    {
+      type: 'full',
+      visibility: 'mobile',
+      image: tarjeta,
+      alt: {
+        es: 'Dra. Viviana Ruiz - Tarjetas de presentación',
+        en: 'Dr. Viviana Ruiz - Business cards',
+      },
+    },
   ],
   testimonial: {
-    // Quote pending from client — UI shows placeholder until filled.
+    // Quote pending from client — section stays hidden until quote is set.
     name: 'Dra. Viviana Ruiz',
     role: {
       es: 'Owner',

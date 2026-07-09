@@ -9,28 +9,31 @@ interface Props {
 }
 
 const { desktop, mobile, alt } = Astro.props;
+
+/** Same frame as legacy heroes (~1224x628 desktop, square mobile). */
+const desktopAspect = 'lg:aspect-[1.95]';
 ---
 
-<div class="mb-10">
-  <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+<div class="mb-10 w-full">
+  <div class={`relative w-full rounded-3xl overflow-hidden shadow-2xl aspect-square ${desktopAspect}`}>
     <Image
       src={desktop}
       alt={alt}
-      width={1600}
-      height={1000}
+      width={1224}
+      height={628}
       format="webp"
       quality={90}
-      class="hidden lg:block w-full h-auto object-cover"
+      class="hidden lg:block absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />
     <Image
       src={mobile}
       alt={alt}
       width={800}
-      height={1000}
+      height={800}
       format="webp"
       quality={90}
-      class="lg:hidden w-full h-auto object-cover"
+      class="lg:hidden absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />
   </div>

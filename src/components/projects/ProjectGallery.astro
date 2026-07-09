@@ -11,6 +11,13 @@ interface Props {
 }
 
 const { rows, lang, fallbackAlt } = Astro.props;
+
+const visibilityClass = (visibility: GalleryRow['visibility'] = 'all') =>
+  visibility === 'mobile'
+    ? 'lg:hidden'
+    : visibility === 'desktop'
+      ? 'hidden lg:block'
+      : '';
 ---
 
 <div class="project-gallery">
@@ -20,27 +27,32 @@ const { rows, lang, fallbackAlt } = Astro.props;
         <GalleryFull
           image={row.image}
           alt={row.alt?.[lang] ?? fallbackAlt}
+          visibility={row.visibility}
         />
       );
     }
     if (row.type === 'split') {
       return (
-        <GallerySplit
-          images={row.images}
-          alts={[
-            row.alt?.[0]?.[lang] ?? fallbackAlt,
-            row.alt?.[1]?.[lang] ?? fallbackAlt,
-          ]}
-          aspect={row.aspect}
-        />
+        <div class={visibilityClass(row.visibility)}>
+          <GallerySplit
+            images={row.images}
+            alts={[
+              row.alt?.[0]?.[lang] ?? fallbackAlt,
+              row.alt?.[1]?.[lang] ?? fallbackAlt,
+            ]}
+            aspect={row.aspect}
+          />
+        </div>
       );
     }
     return (
-      <GalleryCustom
-        layout={row.layout}
-        images={row.images}
-        alts={(row.alt ?? []).map((a) => a?.[lang] ?? fallbackAlt)}
-      />
+      <div class={visibilityClass(row.visibility)}>
+        <GalleryCustom
+          layout={row.layout}
+          images={row.images}
+          alts={(row.alt ?? []).map((a) => a?.[lang] ?? fallbackAlt)}
+        />
+      </div>
     );
   })}
 </div>

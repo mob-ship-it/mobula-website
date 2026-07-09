@@ -13,11 +13,15 @@ export type LocalizedStringList = {
 
 export type GalleryAspect = 'landscape' | 'portrait' | 'square';
 
+/** Where a gallery row should render. Default: all breakpoints. */
+export type GalleryVisibility = 'all' | 'mobile' | 'desktop';
+
 /** Full-width single asset row. */
 export type GalleryFullRow = {
   type: 'full';
   image: ImageMetadata;
   alt?: LocalizedString;
+  visibility?: GalleryVisibility;
 };
 
 /** Two-column row (equal width by default). */
@@ -26,6 +30,7 @@ export type GallerySplitRow = {
   images: [ImageMetadata, ImageMetadata];
   alt?: [LocalizedString?, LocalizedString?];
   aspect?: GalleryAspect;
+  visibility?: GalleryVisibility;
 };
 
 /**
@@ -38,6 +43,7 @@ export type GalleryCustomRow = {
   layout: string;
   images: ImageMetadata[];
   alt?: LocalizedString[];
+  visibility?: GalleryVisibility;
 };
 
 export type GalleryRow = GalleryFullRow | GallerySplitRow | GalleryCustomRow;
