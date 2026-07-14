@@ -1,0 +1,36 @@
+---
+interface Props {
+  year: string;
+  industry: string;
+  yearLabel: string;
+  industryLabel: string;
+  class?: string;
+}
+
+const {
+  year,
+  industry,
+  yearLabel,
+  industryLabel,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`grid grid-cols-2 gap-8 md:gap-12 max-w-lg lg:max-w-none ${className}`}>
+  <div class="text-left">
+    <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+      {yearLabel}
+    </p>
+    <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-2xl md:text-3xl">
+      {year}
+    </p>
+  </div>
+  <div class="text-left">
+    <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c]/60 text-sm md:text-base mb-2">
+      {industryLabel}
+    </p>
+    <p class="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-[#13243c] text-xl md:text-2xl leading-tight">
+      {industry}
+    </p>
+  </div>
+</div>

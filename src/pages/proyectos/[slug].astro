@@ -1,0 +1,19 @@
+---
+import ProjectCaseStudy from '../../components/projects/ProjectCaseStudy.astro';
+import { getAllProjectSlugs, getProjectBySlug } from '../../data/projects';
+
+export function getStaticPaths() {
+  return getAllProjectSlugs().map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const project = getProjectBySlug(slug!);
+
+if (!project) {
+  return Astro.redirect('/proyectos');
+}
+---
+
+<ProjectCaseStudy project={project} />

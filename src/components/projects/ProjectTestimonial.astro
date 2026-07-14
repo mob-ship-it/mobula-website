@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import leftDecor from '../../assets/images/projects/lefttestimonialelement.png';
+import rightDecor from '../../assets/images/projects/righttestimoniaelement.png';
+
+interface Props {
+  quote?: string;
+  name: string;
+  role: string;
+  photo: ImageMetadata;
+  placeholder?: string;
+}
+
+const { quote, name, role, photo, placeholder = 'Aquí va el testimonio' } = Astro.props;
+const displayQuote = quote?.trim() ? quote.replace(/^["“]|["”]$/g, '') : null;
+---
+
+<div class="mb-12 lg:mb-16">
+  <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-[#0a8f95]">
+    <!--
+      Use astro:assets Image with the PNG's real aspect ratio.
+      Forcing wrong width/height (e.g. 120x400 on a 478x390 asset) is what
+      made the decorative vectors look distorted vs ECP's plain <img>.
+    -->
+    <Image
+      src={leftDecor}
+      alt=""
+      width={478}
+      height={390}
+      format="png"
+      quality={100}
+      class="hidden lg:block absolute left-0 top-0 h-full w-auto pointer-events-none object-cover"
+      style="object-position: left center;"
+      loading="lazy"
+      aria-hidden="true"
+    />
+    <Image
+      src={rightDecor}
+      alt=""
+      width={111}
+      height={365}
+      format="png"
+      quality={100}
+      class="hidden lg:block absolute right-0 bottom-0 h-full w-auto pointer-events-none object-cover"
+      style="object-position: right center;"
+      loading="lazy"
+      aria-hidden="true"
+    />
+    <Image
+      src={rightDecor}
+      alt=""
+      width={111}
+      height={365}
+      format="png"
+      quality={100}
+      class="lg:hidden absolute bottom-0 right-0 w-auto h-[60%] pointer-events-none object-contain"
+      style="object-position: bottom right;"
+      loading="lazy"
+      aria-hidden="true"
+    />
+
+    <div class="relative z-10 px-6 py-10 md:px-12 md:py-12">
+      <p
+        class:list={[
+          "[font-family:'Be_Vietnam',Helvetica] text-white text-lg md:text-[20px] leading-relaxed text-center max-w-5xl mx-auto",
+          !displayQuote && 'opacity-80 italic',
+        ]}
+      >
+        {displayQuote ? `“${displayQuote}”` : placeholder}
+      </p>
+      <div class="mt-8 flex flex-col items-center">
+        <Image
+          src={photo}
+          alt={name}
+          width={56}
+          height={56}
+          format="webp"
+          quality={90}
+          class="w-14 h-14 rounded-full object-cover shadow-md"
+          loading="lazy"
+        />
+        <div class="[font-family:'Be_Vietnam',Helvetica] text-white text-sm md:text-base mt-3 text-center">
+          <p class="font-semibold">{name}</p>
+          <p class="font-normal opacity-90">{role}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

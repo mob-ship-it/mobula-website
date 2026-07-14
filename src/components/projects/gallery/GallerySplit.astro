@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { GalleryAspect } from '../../../data/projects/types';
+
+interface Props {
+  images: [ImageMetadata, ImageMetadata];
+  alts: [string, string];
+  aspect?: GalleryAspect;
+}
+
+const { images, alts, aspect = 'landscape' } = Astro.props;
+
+const objectClass =
+  aspect === 'portrait'
+    ? 'w-full h-auto object-cover'
+    : aspect === 'square'
+      ? 'w-full aspect-square object-cover'
+      : 'w-full h-auto object-cover';
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-8 lg:mb-12">
+  {images.map((image, i) => (
+    <div class="rounded-3xl overflow-hidden shadow-2xl">
+      <Image
+        src={image}
+        alt={alts[i]}
+        width={900}
+        height={aspect === 'portrait' ? 1200 : 900}
+        format="webp"
+        quality={90}
+        class={objectClass}
+        loading="lazy"
+      />
+    </div>
+  ))}
+</div>

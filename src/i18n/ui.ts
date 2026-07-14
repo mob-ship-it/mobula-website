@@ -121,17 +121,23 @@ export const ui = {
   'projects.cards.ecp.desc': 'Construimos la base de una marca premium y cercana.',
     
     'projects.cards.kasecab.desc': 'Un diseño modular, disruptivo y adaptable.',
+    'projects.cards.viviana.title': 'Dra. Viviana Ruiz',
+    'projects.cards.viviana.desc': 'La base de una marca que inspira confianza.',
 
     // Project 'more' links (used on projects listing)
     'projects.more.legal': 'Conocé más sobre Linea Law',
     'projects.more.stanzza': 'Conocé más sobre Stanzza Senior Living',
     'projects.more.ecp': 'Conocé más sobre ECP Consulting Group',
     'projects.more.kasecab': 'Conocé más sobre KaseCab Americas',
+    'projects.more.viviana': 'Conocé más sobre Dra. Viviana Ruiz',
 
     // Project generic labels
     'project.featuredMore': 'Ver más proyectos destacados',
     'project.year': 'Año',
     'project.industry': 'Industria',
+    'project.visitSite': 'Visitar sitio',
+    'project.keyResults': 'Resultados Clave',
+    'project.testimonialPlaceholder': 'Aquí va el testimonio',
 
     // ECP Project page
     'ecp.seoTitle': 'Construimos la base de una marca premium y cercana - Mobula Estudio',
@@ -331,6 +337,8 @@ export const ui = {
     'projects.cards.stanzza.desc': 'More qualified leads in just one month.',
     'projects.cards.ecp.desc': 'We built the foundation of a premium and approachable brand.',
     'projects.cards.kasecab.desc': 'A modular, disruptive, and adaptable design.',
+    'projects.cards.viviana.title': 'Dr. Viviana Ruiz',
+    'projects.cards.viviana.desc': 'The foundation of a brand that inspires trust.',
 
   // Project card titles
   'projects.cards.legal.title': 'Linea Law',
@@ -343,11 +351,15 @@ export const ui = {
     'projects.more.stanzza': 'Learn more about Stanzza Senior Living',
     'projects.more.ecp': 'Learn more about ECP Consulting Group',
     'projects.more.kasecab': 'Learn more about KaseCab Americas',
+    'projects.more.viviana': 'Learn more about Dr. Viviana Ruiz',
 
     // Project generic labels
     'project.featuredMore': 'See more featured projects',
     'project.year': 'Year',
     'project.industry': 'Industry',
+    'project.visitSite': 'Visit site',
+    'project.keyResults': 'Key Results',
+    'project.testimonialPlaceholder': 'Testimonial coming soon',
 
     // ECP Project page
     'ecp.seoTitle': 'We built the foundation of a premium and approachable brand - Mobula Estudio',

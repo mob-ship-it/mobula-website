@@ -1,0 +1,58 @@
+---
+import type { GalleryRow } from '../../data/projects/types';
+import GalleryFull from './gallery/GalleryFull.astro';
+import GallerySplit from './gallery/GallerySplit.astro';
+import GalleryCustom from './gallery/GalleryCustom.astro';
+
+interface Props {
+  rows: GalleryRow[];
+  lang: 'es' | 'en';
+  fallbackAlt: string;
+}
+
+const { rows, lang, fallbackAlt } = Astro.props;
+
+const visibilityClass = (visibility: GalleryRow['visibility'] = 'all') =>
+  visibility === 'mobile'
+    ? 'lg:hidden'
+    : visibility === 'desktop'
+      ? 'hidden lg:block'
+      : '';
+---
+
+<div class="project-gallery">
+  {rows.map((row) => {
+    if (row.type === 'full') {
+      return (
+        <GalleryFull
+          image={row.image}
+          alt={row.alt?.[lang] ?? fallbackAlt}
+          visibility={row.visibility}
+        />
+      );
+    }
+    if (row.type === 'split') {
+      return (
+        <div class={visibilityClass(row.visibility)}>
+          <GallerySplit
+            images={row.images}
+            alts={[
+              row.alt?.[0]?.[lang] ?? fallbackAlt,
+              row.alt?.[1]?.[lang] ?? fallbackAlt,
+            ]}
+            aspect={row.aspect}
+          />
+        </div>
+      );
+    }
+    return (
+      <div class={visibilityClass(row.visibility)}>
+        <GalleryCustom
+          layout={row.layout}
+          images={row.images}
+          alts={(row.alt ?? []).map((a) => a?.[lang] ?? fallbackAlt)}
+        />
+      </div>
+    );
+  })}
+</div>

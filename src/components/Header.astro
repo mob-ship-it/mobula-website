@@ -12,7 +12,15 @@ const showLeftLogoEffective = showLeftLogo;
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
 const projectsSlug = `/${t('anchors.projects' as any)}`;
-const isWork = pathNoLang === projectsSlug || pathNoLang === '/LegalLawOffice' || pathNoLang === '/ECPConsultingGroup' || pathNoLang === '/KaseCab' || pathNoLang === '/Stanzza';
+const isWork =
+  pathNoLang === projectsSlug ||
+  pathNoLang.startsWith(`${projectsSlug}/`) ||
+  pathNoLang.startsWith('/proyectos/') ||
+  pathNoLang.startsWith('/projects/') ||
+  pathNoLang === '/LegalLawOffice' ||
+  pathNoLang === '/ECPConsultingGroup' ||
+  pathNoLang === '/KaseCab' ||
+  pathNoLang === '/Stanzza';
 const isHome = pathNoLang === '/';
 ---
 
