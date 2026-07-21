@@ -7,6 +7,7 @@ interface Props {
     name: string;
     role: string;
     image: ImageMetadata;
+    strongOverlay?: boolean;
   }>;
 }
 
@@ -65,7 +66,14 @@ const { members } = Astro.props;
                   loading="lazy"
                   format="webp"
                 />
-                <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6 text-white bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                <div
+                  class:list={[
+                    'absolute bottom-0 left-0 right-0 p-4 lg:p-6 text-white',
+                    member.strongOverlay
+                      ? 'bg-gradient-to-t from-black/90 via-black/55 to-transparent pt-24 lg:pt-32'
+                      : 'bg-gradient-to-t from-black/70 via-black/20 to-transparent',
+                  ]}
+                >
                   <h3
                     class="[font-family:'Bricolage_Grotesque',Helvetica] font-medium text-white whitespace-normal break-words mb-0"
                     style="color: #FFF; font-family: Bricolage Grotesque, Bricolage_Grotesque, Helvetica; font-weight: 500; line-height: 1;"

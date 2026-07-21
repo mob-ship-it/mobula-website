@@ -5,8 +5,12 @@ import arielaDengo from '../assets/images/team/ariela-dengo.png';
 import erickV from '../assets/images/team/erick-vasquez.png';
 import gabrielC from '../assets/images/team/gabriel-chavarria.png';
 import gavrielA from '../assets/images/team/gavriel-arias.png';
-import jorgeC from '../assets/images/team/jorge-c.webp';
+import jorgeC from '../assets/images/team/FotoJorge.webp';
+import matiasG from '../assets/images/team/FotoTatu.webp';
 import * as i18n from '../i18n/utils';
+
+const lang = i18n.getLangFromUrl(Astro.url);
+const t = i18n.useTranslations(lang);
 
 const teamMembers = [
   {
@@ -38,12 +42,16 @@ const teamMembers = [
     name: "Gavriel Arias",
     role: "Creative Producer",
     image: gavrielA
+  },
+  {
+    id: 6,
+    name: "Matías Grasset (Tatu)",
+    role: lang === 'en' ? "Senior Multimedia Designer" : "Diseñador Multimedia Senior",
+    image: matiasG,
+    strongOverlay: true,
   }
 ];
-const lang = i18n.getLangFromUrl(Astro.url);
-const t = i18n.useTranslations(lang);
 ---
-
 <section class="bg-[#faf1ea] py-12 md:py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-8 md:mb-12">
