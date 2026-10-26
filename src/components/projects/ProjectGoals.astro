@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import type { ProjectGoals as ProjectGoalsData } from '../../data/projects/types';
+
+interface Props {
+  goals: ProjectGoalsData;
+  lang: 'es' | 'en';
+}
+
+const { goals, lang } = Astro.props;
+const title = goals.title[lang];
+const items = goals.items[lang];
+const hasImage = Boolean(goals.image);
+---
+
+{/*
+  Mobile (Figma): title + bullets, then image.
+  Desktop (1440): image left, title + bullets right.
+  Body: Be Vietnam Regular 24px / line-height 122%.
+*/}
+<div
+  class:list={[
+    'mt-12 lg:mt-20 mb-10 lg:mb-16',
+    hasImage && 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start',
+  ]}
+>
+  <div class:list={[hasImage && 'order-1 lg:order-2']}>
+    <h2 class="project-section-title mb-6 lg:mb-8">
+      {title}
+    </h2>
+    <ul class="project-body-list list-disc pl-6 space-y-4">
+      {items.map((item) => (
+        <li set:html={item} />
+      ))}
+    </ul>
+  </div>
+
+  {goals.image && (
+    <div class="order-2 lg:order-1 rounded-3xl overflow-hidden shadow-2xl aspect-square">
+      <Image
+        src={goals.image}
+        alt={goals.imageAlt?.[lang] ?? title}
+        width={900}
+        height={900}
+        format="webp"
+        quality={90}
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+  )}
+</div>
