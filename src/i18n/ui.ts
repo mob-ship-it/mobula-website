@@ -127,6 +127,8 @@ export const ui = {
     'projects.cards.tabstr.desc': 'Construimos el lanzamiento de una marca que se ríe de los POS del pasado.',
     'projects.cards.bria.title': 'Bría',
     'projects.cards.bria.desc': 'Diseñamos una valla móvil para la masa madre que está conquistando Turrialba.',
+    'projects.cards.apai.title': 'APAI',
+    'projects.cards.apai.desc': 'Transformamos el caos del papel en una gestión operativa 100% digital.',
 
     // Project 'more' links (used on projects listing)
     'projects.more.legal': 'Conocé más sobre Linea Law',
@@ -136,6 +138,7 @@ export const ui = {
     'projects.more.viviana': 'Conocé más sobre Dra. Viviana Ruiz',
     'projects.more.tabstr': 'Conocé más sobre Tabstr',
     'projects.more.bria': 'Conocé más sobre Bría',
+    'projects.more.apai': 'Conocé más sobre APAI',
 
     // Project generic labels
     'project.featuredMore': 'Ver más proyectos destacados',
@@ -349,6 +352,8 @@ export const ui = {
     'projects.cards.tabstr.desc': 'We built the launch of a brand that laughs at POS systems of the past.',
     'projects.cards.bria.title': 'Bría',
     'projects.cards.bria.desc': 'We designed a mobile billboard for the sourdough conquering Turrialba.',
+    'projects.cards.apai.title': 'APAI',
+    'projects.cards.apai.desc': 'We turned paper chaos into 100% digital operations management.',
 
   // Project card titles
   'projects.cards.legal.title': 'Linea Law',
@@ -364,6 +369,7 @@ export const ui = {
     'projects.more.viviana': 'Learn more about Dr. Viviana Ruiz',
     'projects.more.tabstr': 'Learn more about Tabstr',
     'projects.more.bria': 'Learn more about Bría',
+    'projects.more.apai': 'Learn more about APAI',
 
     // Project generic labels
     'project.featuredMore': 'See more featured projects',
