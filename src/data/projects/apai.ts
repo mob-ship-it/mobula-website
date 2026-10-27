@@ -1,5 +1,6 @@
 import type { Project } from './types';
 import hero from '../../assets/images/projects/apai/apai_hero_with_letters.png';
+import heroMobile from '../../assets/images/projects/apai/mobile_hero.png';
 import introSide from '../../assets/images/projects/apai/apai_intro_side.png';
 import dashboard from '../../assets/images/projects/apai/apai_dashboard.png';
 import mobile from '../../assets/images/projects/apai/apai_mobile.png';
@@ -26,7 +27,7 @@ export const apai: Project = {
   },
   hero: {
     desktop: hero,
-    mobile: hero,
+    mobile: heroMobile,
     alt: {
       es: 'APAI - App de gestión operativa inmobiliaria',
       en: 'APAI - Property operations management app',
