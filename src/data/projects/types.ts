@@ -55,6 +55,11 @@ export type ProjectIntroWithImage = {
   industry: LocalizedString;
   sideImage: ImageMetadata;
   sideImageAlt?: LocalizedString;
+  /**
+   * CSS object-position for the cropped side frame (Figma often shows a zoomed crop).
+   * Default: "center". APAI uses "left center".
+   */
+  sideImagePosition?: string;
 };
 
 export type ProjectIntroWithResults = {

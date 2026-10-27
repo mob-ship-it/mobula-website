@@ -28,83 +28,101 @@ const {
 const title = intro.title[lang];
 const paragraphs = intro.paragraphs[lang];
 const industry = intro.industry[lang];
+const sideImagePosition =
+  intro.variant === 'withImage' ? (intro.sideImagePosition ?? 'center') : 'center';
 ---
 
 {intro.variant === 'withImage' ? (
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start mb-10">
+  <div class="mb-10">
     {/*
-      Mobile order (matches Figma): title → copy → Año/Industria → side image.
-      Desktop: text+meta left, side image right.
-      Figma desktop reference: 1440px — title Medium/500 @ 60px.
+      Mobile: title → copy → Año/Industria → side image.
+      Desktop: title+copy | tall cropped frame (stretches with copy); meta below copy.
+      Figma crops the side art (e.g. left half of laptop) inside a tall grey frame.
     */}
-    <div class="order-1">
-      <div class="flex flex-col lg:flex-row lg:items-start lg:gap-4 mb-4 lg:mb-6">
-        <h1 class="project-section-title text-center lg:text-left">
-          {title}
-        </h1>
-        {siteUrl && (
-          <a
-            href={siteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden lg:inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-sm px-5 py-2 rounded-full hover:bg-[#faf1ea] transition-colors whitespace-nowrap self-start mt-1"
-          >
-            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            {visitSiteLabel}
-          </a>
-        )}
-      </div>
-      {siteUrl && (
-        <div class="mt-4 lg:hidden text-center">
-          <a
-            href={siteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-base md:text-lg px-6 py-2 rounded-full hover:bg-[#faf1ea] transition-colors"
-          >
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            {visitSiteLabel}
-          </a>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 lg:items-stretch">
+      <div class="order-1 flex flex-col">
+        <div class="flex flex-col lg:flex-row lg:items-start lg:gap-4 mb-4 lg:mb-6">
+          <h1 class="project-section-title text-center lg:text-left">
+            {title}
+          </h1>
+          {siteUrl && (
+            <a
+              href={siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden lg:inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-sm px-5 py-2 rounded-full hover:bg-[#faf1ea] transition-colors whitespace-nowrap self-start mt-1"
+            >
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {visitSiteLabel}
+            </a>
+          )}
         </div>
-      )}
-      {paragraphs.map((p, i) => (
-        <p
-          class:list={[
-            'project-body max-w-2xl mx-auto lg:mx-0 text-center lg:text-left',
-            i < paragraphs.length - 1 ? 'mb-3' : 'mb-0',
-          ]}
-        >
-          {p}
-        </p>
-      ))}
+        {siteUrl && (
+          <div class="mt-4 lg:hidden text-center">
+            <a
+              href={siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-white text-[#211ee1] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-base md:text-lg px-6 py-2 rounded-full hover:bg-[#faf1ea] transition-colors"
+            >
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 3h7v7M10 14L21 3M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {visitSiteLabel}
+            </a>
+          </div>
+        )}
+        {paragraphs.map((p, i) => (
+          <p
+            class:list={[
+              'project-body max-w-2xl mx-auto lg:mx-0 text-center lg:text-left',
+              i < paragraphs.length - 1 ? 'mb-3' : 'mb-0',
+            ]}
+          >
+            {p}
+          </p>
+        ))}
+      </div>
+
+      {/* Mobile: after copy, before image */}
+      <div class="order-2 lg:hidden mt-2">
+        <ProjectMeta
+          year={year}
+          industry={industry}
+          yearLabel={yearLabel}
+          industryLabel={industryLabel}
+        />
+      </div>
+
+      <div class="order-3 lg:order-2 min-h-[22rem] sm:min-h-[28rem] lg:min-h-0">
+        <div class="rounded-3xl bg-[#e8e4de] p-3 sm:p-4 lg:p-5 h-full min-h-[22rem] sm:min-h-[28rem] lg:min-h-full">
+          <div class="relative rounded-2xl overflow-hidden w-full h-full min-h-[20rem] sm:min-h-[26rem] lg:min-h-full shadow-lg bg-[#e8e4de]">
+            <Image
+              src={intro.sideImage}
+              alt={intro.sideImageAlt?.[lang] ?? title}
+              width={1200}
+              height={1600}
+              format="webp"
+              quality={90}
+              class="absolute inset-0 w-full h-full object-cover"
+              style={`object-position: ${sideImagePosition};`}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Desktop: meta under copy only so the frame height matches title + paragraphs */}
+    <div class="hidden lg:block mt-10 max-w-[calc(50%-1.5rem)] xl:max-w-[calc(50%-2rem)]">
       <ProjectMeta
         year={year}
         industry={industry}
         yearLabel={yearLabel}
         industryLabel={industryLabel}
-        class="mt-8"
       />
-    </div>
-    <div class="order-2">
-      {/* Light frame around the art, as in Figma */}
-      <div class="rounded-3xl bg-[#e8e4de] p-4 sm:p-5 lg:p-6 h-full flex items-center justify-center">
-        <div class="rounded-2xl overflow-hidden w-full shadow-lg bg-white">
-          <Image
-            src={intro.sideImage}
-            alt={intro.sideImageAlt?.[lang] ?? title}
-            width={900}
-            height={1200}
-            format="webp"
-            quality={90}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
     </div>
   </div>
 ) : (

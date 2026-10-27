@@ -10,6 +10,7 @@ import project4 from '../assets/images/projects/Stanzza/Stanzza-intro.png';
 import projectViviana from '../assets/images/projects/dra_viviana_ruiz/heroviviana.webp';
 import projectTabstr from '../assets/images/projects/tabstr/tabstr_hero.png';
 import projectBria from '../assets/images/projects/bria/bria_hero.png';
+import projectApai from '../assets/images/projects/apai/apai_hero_with_letters.png';
 const lang = i18n.getLangFromUrl(Astro.url);
 const t = i18n.useTranslations(lang);
 const translatePath = i18n.useTranslatedPath(lang);
@@ -329,6 +330,46 @@ const translatePath = i18n.useTranslatedPath(lang);
                   <path d="M21 21H3V3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span class="[font-family:'Be_Vietnam',Helvetica] font-medium">{t('projects.more.bria')}</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="/proyectos/apai" class="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+          <div class="relative overflow-hidden">
+            <Image
+              src={projectApai}
+              alt="APAI Project"
+              width={800}
+              height={600}
+              format="webp"
+              quality={85}
+              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6 md:p-8">
+            <h2 class="[font-family:'Bricolage_Grotesque',Helvetica] font-bold text-[#13243c] text-2xl md:text-3xl mb-4 group-hover:text-[#211ee1] transition-colors">
+              {t('projects.cards.apai.title')}
+            </h2>
+            <p class="[font-family:'Be_Vietnam',Helvetica] text-[#13243c] text-base md:text-lg leading-relaxed mb-4">
+              {t('projects.cards.apai.desc')}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Desarrollo Web
+              </span>
+              <span class="[font-family:'Be_Vietnam',Helvetica] text-sm bg-[#211ee1]/10 text-[#211ee1] px-3 py-1 rounded-full">
+                Automatización
+              </span>
+            </div>
+            <div class="mt-4 text-sm text-[#13243c]">
+              <span class="inline-flex items-center gap-2 text-[#0b4aa6] underline">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14 3h7v7" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 14L21 3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 21H3V3" stroke="#0b4aa6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="[font-family:'Be_Vietnam',Helvetica] font-medium">{t('projects.more.apai')}</span>
               </span>
             </div>
           </div>
