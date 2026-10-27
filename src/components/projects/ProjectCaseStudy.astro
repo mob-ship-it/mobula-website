@@ -6,6 +6,9 @@ import * as i18n from '../../i18n/utils';
 import ProjectHero from './ProjectHero.astro';
 import ProjectIntro from './ProjectIntro.astro';
 import ProjectGallery from './ProjectGallery.astro';
+import ProjectGoals from './ProjectGoals.astro';
+import ProjectVideoSection from './ProjectVideoSection.astro';
+import ProjectClosing from './ProjectClosing.astro';
 import ProjectTestimonial from './ProjectTestimonial.astro';
 import ProjectFeatured from './ProjectFeatured.astro';
 import ProjectSubscribe from './ProjectSubscribe.astro';
@@ -50,11 +53,31 @@ const subscribeHref = lang === 'en' ? '/en#plans' : '/#planes';
         keyResultsLabel={t('project.keyResults')}
       />
 
+      {project.galleryBeforeGoals && project.galleryBeforeGoals.length > 0 && (
+        <ProjectGallery
+          rows={project.galleryBeforeGoals}
+          lang={lang}
+          fallbackAlt={project.hero.alt[lang]}
+        />
+      )}
+
+      {project.goals && (
+        <ProjectGoals goals={project.goals} lang={lang} />
+      )}
+
       <ProjectGallery
         rows={project.gallery}
         lang={lang}
         fallbackAlt={project.hero.alt[lang]}
       />
+
+      {project.videoSection && (
+        <ProjectVideoSection section={project.videoSection} lang={lang} />
+      )}
+
+      {project.closing && (
+        <ProjectClosing closing={project.closing} lang={lang} />
+      )}
 
       {project.testimonial?.quote?.[lang]?.trim() && (
         <ProjectTestimonial

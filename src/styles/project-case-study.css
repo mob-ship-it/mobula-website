@@ -1,0 +1,31 @@
+/* Figma desktop (1440): Bricolage Grotesque Medium / 500 / 60px */
+.project-section-title {
+  font-family: 'Bricolage Grotesque', Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 3.75rem);
+  line-height: 1.15;
+  color: #13243c;
+}
+
+.project-section-title--on-dark {
+  color: #ffffff;
+}
+
+/* Figma body / bullets: Be Vietnam Regular 24px / line-height 122% */
+.project-body,
+.project-body-list {
+  font-family: 'Be Vietnam', Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 0.85rem + 0.5vw, 1.5rem); /* → 24px desktop */
+  line-height: 1.22;
+  letter-spacing: 0;
+  color: #13243c;
+}
+
+.project-body-list li::marker {
+  color: #13243c;
+}
+
+.project-body-list strong {
+  font-weight: 700;
+}

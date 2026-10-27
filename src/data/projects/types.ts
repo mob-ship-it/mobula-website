@@ -81,6 +81,29 @@ export type ProjectCard = {
   image: ImageMetadata;
 };
 
+/** Goals / "Meta" block — optional side image (Figma: image + bullet list). */
+export type ProjectGoals = {
+  title: LocalizedString;
+  items: LocalizedStringList;
+  image?: ImageMetadata;
+  imageAlt?: LocalizedString;
+};
+
+/** Platform section with bullets + optional side image + embedded video below. */
+export type ProjectVideoSection = {
+  title: LocalizedString;
+  items: LocalizedStringList;
+  /** Full YouTube watch or embed URL — rendered full-width under the text/image row */
+  youtubeUrl: string;
+  /** Optional art shown beside the copy (Figma: logo card next to YouTube bullets) */
+  sideImage?: ImageMetadata;
+  sideImageAlt?: LocalizedString;
+};
+
+export type ProjectClosing = {
+  lines: LocalizedStringList;
+};
+
 /**
  * Full case-study definition for the reusable project page template.
  * Put bilingual copy here; keep UI chrome labels in src/i18n/ui.ts.
@@ -99,6 +122,14 @@ export type Project = {
     alt: LocalizedString;
   };
   intro: ProjectIntro;
+  /**
+   * Optional mid-page gallery (e.g. full-width mockup before goals).
+   * Main/bottom gallery stays in `gallery`.
+   */
+  galleryBeforeGoals?: GalleryRow[];
+  goals?: ProjectGoals;
   gallery: GalleryRow[];
+  videoSection?: ProjectVideoSection;
+  closing?: ProjectClosing;
   testimonial?: ProjectTestimonial;
 };

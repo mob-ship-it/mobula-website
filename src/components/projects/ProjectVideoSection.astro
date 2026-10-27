@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import type { ProjectVideoSection as ProjectVideoSectionData } from '../../data/projects/types';
+
+interface Props {
+  section: ProjectVideoSectionData;
+  lang: 'es' | 'en';
+}
+
+const { section, lang } = Astro.props;
+const title = section.title[lang];
+const items = section.items[lang];
+
+const youtubeId = (() => {
+  try {
+    const url = new URL(section.youtubeUrl.trim());
+    if (url.hostname.includes('youtu.be')) {
+      return url.pathname.replace(/^\//, '');
+    }
+    return url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop() || '';
+  } catch {
+    return section.youtubeUrl.replace(/^.*(?:v=|\/)([A-Za-z0-9_-]{11}).*$/, '$1');
+  }
+})();
+
+const embedSrc = youtubeId ? `https://www.youtube.com/embed/${youtubeId}` : section.youtubeUrl;
+---
+
+<div class="mb-10 lg:mb-14">
+  <div
+    class:list={[
+      'mb-8 lg:mb-12',
+      section.sideImage && 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center',
+    ]}
+  >
+    <div>
+      <h2 class="project-section-title mb-6">
+        {title}
+      </h2>
+      <ul class="project-body-list list-disc pl-6 space-y-4">
+        {items.map((item) => (
+          <li set:html={item} />
+        ))}
+      </ul>
+    </div>
+
+    {section.sideImage && (
+      <div class="rounded-3xl overflow-hidden shadow-2xl">
+        <Image
+          src={section.sideImage}
+          alt={section.sideImageAlt?.[lang] ?? title}
+          width={900}
+          height={900}
+          format="webp"
+          quality={90}
+          class="w-full h-auto object-cover aspect-square"
+          loading="lazy"
+        />
+      </div>
+    )}
+  </div>
+
+  <div class="rounded-3xl overflow-hidden shadow-2xl bg-[#1a0f0c] aspect-video w-full">
+    <iframe
+      src={embedSrc}
+      title={title}
+      class="w-full h-full"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+    />
+  </div>
+</div>

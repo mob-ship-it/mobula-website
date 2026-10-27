@@ -123,6 +123,10 @@ export const ui = {
     'projects.cards.kasecab.desc': 'Un diseño modular, disruptivo y adaptable.',
     'projects.cards.viviana.title': 'Dra. Viviana Ruiz',
     'projects.cards.viviana.desc': 'La base de una marca que inspira confianza.',
+    'projects.cards.tabstr.title': 'Tabstr',
+    'projects.cards.tabstr.desc': 'Construimos el lanzamiento de una marca que se ríe de los POS del pasado.',
+    'projects.cards.bria.title': 'Bría',
+    'projects.cards.bria.desc': 'Diseñamos una valla móvil para la masa madre que está conquistando Turrialba.',
 
     // Project 'more' links (used on projects listing)
     'projects.more.legal': 'Conocé más sobre Linea Law',
@@ -130,6 +134,8 @@ export const ui = {
     'projects.more.ecp': 'Conocé más sobre ECP Consulting Group',
     'projects.more.kasecab': 'Conocé más sobre KaseCab Americas',
     'projects.more.viviana': 'Conocé más sobre Dra. Viviana Ruiz',
+    'projects.more.tabstr': 'Conocé más sobre Tabstr',
+    'projects.more.bria': 'Conocé más sobre Bría',
 
     // Project generic labels
     'project.featuredMore': 'Ver más proyectos destacados',
@@ -339,6 +345,10 @@ export const ui = {
     'projects.cards.kasecab.desc': 'A modular, disruptive, and adaptable design.',
     'projects.cards.viviana.title': 'Dr. Viviana Ruiz',
     'projects.cards.viviana.desc': 'The foundation of a brand that inspires trust.',
+    'projects.cards.tabstr.title': 'Tabstr',
+    'projects.cards.tabstr.desc': 'We built the launch of a brand that laughs at POS systems of the past.',
+    'projects.cards.bria.title': 'Bría',
+    'projects.cards.bria.desc': 'We designed a mobile billboard for the sourdough conquering Turrialba.',
 
   // Project card titles
   'projects.cards.legal.title': 'Linea Law',
@@ -352,6 +362,8 @@ export const ui = {
     'projects.more.ecp': 'Learn more about ECP Consulting Group',
     'projects.more.kasecab': 'Learn more about KaseCab Americas',
     'projects.more.viviana': 'Learn more about Dr. Viviana Ruiz',
+    'projects.more.tabstr': 'Learn more about Tabstr',
+    'projects.more.bria': 'Learn more about Bría',
 
     // Project generic labels
     'project.featuredMore': 'See more featured projects',
