@@ -41,21 +41,21 @@ export const apai: Project = {
     },
     paragraphs: {
       es: [
-        'APAI, una empresa de administración inmobiliaria, coordinaba decenas de servicios de mantenimiento (aires acondicionados, pintura, etc.) dependiendo exclusivamente de boletas de visita técnica en papel.',
+        'APAI, una empresa dedicada a la administración y mantenimiento inmobiliario, coordinaba decenas de servicios de mantenimiento (aires acondicionados, pintura, etc.) dependiendo exclusivamente de boletas de visita técnica en papel.',
         'Esto implicaba traslados físicos, firmas manuales y una trazabilidad casi nula para el cliente y la administración.',
         'Mobula desarrolló una aplicación web completamente personalizada que centraliza y digitaliza todo el proceso operativo.',
         'Diseñamos un sistema con control de roles que permite crear boletas consecutivas, asignar tareas, registrar evidencia técnica en sitio y obtener firmas digitales, optimizando los tiempos de respuesta y profesionalizando el servicio.',
       ],
       en: [
-        'APAI, a property management company, coordinated dozens of maintenance services (A/C, painting, and more) using paper-only technical visit tickets.',
+        'APAI, a company dedicated to property administration and maintenance, coordinated dozens of maintenance services (A/C, painting, and more) using paper-only technical visit tickets.',
         'That meant physical trips, handwritten signatures, and almost no traceability for clients or administration.',
         'Mobula built a fully custom web app that centralizes and digitizes the entire operations workflow.',
         'We designed a role-based system to create consecutive tickets, assign tasks, capture on-site technical evidence, and collect digital signatures—speeding up response times and professionalizing the service.',
       ],
     },
     industry: {
-      es: 'Administración Inmobiliaria / Mantenimiento',
-      en: 'Property Management / Maintenance',
+      es: 'Administración y Mantenimiento Inmobiliario',
+      en: 'Property Administration and Maintenance',
     },
     sideImage: introSide,
     sideImageAlt: {
